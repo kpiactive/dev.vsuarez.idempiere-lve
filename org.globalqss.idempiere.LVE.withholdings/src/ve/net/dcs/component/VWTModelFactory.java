@@ -98,7 +98,7 @@ public class VWTModelFactory implements IModelFactory {
 
 		try {
 			constructor = clazz.getDeclaredConstructor(new Class[] { Properties.class, int.class, String.class });
-			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), new Integer(Record_ID), trxName });
+			model = (PO) constructor.newInstance(new Object[] { Env.getCtx(), Record_ID, trxName });
 		} catch (Exception e) {
 			if (log.isLoggable(Level.WARNING))
 				log.warning(String.format("Plugin: %s -> Class can not be instantiated for table: %s", VWTPluginFeatures.id, tableName));

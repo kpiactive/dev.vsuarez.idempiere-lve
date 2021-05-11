@@ -1,28 +1,28 @@
 package ve.net.dcs.component;
 
-import java.math.BigDecimal;
+//import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
-import java.util.logging.Level;
+//import java.util.Vector;
+//import java.util.logging.Level;
 
 import org.adempiere.base.event.AbstractEventHandler;
 import org.adempiere.base.event.IEventTopics;
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.acct.Doc;
-import org.compiere.acct.DocLine;
-import org.compiere.acct.DocTax;
-import org.compiere.acct.Fact;
-import org.compiere.acct.FactLine;
+//import org.compiere.acct.Doc;
+//import org.compiere.acct.DocLine;
+//import org.compiere.acct.DocTax;
+//import org.compiere.acct.Fact;
+//import org.compiere.acct.FactLine;
 import org.compiere.model.I_C_BPartner;
 import org.compiere.model.I_C_Invoice;
-import org.compiere.model.MAcctSchema;
-import org.compiere.model.MAllocationHdr;
-import org.compiere.model.MAllocationLine;
+//import org.compiere.model.MAcctSchema;
+//import org.compiere.model.MAllocationHdr;
+//import org.compiere.model.MAllocationLine;
 import org.compiere.model.MDocType;
 import org.compiere.model.MInvoice;
 import org.compiere.model.MSequence;
@@ -178,7 +178,7 @@ public class VWTModelValidator extends AbstractEventHandler {
 		else if (po.get_TableName().equals(I_C_Invoice.Table_Name) && type.equals(IEventTopics.DOC_BEFORE_COMPLETE)) {
 
 			String msgExistCN = Msg.translate(Env.getCtx(), "AlreadyExists") + ": " + Msg.getElement(Env.getCtx(), "LVE_controlNumber");
-			String msgExistINo = Msg.translate(Env.getCtx(), "AlreadyExists") + ": " + Msg.getElement(Env.getCtx(), "LVE_POInvoiceNo");
+//			String msgExistINo = Msg.translate(Env.getCtx(), "AlreadyExists") + ": " + Msg.getElement(Env.getCtx(), "LVE_POInvoiceNo");
 			String msgMandataryCN = Msg.translate(Env.getCtx(), "FillMandatory") + ": " + Msg.getElement(Env.getCtx(), "LVE_controlNumber");
 			String msgMandataryINo = Msg.translate(Env.getCtx(), "FillMandatory") + ": " + Msg.getElement(Env.getCtx(), "LVE_POInvoiceNo");
 			String msgSeqNotFound = Msg.translate(Env.getCtx(), "SequenceDocNotFound") + " " + Msg.getElement(Env.getCtx(), "LVE_ControlNoSequence_ID");

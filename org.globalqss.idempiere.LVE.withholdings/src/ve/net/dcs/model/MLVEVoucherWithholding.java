@@ -40,7 +40,7 @@ import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
 import org.compiere.process.ProcessInfo;
 import org.compiere.process.ServerProcessCtl;
-import org.compiere.util.CLogger;
+//import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -58,7 +58,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	private static final long serialVersionUID = -2297458289364285694L;
 
 	/** Logger */
-	private static CLogger s_log = CLogger.getCLogger(MLVEVoucherWithholding.class);
+//	private static CLogger s_log = CLogger.getCLogger(MLVEVoucherWithholding.class);
 	private MPaymentAllocate pa = null;
 	BigDecimal InvoiceOpenAmt = null; 
 
@@ -500,7 +500,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	 */
 	private void createWithholdingNo(X_LCO_WithholdingType wt) {
 
-		MDocType dt = new MDocType(getCtx(), wt.get_ValueAsInt("C_DocType_ID"), get_TrxName());
+//		MDocType dt = new MDocType(getCtx(), wt.get_ValueAsInt("C_DocType_ID"), get_TrxName());
 		
 		//String value = DB.getDocumentNo(dt.getC_DocType_ID(), get_TrxName(), false, this);
 		String value = getDocumentNo();
@@ -540,13 +540,13 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		MDocType dt = new MDocType(mInvoice.getCtx(), mInvoice.getC_DocTypeTarget_ID(), mInvoice.get_TrxName());
 		BigDecimal taxamttotal = Env.ZERO;
 		String genwh = dt.get_ValueAsString("GenerateWithholding");
-		String nroReten = null;
+//		String nroReten = null;
 
 		if (genwh == null || genwh.equals("N") || genwh.equals(""))
 			return Env.ZERO;
 
-		int noins = 0;
-		BigDecimal totwith = new BigDecimal("0");
+//		int noins = 0;
+//		BigDecimal totwith = new BigDecimal("0");
 
 		try {
 			// Fill variables normally needed

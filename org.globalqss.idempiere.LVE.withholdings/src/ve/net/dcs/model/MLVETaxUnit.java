@@ -21,7 +21,7 @@ public class MLVETaxUnit extends X_LVE_TaxUnit {
 	public static Integer taxUnit(String trx_name, int org, Timestamp _From, Timestamp _To) {
 		Timestamp From = (Timestamp) _From.clone();
 		Timestamp To = (Timestamp) _To.clone();
-		Integer value = new Integer(0);
+		Integer value = 0;
 
 		String sQuery = "" + "SELECT tu.valuenumber " + "FROM   lve_taxunit tu " + "WHERE  ad_org_id = ? AND" + "(? BETWEEN validfrom AND validto OR ((validfrom<=?) AND (? <= validto OR validto IS NULL)))";
 		value = DB.getSQLValue(trx_name, sQuery, new Object[] { org, From, From, To });

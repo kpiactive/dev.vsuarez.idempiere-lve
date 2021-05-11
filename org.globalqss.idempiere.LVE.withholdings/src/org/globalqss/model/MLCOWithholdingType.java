@@ -3,7 +3,7 @@ package org.globalqss.model;
 import java.sql.ResultSet;
 import java.util.Properties;
 
-import org.globalqss.model.X_LCO_WithholdingType;
+//import org.globalqss.model.X_LCO_WithholdingType;
 
 public class MLCOWithholdingType extends X_LCO_WithholdingType {
 

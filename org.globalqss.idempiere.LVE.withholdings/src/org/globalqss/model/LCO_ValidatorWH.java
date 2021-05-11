@@ -42,7 +42,6 @@ import org.compiere.acct.DocLine_Allocation;
 import org.compiere.acct.DocTax;
 import org.compiere.acct.Fact;
 import org.compiere.acct.FactLine;
-import org.compiere.model.I_C_BPartner;
 import org.compiere.model.MAcctSchema;
 import org.compiere.model.MAllocationHdr;
 import org.compiere.model.MAllocationLine;
@@ -55,7 +54,6 @@ import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
 import org.compiere.model.MSysConfig;
 import org.compiere.model.PO;
-import org.compiere.model.X_C_BPartner;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -553,7 +551,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				BigDecimal tottax = new BigDecimal(0);
 
 				MAllocationLine alloc_line = alloc_lines[j];
-				DocLine_Allocation docLine = new DocLine_Allocation(alloc_line, doc);
+//				DocLine_Allocation docLine = new DocLine_Allocation(alloc_line, doc);
 				doc.setC_BPartner_ID(alloc_line.getC_BPartner_ID());
 
 				int inv_id = alloc_line.getC_Invoice_ID();
@@ -604,7 +602,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 						//String name = rs.getString(4);
 						//BigDecimal rate = rs.getBigDecimal(5);
 						//boolean salesTax = rs.getString(6).equals("Y") ? true : false;
-						BigDecimal taxBaseAmtVE = rs.getBigDecimal(4);
+//						BigDecimal taxBaseAmtVE = rs.getBigDecimal(4);
 						BigDecimal amountVE = rs.getBigDecimal(5);
 						String name = rs.getString(6);
 						BigDecimal rate = rs.getBigDecimal(7);
