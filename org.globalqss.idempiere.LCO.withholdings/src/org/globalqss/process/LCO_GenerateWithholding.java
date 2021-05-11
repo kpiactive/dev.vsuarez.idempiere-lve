@@ -79,8 +79,8 @@ public class LCO_GenerateWithholding extends SvrProcess
 		if (inv.getC_Invoice_ID() == 0)
 			throw new AdempiereUserError("@No@ @Invoice@");
 
-		cnt = inv.recalcWithholdings();
-
+		cnt = inv.recalcWithholdings(null);
+		
 		if (cnt == -1)
 			throw new AdempiereUserError("Error calculating withholding, please check log");
 

@@ -26,10 +26,13 @@
 package org.globalqss.model;
 
 import java.sql.ResultSet;
+import java.sql.Timestamp;
 import java.util.Properties;
 
 import org.compiere.model.MInvoice;
 import org.compiere.util.CLogger;
+
+import ve.net.dcs.model.MLVEVoucherWithholding;
 
 /**
  *	Invoice Withholding Model
@@ -78,26 +81,35 @@ public class MLCOInvoiceWithholding extends X_LCO_InvoiceWithholding
 	{
 		log.fine("New=" + newRecord);
 		MInvoice inv = new MInvoice(getCtx(), getC_Invoice_ID(), get_TrxName());
-		if (inv.getReversal_ID() <= 0) {
-			if (getLCO_WithholdingRule_ID() > 0) {
+		int LVE_VoucherWithholding_ID = 0;
+		if (get_Value("LVE_VoucherWithholding_ID") != null){
+			LVE_VoucherWithholding_ID = ((Integer)get_Value("LVE_VoucherWithholding_ID")).intValue();
+		}
+		if (LVE_VoucherWithholding_ID > 0){
+			MLVEVoucherWithholding voucher = new MLVEVoucherWithholding(getCtx(), LVE_VoucherWithholding_ID, get_TrxName());
+			setDateAcct((Timestamp)voucher.get_Value("DateAcct"));
+			setDateTrx(voucher.getDateTrx());
+		} else {
+			if (inv.getReversal_ID() <= 0) {
+				if (getLCO_WithholdingRule_ID() > 0) {
 
-				// Fill isCalcOnPayment according to rule
-				X_LCO_WithholdingRule wr = new X_LCO_WithholdingRule(getCtx(), getLCO_WithholdingRule_ID(), get_TrxName());
-				X_LCO_WithholdingCalc wc = new X_LCO_WithholdingCalc(getCtx(), wr.getLCO_WithholdingCalc_ID(), get_TrxName());
-				setIsCalcOnPayment( ! wc.isCalcOnInvoice() );
+					// Fill isCalcOnPayment according to rule
+					X_LCO_WithholdingRule wr = new X_LCO_WithholdingRule(getCtx(), getLCO_WithholdingRule_ID(), get_TrxName());
+					X_LCO_WithholdingCalc wc = new X_LCO_WithholdingCalc(getCtx(), wr.getLCO_WithholdingCalc_ID(), get_TrxName());
+					setIsCalcOnPayment( ! wc.isCalcOnInvoice() );
 
-			} else {
-				
-				if (inv.isProcessed()) {
-					setIsCalcOnPayment(true);
+				} else {
+					// Fill isCalcOnPayment according to isSOTrx on type
+					X_LCO_WithholdingType wt = new X_LCO_WithholdingType (getCtx(), getLCO_WithholdingType_ID(), get_TrxName());
+					// set on payment for sales, and on invoice for purchases
+					setIsCalcOnPayment(wt.isSOTrx());
 				}
 
-			}
-
-			// Fill DateTrx and DateAcct for isCalcOnInvoice according to the invoice
-			if (getC_AllocationLine_ID() <= 0) {
-				setDateAcct(inv.getDateAcct());
-				setDateTrx(inv.getDateInvoiced());
+				// Fill DateTrx and DateAcct for isCalcOnInvoice according to the invoice
+				if (getC_AllocationLine_ID() <= 0) {
+					setDateAcct(inv.getDateAcct());
+					setDateTrx(inv.getDateInvoiced());
+				}
 			}
 		}
 

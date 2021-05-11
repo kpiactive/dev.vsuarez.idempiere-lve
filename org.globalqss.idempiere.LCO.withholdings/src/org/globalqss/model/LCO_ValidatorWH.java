@@ -42,6 +42,7 @@ import org.compiere.acct.DocLine_Allocation;
 import org.compiere.acct.DocTax;
 import org.compiere.acct.Fact;
 import org.compiere.acct.FactLine;
+import org.compiere.model.I_C_BPartner;
 import org.compiere.model.MAcctSchema;
 import org.compiere.model.MAllocationHdr;
 import org.compiere.model.MAllocationLine;
@@ -54,6 +55,7 @@ import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
 import org.compiere.model.MSysConfig;
 import org.compiere.model.PO;
+import org.compiere.model.X_C_BPartner;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
@@ -92,6 +94,8 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, MPayment.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.ACCT_FACTS_VALIDATE, MAllocationHdr.Table_Name);
+		registerTableEvent(IEventTopics.DOC_BEFORE_POST, MAllocationHdr.Table_Name);
+		registerTableEvent(IEventTopics.DOC_AFTER_POST, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_VOID, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_REVERSECORRECT, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_REVERSEACCRUAL, MAllocationHdr.Table_Name);
@@ -224,7 +228,11 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 						if (genwh.equals("A")) {
 							// document type configured to generate withholdings automatically
 							LCO_MInvoice lcoinv = new LCO_MInvoice(inv.getCtx(), inv.getC_Invoice_ID(), inv.get_TrxName());
-							lcoinv.recalcWithholdings();
+							try {
+								lcoinv.recalcWithholdings(null);
+							} catch (SQLException e) {
+								e.printStackTrace();
+							}
 						}
 					}
 				}
@@ -260,7 +268,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		}
 
 		// before posting the allocation - post the payment withholdings vs writeoff amount
-		if (po instanceof MAllocationHdr && type.equals(IEventTopics.ACCT_FACTS_VALIDATE)) {
+		if (po instanceof MAllocationHdr && (type.equals(IEventTopics.ACCT_FACTS_VALIDATE) || type.equals(IEventTopics.DOC_BEFORE_POST))) {
 			msg = accountingForInvoiceWithholdingOnPayment((MAllocationHdr) po, event);
 			if (msg != null)
 				throw new RuntimeException(msg);
@@ -448,15 +456,18 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				String sql =
 					"SELECT LCO_InvoiceWithholding_ID " +
 					"FROM LCO_InvoiceWithholding " +
-					"WHERE C_Invoice_ID = ? AND " +
-					"IsActive = 'Y' AND " +
+					"LEFT JOIN LVE_VoucherWithholding ON LVE_VoucherWithholding.LVE_VoucherWithholding_ID = LCO_InvoiceWithholding.LVE_VoucherWithholding_ID " +
+					"WHERE LCO_InvoiceWithholding.C_Invoice_ID = ? AND " +
+					"LCO_InvoiceWithholding.IsActive = 'Y' AND " +
 					"IsCalcOnPayment = 'Y' AND " +
-					"Processed = 'N' AND " +
-					"C_AllocationLine_ID IS NULL";
+					"LCO_InvoiceWithholding.Processed = 'N' AND " +
+					"C_AllocationLine_ID IS NULL  " + 
+					"AND (LCO_InvoiceWithholding.C_Payment_ID = ? OR LCO_InvoiceWithholding.C_Payment_ID IS NULL)";
 				PreparedStatement pstmt = DB.prepareStatement(sql, ah.get_TrxName());
 				ResultSet rs = null;
 				try {
 					pstmt.setInt(1, al.getC_Invoice_ID());
+					pstmt.setInt(2, al.getC_Payment_ID());
 					rs = pstmt.executeQuery();
 					while (rs.next()) {
 						int iwhid = rs.getInt(1);
@@ -552,16 +563,32 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				invoice = new MInvoice (ah.getCtx(), alloc_line.getC_Invoice_ID(), ah.get_TrxName());
 				if (invoice == null || invoice.getC_Invoice_ID() == 0)
 					continue;
-				String sql =
-					  "SELECT i.C_Tax_ID, NVL(SUM(i.TaxBaseAmt),0) AS TaxBaseAmt, NVL(SUM(i.TaxAmt),0) AS TaxAmt, t.Name, t.Rate, t.IsSalesTax "
-					 + " FROM LCO_InvoiceWithholding i, C_Tax t "
+				/*String sql = 
+				  "SELECT i.C_Tax_ID, NVL(SUM(i.TaxBaseAmt),0) AS TaxBaseAmt, NVL(SUM(i.TaxAmt),0) AS TaxAmt, t.Name, t.Rate, t.IsSalesTax "
+				 + " FROM LCO_InvoiceWithholding i, C_Tax t "
+				+ " WHERE i.C_Invoice_ID = ? AND " +
+						 "i.IsCalcOnPayment = 'Y' AND " +
+						 "i.IsActive = 'Y' AND " +
+						 "i.Processed = 'Y' AND " +
+						 "i.C_AllocationLine_ID = ? AND " +
+						 "i.C_Tax_ID = t.C_Tax_ID "
+				+ "GROUP BY i.C_Tax_ID, t.Name, t.Rate, t.IsSalesTax";
+				*/
+			String sql = 
+					  "SELECT i.C_Tax_ID,NVL(SUM(i.TaxBaseAmt),0) AS TaxBaseAmt, NVL(SUM(i.TaxAmt),0) AS TaxAmt, " +
+					  "COALESCE(SUM( currencyconvert(i.TaxBaseAmt,ci.c_currency_id, 205, " +
+					  "i.dateacct, ci.c_conversiontype_id, i.ad_client_id, i.ad_org_id) ),0) AS TaxBaseAmtVE, " +
+					  "COALESCE(SUM(currencyconvert(i.TaxAmt ,ci.c_currency_id, 205, " +
+					  "i.dateacct, ci.c_conversiontype_id, i.ad_client_id, i.ad_org_id)),0) AS TaxAmtVE, t.Name, t.Rate, t.IsSalesTax "
+					 + " FROM LCO_InvoiceWithholding i, C_Tax t, C_Invoice ci "
 					+ " WHERE i.C_Invoice_ID = ? AND " +
 							 "i.IsCalcOnPayment = 'Y' AND " +
 							 "i.IsActive = 'Y' AND " +
 							 "i.Processed = 'Y' AND " +
 							 "i.C_AllocationLine_ID = ? AND " +
-							 "i.C_Tax_ID = t.C_Tax_ID "
-					+ "GROUP BY i.C_Tax_ID, t.Name, t.Rate, t.IsSalesTax";
+							 "i.C_Tax_ID = t.C_Tax_ID AND " +
+							 "i.C_Invoice_ID = ci.C_Invoice_ID "
+					+ "GROUP BY i.C_Tax_ID, t.Name, t.Rate, t.IsSalesTax ";
 				PreparedStatement pstmt = null;
 				ResultSet rs = null;
 				try
@@ -574,26 +601,47 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 						int tax_ID = rs.getInt(1);
 						BigDecimal taxBaseAmt = rs.getBigDecimal(2);
 						BigDecimal amount = rs.getBigDecimal(3);
-						if (invoice.isCreditMemo()) {
-							taxBaseAmt = taxBaseAmt.negate();
-							amount = amount.negate();
-						}
-						String name = rs.getString(4);
-						BigDecimal rate = rs.getBigDecimal(5);
-						boolean salesTax = rs.getString(6).equals("Y") ? true : false;
-
-						DocTax taxLine = new DocTax(tax_ID, name, rate,
+						//String name = rs.getString(4);
+						//BigDecimal rate = rs.getBigDecimal(5);
+						//boolean salesTax = rs.getString(6).equals("Y") ? true : false;
+						BigDecimal taxBaseAmtVE = rs.getBigDecimal(4);
+						BigDecimal amountVE = rs.getBigDecimal(5);
+						String name = rs.getString(6);
+						BigDecimal rate = rs.getBigDecimal(7);
+						boolean salesTax = rs.getString(8).equals("Y") ? true : false;
+						DocTax taxLine = new DocTax(tax_ID, name, rate, 
 								taxBaseAmt, amount, salesTax);
-
-						if (amount != null && amount.signum() != 0)
+						
+						/*if (amount != null && amount.signum() != 0)
 						{
 							FactLine tl = null;
 							if (invoice.isSOTrx()) {
-								tl = fact.createLine(docLine, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
-										ah.getC_Currency_ID(), amount, null);
+								tl = fact.createLine(null, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
+										as.getC_Currency_ID(), amount, null);
 							} else {
-								tl = fact.createLine(docLine, taxLine.getAccount(taxLine.getAPTaxType(), as),
-										ah.getC_Currency_ID(), null, amount);
+								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
+										as.getC_Currency_ID(), null, amount);
+							}
+							if (tl != null)
+								tl.setC_Tax_ID(taxLine.getC_Tax_ID());
+							tottax = tottax.add(amount);
+						}*/
+						if (amount != null && amount.signum() != 0)
+						{
+							FactLine tl = null;
+							if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0)){
+							//if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0) || (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0)) {
+								tl = fact.createLine(null, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
+										as.getC_Currency_ID(), amountVE, null);
+							} 
+							//** si es NC proveedor es un iva en compras
+							else if (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0){
+								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
+										as.getC_Currency_ID(), null, amountVE);
+							}
+							else {
+								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
+										as.getC_Currency_ID(), null, amountVE);
 							}
 							if (tl != null)
 								tl.setC_Tax_ID(taxLine.getC_Tax_ID());
@@ -624,15 +672,19 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 							BigDecimal newbalamt = Env.ZERO;
 							if (invoice.isSOTrx())
 								newbalamt = balamt.subtract(tottax);
+							else if (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0)
+								newbalamt = balamt.subtract(tottax);
 							else
 								newbalamt = balamt.add(tottax);
 							if (Env.ZERO.compareTo(newbalamt) == 0) {
 								// both zeros, remove the line
 								fact.remove(fl);
 							} else if (Env.ZERO.compareTo(newbalamt) > 0) {
+								fl.setAmtAcct(fl.getC_Currency_ID(), Env.ZERO, newbalamt);
 								fl.setAmtSource(fl.getC_Currency_ID(), Env.ZERO, newbalamt);
 								fl.convert();
 							} else {
+								fl.setAmtAcct(fl.getC_Currency_ID(), newbalamt, Env.ZERO);
 								fl.setAmtSource(fl.getC_Currency_ID(), newbalamt, Env.ZERO);
 								fl.convert();
 							}

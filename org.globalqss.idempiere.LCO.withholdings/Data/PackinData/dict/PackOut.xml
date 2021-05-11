@@ -1,0 +1,2301 @@
+<?xml version="1.0" encoding="UTF-8"?><idempiere Name="LCO_TaxIdType" Version="1.0.0" idempiereVersion="1.0.0.qualifier" DataBaseVersion="2013-06-27" Description="" Author="SuperUser" AuthorEmail="superuser @ idempiere.com" CreatedDate="Mon Oct 14 13:29:56 VET 2013" UpdatedDate="Mon Oct 14 13:29:56 VET 2013" PackOutVersion="100" Client="1000000-Grupo AGA-Grupo AGA" AD_Client_UU="c4bba25a-aa87-4b49-8bd8-77d7e29a1fa2">
+    <LCO_TaxIdType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description/>
+        <IsActive>true</IsActive>
+        <IsDefault>false</IsDefault>
+        <Name>J</Name>
+        <IsDigitChecked>false</IsDigitChecked>
+        <LCO_TaxCodeDian/>
+        <IsUseTaxIdDigit>false</IsUseTaxIdDigit>
+        <IsDetailedNames>false</IsDetailedNames>
+        <LCO_TaxIdType_UU>d15c33a7-4fc3-453f-9355-d7baed89e2a9</LCO_TaxIdType_UU>
+    </LCO_TaxIdType>
+    <LCO_TaxIdType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description/>
+        <IsActive>true</IsActive>
+        <IsDefault>false</IsDefault>
+        <Name>V</Name>
+        <IsDigitChecked>false</IsDigitChecked>
+        <LCO_TaxCodeDian/>
+        <IsUseTaxIdDigit>false</IsUseTaxIdDigit>
+        <IsDetailedNames>false</IsDetailedNames>
+        <LCO_TaxIdType_UU>aa822008-b77c-4a47-b982-638e13f8ad2e</LCO_TaxIdType_UU>
+    </LCO_TaxIdType>
+    <LCO_TaxIdType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description/>
+        <IsActive>true</IsActive>
+        <IsDefault>false</IsDefault>
+        <Name>G</Name>
+        <IsDigitChecked>false</IsDigitChecked>
+        <LCO_TaxCodeDian/>
+        <IsUseTaxIdDigit>false</IsUseTaxIdDigit>
+        <IsDetailedNames>false</IsDetailedNames>
+        <LCO_TaxIdType_UU>602d471a-62ac-4f6a-9ded-bdb661a3bd25</LCO_TaxIdType_UU>
+    </LCO_TaxIdType>
+    <LCO_TaxIdType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description/>
+        <IsActive>true</IsActive>
+        <IsDefault>false</IsDefault>
+        <Name>E</Name>
+        <IsDigitChecked>false</IsDigitChecked>
+        <LCO_TaxCodeDian/>
+        <IsUseTaxIdDigit>false</IsUseTaxIdDigit>
+        <IsDetailedNames>false</IsDetailedNames>
+        <LCO_TaxIdType_UU>d687f9f7-a0be-49b3-bc51-d1b457f35421</LCO_TaxIdType_UU>
+    </LCO_TaxIdType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>EXONERADO</Name>
+        <Description/>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>b8770ffb-8b91-4966-88bb-963c76b47106</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>CONTRIBUYENTE ESPECIAL </Name>
+        <Description/>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>ORDINARIO JURIDICO 75%</Name>
+        <Description/>
+        <IsDefault>true</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>76043115-3a91-484f-a6bb-cad8061c492e</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>ORDINARIO NATURAL 100%</Name>
+        <Description/>
+        <IsDefault>true</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>ORDINARIO JURIDICO 100%</Name>
+        <Description/>
+        <IsDefault>true</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>621c6250-6846-447b-a53d-f96cce03fc21</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_TaxPayerType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Name>ORDINARIO NATURAL 75%</Name>
+        <Description/>
+        <IsDefault>true</IsDefault>
+        <IsActive>true</IsActive>
+        <LCO_TaxPayerType_UU>e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_TaxPayerType_UU>
+    </LCO_TaxPayerType>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>RETENCIONES DEL IVA DE LAS FATURAS DE VENTA</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>RETENCIONES DE IVA</Name>
+        <LCO_WithholdingCategory_UU>a7a5584e-4d6f-4724-b017-bd08447f5d21</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>ISLR HONORARIOS PROFESIONALES MANCOMUNADOS NO MERCANTIL</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR HONORARIOS PROFESIONALES MANCOMUNADOS NO MERCANTIL</Name>
+        <LCO_WithholdingCategory_UU>5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>ISLR Pagos a Empresas Contratistas o SubContratistas domiciliadas o no en el pais, por la ejecucion de obras o de la prestacion de servicios en base a evaluaciones y ordenes de pago</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR PAGO EMPRESA CONTRAT POR EJECU DE OBRAS O PREST SERV</Name>
+        <LCO_WithholdingCategory_UU>b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description/>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR PAGO ADMIN. BIENES INMUEBLES A LOS ARREND BIENES INMUEB</Name>
+        <LCO_WithholdingCategory_UU>75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>ISLR Canones de Arrendamientos de Bines Muebles Situados en el Pais</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR CANONES DE ARRENDAMIENTO DE BIENES INMUEBLES EN EL PAIS</Name>
+        <LCO_WithholdingCategory_UU>b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>ISLR Pago por Gastos Transporte Conformado por Flete</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR PAGO POR GASTOS TRANSPORTE CONFORMADO POR FLETE</Name>
+        <LCO_WithholdingCategory_UU>6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <LCO_WithholdingCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Description>ISLR Pagos por Servicios de Publicidad y Propaganda y la Cesion de la Venta de Espacios para Tales Fines</Description>
+        <IsDefault>false</IsDefault>
+        <IsActive>true</IsActive>
+        <Name>ISLR PAGO POR SERVICIO DE PUBLICIDAD Y PROPAGAN  Y LA CESION</Name>
+        <LCO_WithholdingCategory_UU>a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_UU>
+    </LCO_WithholdingCategory>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix/>
+        <DecimalPattern/>
+        <Description>sales</Description>
+        <Name>Sales IVA Withholding</Name>
+        <AD_Sequence_UU>bbab5311-30db-487a-aed2-67a008dd6a23</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix/>
+        <DecimalPattern/>
+        <Description/>
+        <Name>Sales ISLR Withholding</Name>
+        <AD_Sequence_UU>4b4359b6-72e6-4218-9415-e7539a5b5df9</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix/>
+        <DecimalPattern/>
+        <Description/>
+        <Name>Purchase IVA Withholding</Name>
+        <AD_Sequence_UU>07defb62-c158-4d52-a95a-5e189e389e8c</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix>-RET_VENTAS</Suffix>
+        <DecimalPattern/>
+        <Description/>
+        <Name>AR Withholding</Name>
+        <AD_Sequence_UU>0ed0911c-65b5-41a6-841e-3bbf17d4b698</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix/>
+        <DecimalPattern/>
+        <Description/>
+        <Name>Purchase ISLR Withholding</Name>
+        <AD_Sequence_UU>9a30fefd-8395-40f6-901e-63c31eac4211</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+    <AD_Sequence type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <OrgColumn/>
+        <StartNewYear>false</StartNewYear>
+        <CurrentNextSys>100</CurrentNextSys>
+        <IsTableID>false</IsTableID>
+        <CurrentNext>1</CurrentNext>
+        <IsAudited>false</IsAudited>
+        <Prefix/>
+        <IsAutoSequence>true</IsAutoSequence>
+        <DateColumn/>
+        <Suffix>-RET_COMPRAS</Suffix>
+        <DecimalPattern/>
+        <Description/>
+        <Name>AP Withholding</Name>
+        <AD_Sequence_UU>b162d40d-d3f8-47c2-bcc8-756fe3d38ff7</AD_Sequence_UU>
+        <IncrementNo>1</IncrementNo>
+        <VFormat/>
+        <IsActive>true</IsActive>
+        <IsOrgLevelSequence>false</IsOrgLevelSequence>
+        <StartNo>1</StartNo>
+        <StartNewMonth>false</StartNewMonth>
+    </AD_Sequence>
+     <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">bbab5311-30db-487a-aed2-67a008dd6a23</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>VWT</DocBaseType>
+        <IsSOTrx>true</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>12406276-c0c7-4504-b115-6c31b5b8e14c</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>Sales IVA Withholding</PrintName>
+        <Name>Sales IVA Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">4b4359b6-72e6-4218-9415-e7539a5b5df9</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>VWT</DocBaseType>
+        <IsSOTrx>true</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>6fcf93c4-1f82-4987-bae7-85c685faa5e1</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>Sales ISLR Withholding</PrintName>
+        <Name>Sales ISLR Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">07defb62-c158-4d52-a95a-5e189e389e8c</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>VWT</DocBaseType>
+        <IsSOTrx>false</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>38d8e5b8-1c66-4569-90c7-6c33c1784c8a</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>Purchase IVA Withholding</PrintName>
+        <Name>Purchase IVA Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">9a30fefd-8395-40f6-901e-63c31eac4211</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>VWT</DocBaseType>
+        <IsSOTrx>false</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>969aae99-a909-496f-8e33-7afd37a46c65</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>Purchase ISLR Withholding</PrintName>
+        <Name>Purchase ISLR Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">b162d40d-d3f8-47c2-bcc8-756fe3d38ff7</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>APP</DocBaseType>
+        <IsSOTrx>false</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>a111baaa-123c-4789-a8ce-b9c67e734611</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>AP Withholding</PrintName>
+        <Name>AP Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_DocType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <DocNoSequence_ID reference="uuid" reference-key="AD_Sequence">0ed0911c-65b5-41a6-841e-3bbf17d4b698</DocNoSequence_ID>
+        <GL_Category_ID reference="uuid" reference-key="GL_Category">fc137315-012e-4da1-ab66-e4b7f175895b</GL_Category_ID>
+        <IsDefault>false</IsDefault>
+        <DocBaseType>ARR</DocBaseType>
+        <IsSOTrx>true</IsSOTrx>
+        <DocumentCopies>1</DocumentCopies>
+        <C_DocTypeInvoice_ID reference="id"/>
+        <DocumentNote/>
+        <IsCreateCounter>true</IsCreateCounter>
+        <IsIndexed>true</IsIndexed>
+        <IsShipConfirm>false</IsShipConfirm>
+        <C_DocTypeDifference_ID reference="id"/>
+        <IsSplitWhenDifference>false</IsSplitWhenDifference>
+        <IsDefaultCounterDoc>false</IsDefaultCounterDoc>
+        <IsInTransit>false</IsInTransit>
+        <IsPickQAConfirm>false</IsPickQAConfirm>
+        <IsOverwriteDateOnComplete>false</IsOverwriteDateOnComplete>
+        <IsOverwriteSeqOnComplete>false</IsOverwriteSeqOnComplete>
+        <DefiniteSequence_ID reference="id"/>
+        <C_DocType_UU>2455790f-5db5-44a2-8019-0f9dfa14ebda</C_DocType_UU>
+        <IsPrepareSplitDocument>true</IsPrepareSplitDocument>
+        <PrintName>AR Withholding</PrintName>
+        <Name>AR Withholding</Name>
+        <Description/>
+        <IsDocNoControlled>true</IsDocNoControlled>
+        <C_DocTypeShipment_ID reference="id"/>
+        <HasCharges>false</HasCharges>
+        <C_DocTypeProforma_ID reference="id"/>
+        <HasProforma>false</HasProforma>
+        <DocSubTypeSO/>
+        <IsActive>true</IsActive>
+        <IsChargeOrProductMandatory>false</IsChargeOrProductMandatory>
+        <DocSubTypeInv/>
+        <IPHostFiscal/>
+        <IsDocFiscal>false</IsDocFiscal>
+        <SerialFiscal/>
+        <GenerateWithholding>N</GenerateWithholding>
+    </C_DocType>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>4eb74616-68ba-49e3-b877-046ef351ab0c</C_TaxCategory_UU>
+        <IsDefault>false</IsDefault>
+        <CommodityCode/>
+        <Name>EXENTO</Name>
+        <Description>IMPUESTO EXENTO</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>false</IsWithholding>
+    </C_TaxCategory>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>429b15f4-7141-4698-b896-2fef6a8372b7</C_TaxCategory_UU>
+        <IsDefault>true</IsDefault>
+        <CommodityCode/>
+        <Name>Retencion ISLR</Name>
+        <Description>IMPUESTO SOBRE LA RENTA</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>false</IsWithholding>
+    </C_TaxCategory>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>9180dfe3-e520-4695-8813-9d09344c4195</C_TaxCategory_UU>
+        <IsDefault>true</IsDefault>
+        <CommodityCode/>
+        <Name>Retencion IVA</Name>
+        <Description>Retenciones IVA</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>false</IsWithholding>
+    </C_TaxCategory>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_UU>
+        <IsDefault>false</IsDefault>
+        <CommodityCode/>
+        <Name>% RETENCION</Name>
+        <Description>Usado para Agrupar Todos Los Porcentajes de Retenciones usados.</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>true</IsWithholding>
+    </C_TaxCategory>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>94fc8fd3-a36c-442c-9e63-92e78f161249</C_TaxCategory_UU>
+        <IsDefault>false</IsDefault>
+        <CommodityCode>IVA</CommodityCode>
+        <Name>IVA 8%</Name>
+        <Description>IVA 8%</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>false</IsWithholding>
+    </C_TaxCategory>
+    <C_TaxCategory type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_TaxCategory_UU>18be23e6-dc17-4d55-8d21-1aef3a8f4678</C_TaxCategory_UU>
+        <IsDefault>true</IsDefault>
+        <CommodityCode/>
+        <Name>IVA 12%</Name>
+        <Description>IVA</Description>
+        <IsActive>true</IsActive>
+        <IsWithholding>false</IsWithholding>
+    </C_TaxCategory>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>1.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 1%</Name>
+        <Description/>
+        <C_Tax_UU>3ef7369e-0691-479a-87cc-c86a6de25387</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>100.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 100%</Name>
+        <Description/>
+        <C_Tax_UU>a9df5171-9e7e-4346-8d41-ead60498e934</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>2.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 2%</Name>
+        <Description/>
+        <C_Tax_UU>06856902-1998-4d8c-90f3-659115164c3c</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>3.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 3%</Name>
+        <Description/>
+        <C_Tax_UU>8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>5.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 5%</Name>
+        <Description/>
+        <C_Tax_UU>0874fd2b-ce52-4d62-bfe1-d8d04c7a7073</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">ecec3c29-48eb-460c-ad49-530affe60106</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>75.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2009-04-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>% RETENCION 75%</Name>
+        <Description/>
+        <C_Tax_UU>ec4b56f7-da8e-450b-92ba-e48a278ba371</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">4eb74616-68ba-49e3-b877-046ef351ab0c</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>false</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2009-04-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id"/>
+        <C_Region_ID reference="id"/>
+        <IsTaxExempt>true</IsTaxExempt>
+        <IsSalesTax>true</IsSalesTax>
+        <Name>EXENTO</Name>
+        <Description/>
+        <C_Tax_UU>176a24d8-187a-4316-8edc-804410c4f76e</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">94fc8fd3-a36c-442c-9e63-92e78f161249</C_TaxCategory_ID>
+        <IsDefault>false</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>8.000000000000</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2009-04-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id"/>
+        <C_Region_ID reference="id"/>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>true</IsSalesTax>
+        <Name>IVA 8%</Name>
+        <Description>IVA 8%</Description>
+        <C_Tax_UU>fb068104-9ffb-4cc1-a1a7-c9bb4bee87ac</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <C_Tax type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <SOPOType>B</SOPOType>
+        <AD_Rule_ID reference="id"/>
+        <C_TaxCategory_ID reference="uuid" reference-key="C_TaxCategory">18be23e6-dc17-4d55-8d21-1aef3a8f4678</C_TaxCategory_ID>
+        <IsDefault>true</IsDefault>
+        <IsDocumentLevel>true</IsDocumentLevel>
+        <IsSummary>false</IsSummary>
+        <Rate>12.0</Rate>
+        <RequiresTaxCertificate>false</RequiresTaxCertificate>
+        <TaxIndicator/>
+        <To_Country_ID reference="id"/>
+        <To_Region_ID reference="id"/>
+        <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+        <C_Country_ID reference="id">339</C_Country_ID>
+        <C_Region_ID reference="id">142</C_Region_ID>
+        <IsTaxExempt>false</IsTaxExempt>
+        <IsSalesTax>false</IsSalesTax>
+        <Name>IVA 12%</Name>
+        <Description/>
+        <C_Tax_UU>8d82c652-eae6-49a4-8fb3-2904af429b64</C_Tax_UU>
+        <IsActive>true</IsActive>
+    </C_Tax>
+    <LCO_WithholdingType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Counter/>
+        <IsActive>true</IsActive>
+        <IsSOTrx>false</IsSOTrx>
+        <Description/>
+        <Name>RETENCION IVA COMPRA</Name>
+        <LCO_WithholdingType_UU>38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_UU>
+        <C_DocType_ID reference="uuid" reference-key="C_DocType">38d8e5b8-1c66-4569-90c7-6c33c1784c8a</C_DocType_ID>
+        <LCO_WithholdingRuleConf type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsActive>true</IsActive>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseOrgTaxPayerType>true</IsUseOrgTaxPayerType>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <IsUseBPTaxPayerType>true</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <LCO_WithholdingRuleConf_UU>4fb6f85a-88ef-49c5-89b8-353bafc5a5ef</LCO_WithholdingRuleConf_UU>
+        </LCO_WithholdingRuleConf>
+        <LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>T</BaseType>
+            <C_BaseTax_ID reference="uuid" reference-key="C_Tax">8d82c652-eae6-49a4-8fb3-2904af429b64</C_BaseTax_ID>
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">a9df5171-9e7e-4346-8d41-ead60498e934</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>RETENCIÓN DEL 100% DEL IVA 12%</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>9921c1ab-8ea3-4b0e-b32e-9a4713b3a4fa</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>T</BaseType>
+            <C_BaseTax_ID reference="uuid" reference-key="C_Tax">8d82c652-eae6-49a4-8fb3-2904af429b64</C_BaseTax_ID>
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">ec4b56f7-da8e-450b-92ba-e48a278ba371</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>RETENCIÓN DEL 75% DEL IVA 12%</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>cba80aba-7cbb-4298-8819-f24e044e73bc</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>T</BaseType>
+            <C_BaseTax_ID reference="uuid" reference-key="C_Tax">fb068104-9ffb-4cc1-a1a7-c9bb4bee87ac</C_BaseTax_ID>
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">a9df5171-9e7e-4346-8d41-ead60498e934</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>RETENCIÓN DEL 100% DEL IVA 8%</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>2c36ae58-3b96-41f8-acc6-9aebae90dbeb</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>T</BaseType>
+            <C_BaseTax_ID reference="uuid" reference-key="C_Tax">fb068104-9ffb-4cc1-a1a7-c9bb4bee87ac</C_BaseTax_ID>
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">ec4b56f7-da8e-450b-92ba-e48a278ba371</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>RETENCIÓN DEL 75% DEL IVA 8%</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>3697e218-7468-4999-9096-fc7f7523f857</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">9921c1ab-8ea3-4b0e-b32e-9a4713b3a4fa</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 100% DEL IVA 12% CONTRIBUYENTE JURIDICO</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>aa7c6c53-29d0-4019-a666-0aedd29f3729</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">cba80aba-7cbb-4298-8819-f24e044e73bc</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 12% CONTRIBUYENTE JURIDICO</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>db56b0f0-b608-4c80-9c2d-fe04afb5e4ac</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">9921c1ab-8ea3-4b0e-b32e-9a4713b3a4fa</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 100% DEL IVA 12% CONTRIBUYENTE NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>b1abe36f-aa82-4cb2-a1e4-057226a273c2</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">cba80aba-7cbb-4298-8819-f24e044e73bc</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 12% CONTRIBUYENTE NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>e3f39dcf-727b-489f-a0d8-c2cf39011c1c</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">2c36ae58-3b96-41f8-acc6-9aebae90dbeb</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 100% DEL IVA 8% CONTRIBUYENTE JURIDICO</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>0216327b-b122-4790-82b6-3cebcdd66915</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">3697e218-7468-4999-9096-fc7f7523f857</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 8% CONTRIBUYENTE JURIDICO</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>67093234-d06f-43a0-b630-f4ae45760595</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">2c36ae58-3b96-41f8-acc6-9aebae90dbeb</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 100% DEL IVA 8% CONTRIBUYENTE NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>b485fc2e-e229-4db3-81a4-1d63266cde85</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">3697e218-7468-4999-9096-fc7f7523f857</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 8% CONTRIBUYENTE NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>b36ff348-aee4-48cf-92a0-5b71284acb9e</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">3697e218-7468-4999-9096-fc7f7523f857</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 8% CONTRIBUYENTE ESPECIAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>8873690d-d835-4606-8b05-7af7bc3c530c</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2013-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_Org_TaxPayerType_ID>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">cba80aba-7cbb-4298-8819-f24e044e73bc</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">38bbd33f-c2bb-40a8-931b-6825ad7eaf2f</LCO_WithholdingType_ID>
+            <Name>RETENCION 75% DEL IVA 12% CONTRIBUYENTE ESPECIAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>71cf74f5-366c-4f3e-a981-32ff1d1a0c5c</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        
+        
+        
+        
+    </LCO_WithholdingType>
+    <LCO_WithholdingType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Counter/>
+        <IsActive>true</IsActive>
+        <IsSOTrx>true</IsSOTrx>
+        <Description/>
+        <Name>RETENCION DE ISLR EN VENTAS</Name>
+        <LCO_WithholdingType_UU>d5ca4ac5-e246-4afa-845b-59e7640e43ed</LCO_WithholdingType_UU>
+        <C_DocType_ID reference="uuid" reference-key="C_DocType">6fcf93c4-1f82-4987-bae7-85c685faa5e1</C_DocType_ID>
+    </LCO_WithholdingType>
+    <LCO_WithholdingType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Counter/>
+        <IsActive>true</IsActive>
+        <IsSOTrx>true</IsSOTrx>
+        <Description/>
+        <Name>RETENCION IVA VENTA</Name>
+        <LCO_WithholdingType_UU>c3ad5c79-c392-41af-afe0-434cc36f0fa2</LCO_WithholdingType_UU>
+        <C_DocType_ID reference="uuid" reference-key="C_DocType">12406276-c0c7-4504-b115-6c31b5b8e14c</C_DocType_ID>
+        <LCO_WithholdingRuleConf type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsActive>true</IsActive>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">c3ad5c79-c392-41af-afe0-434cc36f0fa2</LCO_WithholdingType_ID>
+            <IsUseBPTaxPayerType>true</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <LCO_WithholdingRuleConf_UU>70dd0fa7-5e14-45b6-b24e-2df94571a41e</LCO_WithholdingRuleConf_UU>
+        </LCO_WithholdingRuleConf>
+        <LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>T</BaseType>
+            <C_BaseTax_ID reference="uuid" reference-key="C_Tax">8d82c652-eae6-49a4-8fb3-2904af429b64</C_BaseTax_ID>
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">ec4b56f7-da8e-450b-92ba-e48a278ba371</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>true</IsCalcOnInvoice>
+            <IsCalcOnPayment>false</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">c3ad5c79-c392-41af-afe0-434cc36f0fa2</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>RETENCION 75% IVA 12% EN VENTAS</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>f1292632-a935-45f8-8878-4e947a5b7fe3</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">f1292632-a935-45f8-8878-4e947a5b7fe3</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="id"/>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">c3ad5c79-c392-41af-afe0-434cc36f0fa2</LCO_WithholdingType_ID>
+            <Name>RETENCION DEL 100% IVA 12%</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>b71a3ee8-3f44-4106-9ca2-53ce920f1dd1</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        
+    </LCO_WithholdingType>
+    <LCO_WithholdingType type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <Counter/>
+        <IsActive>true</IsActive>
+        <IsSOTrx>false</IsSOTrx>
+        <Description/>
+        <Name>RETENCION DE ISLR COMPRA</Name>
+        <LCO_WithholdingType_UU>fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_UU>
+        <C_DocType_ID reference="uuid" reference-key="C_DocType">969aae99-a909-496f-8e33-7afd37a46c65</C_DocType_ID>
+        <LCO_WithholdingRuleConf type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsActive>true</IsActive>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseWithholdingCategory>true</IsUseWithholdingCategory>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <IsUseBPTaxPayerType>true</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <LCO_WithholdingRuleConf_UU>5279c84a-a76b-4486-9c5d-7390346d1c48</LCO_WithholdingRuleConf_UU>
+        </LCO_WithholdingRuleConf>
+        <LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>3% ISLR SERVICIO DE PROPAGANDA Y PUBLICIDAD NATURALES</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>e32c4dd9-200b-4a39-8f27-e2f28fa06008</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>3% ISLR POR HONORARIOS PROFESIONALES PERSONAS NATURALES</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>38c8eed7-cb6c-461c-9c0b-1660961fa41f</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">0874fd2b-ce52-4d62-bfe1-d8d04c7a7073</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>5% ISLR POR HONORARIOS PROFESIONALES PERSONAS JURIDICAS</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>0bc51759-bd37-45e1-8fe7-fd42e88ac98e</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">0874fd2b-ce52-4d62-bfe1-d8d04c7a7073</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>5% COMISION POR LA VENTA DE BIENES INMUEBLES PJ</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>8405db34-61ad-46da-87bb-cffe791201ce</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>3% COMISION POR LA VENTA DE BIENES INMUEBLES PN</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>3b3e25c5-c27f-42a9-a445-1dc01734e9d6</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>3% FLETES DE TRANSPORTISTAS PERSONAS JURIDICAS</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>7b1a9202-7c5e-434e-ae7c-142c9a658177</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">3ef7369e-0691-479a-87cc-c86a6de25387</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>1% FLETES DE TRANSPORTISTAS PERSONAS NATURALES</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>746e5406-c590-43a5-9364-14c63c4a5f89</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">06856902-1998-4d8c-90f3-659115164c3c</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>2% POR EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS JURIDICA</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>a8fde201-c6bf-4590-bd9c-9e22266967bb</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">3ef7369e-0691-479a-87cc-c86a6de25387</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>1% POR EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS NATURAL</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>a376d036-0582-49de-aa2c-81fa2439fdde</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">0874fd2b-ce52-4d62-bfe1-d8d04c7a7073</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>5% ISLR SERVICIO DE PROPAGANDA Y PUBLICIDAD JURIDICA</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>2168cfd0-9b09-410d-9fab-18bb703d349d</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">0874fd2b-ce52-4d62-bfe1-d8d04c7a7073</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>5% ARRENDAMIENTO BIENES INMUEBLES JURIDICAS</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>ec951e0c-5065-4b2f-afaf-64a13c0237c2</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingCalc type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <BaseType>L</BaseType>
+            <C_BaseTax_ID reference="id" />
+            <C_Tax_ID reference="uuid" reference-key="C_Tax">8130fee5-1ff8-4e7b-be49-ccb96abc8e14</C_Tax_ID>
+            <Description />
+            <IsActive>true</IsActive>
+            <IsCalcOnInvoice>false</IsCalcOnInvoice>
+            <IsCalcOnPayment>true</IsCalcOnPayment>
+            <IsModifiableOnPayment>false</IsModifiableOnPayment>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Thresholdmin>0</Thresholdmin>
+            <Name>3% ARRENDAMIENTO BIENES INMUEBLES NATURALES</Name>
+            <ThresholdMax>0</ThresholdMax>
+            <AmountRefunded>0</AmountRefunded>
+            <LCO_WithholdingCalc_UU>6eef7652-e8c7-47b0-81a9-f3a7d6cc9946</LCO_WithholdingCalc_UU>
+        </LCO_WithholdingCalc><LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">2168cfd0-9b09-410d-9fab-18bb703d349d</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% SERVICIO DE PUBLICIDAD Y PROPAGANDA JURIDICA</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>4bc37946-eaf3-4fa5-9c73-d66bf2a9c418</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">e32c4dd9-200b-4a39-8f27-e2f28fa06008</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% SERVICIO DE PUBLICIDAD Y PROPAGANDA NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>05a8dee3-4221-4bba-90fa-f9f8ff7ed748</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">2168cfd0-9b09-410d-9fab-18bb703d349d</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% SERVICIO DE PUBLICIDAD Y PROPAGANDA JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>330b1f88-3337-4e7c-a43f-1da99bc33464</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">746e5406-c590-43a5-9364-14c63c4a5f89</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>1% FLETES DE TRANSPORTISTAS NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>0191a798-a78d-4ddc-ac52-7126dfc757f4</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">7b1a9202-7c5e-434e-ae7c-142c9a658177</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% FLETES DE TRANSPORTISTAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>7f9ac98e-7939-461c-9251-e1e6dd26c8aa</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">7b1a9202-7c5e-434e-ae7c-142c9a658177</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% FLETES DE TRANSPORTISTAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>9727ef65-4e86-4451-96f3-b3c6a2979926</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">a376d036-0582-49de-aa2c-81fa2439fdde</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>1% EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>11ef17dd-d4ca-49f1-8e82-dfa8fb0c10d3</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">a8fde201-c6bf-4590-bd9c-9e22266967bb</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>2% EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>fa38cb48-057e-4265-b955-771b68b302b1</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">a8fde201-c6bf-4590-bd9c-9e22266967bb</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>2% EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>a4287849-9856-4beb-923e-9534391bd4d2</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">8405db34-61ad-46da-87bb-cffe791201ce</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% COMISION POR LA VENTA DE BIENES INMUEBLES PJ</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>82f1ba10-173e-4bda-ba82-aa9941c4ba1a</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">8405db34-61ad-46da-87bb-cffe791201ce</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% COMISION POR LA VENTA DE BIENES INMUEBLES PJ</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>752402e6-a720-4e15-853b-38b99e1e8943</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">38c8eed7-cb6c-461c-9c0b-1660961fa41f</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% HONORARIOS PROFESIONALES PERSONAS NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>4a34fbc7-a8bc-4805-933e-43623df539d4</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">0bc51759-bd37-45e1-8fe7-fd42e88ac98e</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% HONORARIOS PROFESIONALES PERSONAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>8325a0aa-e036-43bc-8897-ec562e98ff7e</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">0bc51759-bd37-45e1-8fe7-fd42e88ac98e</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% HONORARIOS PROFESIONALES PERSONAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>0480eb89-e74b-45df-a9db-ecc498c627a9</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">6eef7652-e8c7-47b0-81a9-f3a7d6cc9946</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% ARRENDAMIENTO BIENES INMUEBLES NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>1634f090-994d-4d7e-8f66-033f6d7e7c98</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">76043115-3a91-484f-a6bb-cad8061c492e</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">ec951e0c-5065-4b2f-afaf-64a13c0237c2</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% ARRENDAMIENTO BIENES INMUEBLES JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>9833d6e7-b45b-46d5-bd50-ceb4f331ccb1</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">621c6250-6846-447b-a53d-f96cce03fc21</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">ec951e0c-5065-4b2f-afaf-64a13c0237c2</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% ARRENDAMIENTO BIENES INMUEBLES JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>321dae24-230e-4e06-a397-c1f4ffb42123</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">04d8475f-4301-47f2-ac5a-5675ddf51d59</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">3b3e25c5-c27f-42a9-a445-1dc01734e9d6</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% COMISION POR LA VENTA DE BIENES INMUEBLES NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>5501da72-5f97-4727-886c-5937f5e213a3</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">2168cfd0-9b09-410d-9fab-18bb703d349d</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% SERVICIO DE PUBLICIDAD Y PROPAGANDA JURIDICA</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>4114a9c1-5d8d-42ab-883f-aa3ceeb35dce</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">7b1a9202-7c5e-434e-ae7c-142c9a658177</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% FLETES DE TRANSPORTISTAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>4d7e331a-f57e-4330-ba86-122df8fcadf4</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">8405db34-61ad-46da-87bb-cffe791201ce</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% COMISION POR LA VENTA DE BIENES INMUEBLES PJ</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>dc958071-7d4d-4c50-9cdf-f0b3b5773cf6</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">0bc51759-bd37-45e1-8fe7-fd42e88ac98e</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% HONORARIOS PROFESIONALES PERSONAS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>66788593-29b1-4281-8ca6-78d478001b07</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">ec951e0c-5065-4b2f-afaf-64a13c0237c2</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>5% ARRENDAMIENTO BIENES INMUEBLES JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>b51a0495-fb9a-4f9f-9aec-6ba05865a307</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e14d02fa-1335-4422-b6d4-711667b3b6c4</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">a8fde201-c6bf-4590-bd9c-9e22266967bb</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>2% EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS JURIDICAS</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>3ef2c40e-00ba-4c00-b04a-83963886046c</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">6eef7652-e8c7-47b0-81a9-f3a7d6cc9946</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b934bc19-c499-4235-ae06-cfa5174cf492</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% ARRENDAMIENTO BIENES INMUEBLES NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>a13ec0ea-d2a4-4d47-ac56-3b1e649367c4</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">38c8eed7-cb6c-461c-9c0b-1660961fa41f</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">5cb330c5-1dff-4fc5-a08d-dcec6b2e32d7</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% HONORARIOS PROFESIONALES PERSONAS NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>fd626856-6d5a-4dac-9460-f962f6017da9</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">3b3e25c5-c27f-42a9-a445-1dc01734e9d6</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">75719226-198c-45c2-ac3c-7245e22cb60c</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% COMISION POR LA VENTA DE BIENES INMUEBLES NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>408d44aa-50be-439d-b04d-9789161fd7b3</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">a376d036-0582-49de-aa2c-81fa2439fdde</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">b00261a6-1bb3-4835-9397-c0282eff1ba4</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>1% EJECUCIÓN DE OBRAS Y PRESTACIÓN DE SERVICIOS NATURAL</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>6162382e-0973-4ae4-bb41-69ba2a9ec71d</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">746e5406-c590-43a5-9364-14c63c4a5f89</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">6de9051d-2d17-4abf-889b-09d3ce134b83</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>1% FLETES DE TRANSPORTISTAS NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>1c4677f7-4e8a-48e5-83b8-a167876c9704</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        <LCO_WithholdingRule type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <IsUseOrgTaxPayerType>false</IsUseOrgTaxPayerType>
+            <IsUseOrgCity>false</IsUseOrgCity>
+            <ValidFrom>2000-01-01 00:00:00.0</ValidFrom>
+            <IsUseWithholdingCategory>false</IsUseWithholdingCategory>
+            <Description/>
+            <IsActive>true</IsActive>
+            <IsDefault>false</IsDefault>
+            <IsUseBPISIC>false</IsUseBPISIC>
+            <IsUseBPTaxPayerType>false</IsUseBPTaxPayerType>
+            <IsUseBPCity>false</IsUseBPCity>
+            <IsUseOrgISIC>false</IsUseOrgISIC>
+            <IsUseProductTaxCategory>false</IsUseProductTaxCategory>
+            <LCO_BP_ISIC_ID reference="id"/>
+            <LCO_BP_TaxPayerType_ID reference="uuid" reference-key="LCO_TaxPayerType">e90cb835-82df-4dbe-b41f-308908eb4d33</LCO_BP_TaxPayerType_ID>
+            <LCO_Org_ISIC_ID reference="id"/>
+            <LCO_Org_TaxPayerType_ID reference="id"/>
+            <LCO_WithholdingCalc_ID reference="uuid" reference-key="LCO_WithholdingCalc">e32c4dd9-200b-4a39-8f27-e2f28fa06008</LCO_WithholdingCalc_ID>
+            <LCO_WithholdingCategory_ID reference="uuid" reference-key="LCO_WithholdingCategory">a59c7acb-6f6e-4b40-a77d-e39e7f1428bc</LCO_WithholdingCategory_ID>
+            <C_TaxCategory_ID reference="id"/>
+            <LCO_WithholdingType_ID reference="uuid" reference-key="LCO_WithholdingType">fcb56afd-3b96-4fe1-9df1-171e65638623</LCO_WithholdingType_ID>
+            <Name>3% SERVICIO DE PUBLICIDAD Y PROPAGANDA NATURALES</Name>
+            <LCO_BP_City_ID reference="id"/>
+            <LCO_Org_City_ID reference="id"/>
+            <LCO_WithholdingRule_UU>46782891-22a0-4313-b776-5d3cdf485391</LCO_WithholdingRule_UU>
+        </LCO_WithholdingRule>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    </LCO_WithholdingType>
+     <C_Bank type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <C_Bank_UU>d1a49509-db16-4a8d-86fb-1fc40bc9b05a</C_Bank_UU>
+        <RoutingNo>RETENCIONES</RoutingNo>
+        <C_Location_ID/>
+        <IsOwnBank>true</IsOwnBank>
+        <SwiftCode/>
+        <Name>RETENCIONES</Name>
+        <Description/>
+        <IsActive>true</IsActive>
+        <C_BankAccount type="table">
+            <AD_Org_ID>0</AD_Org_ID>
+            <CurrentBalance>0</CurrentBalance>
+            <C_Currency_ID reference="id">100</C_Currency_ID>
+            <IsDefault>false</IsDefault>
+            <BankAccountType>B</BankAccountType>
+            <CreditLimit>0</CreditLimit>
+            <BBAN/>
+            <PaymentExportClass/>
+            <Description/>
+            <C_BankAccount_UU>254b787b-30fc-4c72-a64d-f30163c609b1</C_BankAccount_UU>
+            <IsActive>true</IsActive>
+            <AccountNo>1</AccountNo>
+            <C_Bank_ID reference="uuid" reference-key="C_Bank">d1a49509-db16-4a8d-86fb-1fc40bc9b05a</C_Bank_ID>
+            <Value>1000000</Value>
+            <Name>RETENCIONES</Name>
+            <IBAN/>
+        </C_BankAccount>
+    </C_Bank>
+    <AD_SysConfig type="table">
+        <AD_Org_ID>0</AD_Org_ID>
+        <ConfigurationLevel>C</ConfigurationLevel>
+        <Value>1000000</Value>
+        <Description/>
+        <AD_SysConfig_UU>02259efa-3ac8-4092-9987-4854aa0c48e6</AD_SysConfig_UU>
+        <IsActive>true</IsActive>
+        <Name>LVE_Withholding_BankAccount</Name>
+        <EntityType>ve.net.dcs.VoucherWithholdingTax</EntityType>
+    </AD_SysConfig>
+</idempiere>

@@ -137,6 +137,34 @@ public class X_LCO_InvoiceWithholding extends PO implements I_LCO_InvoiceWithhol
 		return ii.intValue();
 	}
 
+	public org.compiere.model.I_C_Payment getC_Payment() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Payment)MTable.get(getCtx(), org.compiere.model.I_C_Payment.Table_Name)
+			.getPO(getC_Payment_ID(), get_TrxName());	}
+
+	/** Set Payment.
+		@param C_Payment_ID 
+		Payment identifier
+	  */
+	public void setC_Payment_ID (int C_Payment_ID)
+	{
+		if (C_Payment_ID < 1) 
+			set_Value (COLUMNNAME_C_Payment_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Payment_ID, Integer.valueOf(C_Payment_ID));
+	}
+
+	/** Get Payment.
+		@return Payment identifier
+	  */
+	public int getC_Payment_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Payment_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	public org.compiere.model.I_C_Tax getC_Tax() throws RuntimeException
     {
 		return (org.compiere.model.I_C_Tax)MTable.get(getCtx(), org.compiere.model.I_C_Tax.Table_Name)
@@ -396,6 +424,26 @@ public class X_LCO_InvoiceWithholding extends PO implements I_LCO_InvoiceWithhol
 		return ii.intValue();
 	}
 
+	/** Set Voucher Withholding.
+		@param LVE_VoucherWithholding_ID Voucher Withholding	  */
+	public void setLVE_VoucherWithholding_ID (int LVE_VoucherWithholding_ID)
+	{
+		if (LVE_VoucherWithholding_ID < 1) 
+			set_Value (COLUMNNAME_LVE_VoucherWithholding_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_VoucherWithholding_ID, Integer.valueOf(LVE_VoucherWithholding_ID));
+	}
+
+	/** Get Voucher Withholding.
+		@return Voucher Withholding	  */
+	public int getLVE_VoucherWithholding_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_VoucherWithholding_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Percent.
 		@param Percent 
 		Percentage
@@ -438,6 +486,23 @@ public class X_LCO_InvoiceWithholding extends PO implements I_LCO_InvoiceWithhol
 			return "Y".equals(oo);
 		}
 		return false;
+	}
+
+	/** Set Subtrahend.
+		@param Subtrahend Subtrahend	  */
+	public void setSubtrahend (BigDecimal Subtrahend)
+	{
+		set_Value (COLUMNNAME_Subtrahend, Subtrahend);
+	}
+
+	/** Get Subtrahend.
+		@return Subtrahend	  */
+	public BigDecimal getSubtrahend () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_Subtrahend);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
 	}
 
 	/** Set Tax Amount.

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="org.globalqss.process.LCO_GenerateWithholding"
+         name="LCO_GenerateWithholding"
+         point="org.adempiere.base.Process">
+      <process
+            class="org.globalqss.process.LCO_GenerateWithholding"
+            priority="0">
+      </process>
+   </extension>
+   <extension
+         id="ve.net.dcs.process.VWT_GenerateInvoiceWithholding"
+         name="VWT_GenerateInvoiceWithholding"
+         point="org.adempiere.base.Process">
+      <process
+            class="ve.net.dcs.process.VWT_GenerateInvoiceWithholding"
+            priority="0">
+      </process>
+   </extension>
+   <extension
+         id="ve.net.dcs.process.VWT_ProcessWithholding"
+         point="org.adempiere.base.Process">
+      <process
+            class="ve.net.dcs.process.VWT_ProcessWithholding">
+      </process>
+   </extension>
+   <extension
+         id="ve.net.dcs.process.LVE_GenerateTxtSeniat"
+         point="org.adempiere.base.Process">
+      <process
+            class="ve.net.dcs.process.LVE_GenerateTxtSeniat">
+      </process>
+   </extension>
+   <extension
+         id="ve.net.dcs.process.LVE_GenerateXmlSeniat"
+         point="org.adempiere.base.Process">
+      <process
+            class="ve.net.dcs.process.LVE_GenerateXmlSeniat">
+      </process>
+   </extension>
+</plugin>
