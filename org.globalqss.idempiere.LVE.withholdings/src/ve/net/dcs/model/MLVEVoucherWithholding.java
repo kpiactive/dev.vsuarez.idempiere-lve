@@ -275,6 +275,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			
 			pa.saveEx();
 			mWithholding.setProcessed(true);
+			mWithholding.saveEx();
 		}
 		
 		setC_Payment_ID(payment.getC_Payment_ID());
