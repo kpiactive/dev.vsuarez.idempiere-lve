@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_WithholdingRule
  *  @author iDempiere (generated) 
- *  @version Release 3.1
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
 public interface I_LCO_WithholdingRule 
@@ -32,7 +32,7 @@ public interface I_LCO_WithholdingRule
     /** TableName=LCO_WithholdingRule */
     public static final String Table_Name = "LCO_WithholdingRule";
 
-    /** AD_Table_ID=1000006 */
+    /** AD_Table_ID=1000013 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -63,6 +63,19 @@ public interface I_LCO_WithholdingRule
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
+
+    /** Column name Code */
+    public static final String COLUMNNAME_Code = "Code";
+
+	/** Set Validation code.
+	  * Validation Code
+	  */
+	public void setCode (String Code);
+
+	/** Get Validation code.
+	  * Validation Code
+	  */
+	public String getCode();
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -152,6 +165,15 @@ public interface I_LCO_WithholdingRule
 	/** Get Is Use BP ISIC	  */
 	public boolean isUseBPISIC();
 
+    /** Column name IsUseBPMunicipality */
+    public static final String COLUMNNAME_IsUseBPMunicipality = "IsUseBPMunicipality";
+
+	/** Set Is Use BP Municipality	  */
+	public void setIsUseBPMunicipality (boolean IsUseBPMunicipality);
+
+	/** Get Is Use BP Municipality	  */
+	public boolean isUseBPMunicipality();
+
     /** Column name IsUseBPTaxPayerType */
     public static final String COLUMNNAME_IsUseBPTaxPayerType = "IsUseBPTaxPayerType";
 
@@ -178,6 +200,15 @@ public interface I_LCO_WithholdingRule
 
 	/** Get Is Use Org ISIC	  */
 	public boolean isUseOrgISIC();
+
+    /** Column name IsUseOrgMunicipality */
+    public static final String COLUMNNAME_IsUseOrgMunicipality = "IsUseOrgMunicipality";
+
+	/** Set Is Use Org Municipality	  */
+	public void setIsUseOrgMunicipality (boolean IsUseOrgMunicipality);
+
+	/** Get Is Use Org Municipality	  */
+	public boolean isUseOrgMunicipality();
 
     /** Column name IsUseOrgTaxPayerType */
     public static final String COLUMNNAME_IsUseOrgTaxPayerType = "IsUseOrgTaxPayerType";
@@ -322,6 +353,24 @@ public interface I_LCO_WithholdingRule
 	public int getLCO_WithholdingType_ID();
 
 	public org.globalqss.model.I_LCO_WithholdingType getLCO_WithholdingType() throws RuntimeException;
+
+    /** Column name LVE_BP_Municipaly_ID */
+    public static final String COLUMNNAME_LVE_BP_Municipaly_ID = "LVE_BP_Municipaly_ID";
+
+	/** Set Municipaly BP	  */
+	public void setLVE_BP_Municipaly_ID (int LVE_BP_Municipaly_ID);
+
+	/** Get Municipaly BP	  */
+	public int getLVE_BP_Municipaly_ID();
+
+    /** Column name LVE_Org_Municipaly_ID */
+    public static final String COLUMNNAME_LVE_Org_Municipaly_ID = "LVE_Org_Municipaly_ID";
+
+	/** Set Municipaly Organization	  */
+	public void setLVE_Org_Municipaly_ID (int LVE_Org_Municipaly_ID);
+
+	/** Get Municipaly Organization	  */
+	public int getLVE_Org_Municipaly_ID();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";

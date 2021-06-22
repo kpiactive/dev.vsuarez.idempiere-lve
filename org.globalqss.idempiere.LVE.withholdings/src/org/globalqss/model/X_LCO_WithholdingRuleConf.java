@@ -23,14 +23,14 @@ import org.compiere.model.*;
 
 /** Generated Model for LCO_WithholdingRuleConf
  *  @author iDempiere (generated) 
- *  @version Release 3.1 - $Id$ */
+ *  @version Release 8.2 - $Id$ */
 public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRuleConf, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20151110L;
+	private static final long serialVersionUID = 20210622L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingRuleConf (Properties ctx, int LCO_WithholdingRuleConf_ID, String trxName)
@@ -65,7 +65,7 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LCO_WithholdingRuleConf[")
+      StringBuilder sb = new StringBuilder ("X_LCO_WithholdingRuleConf[")
         .append(get_ID()).append("]");
       return sb.toString();
     }
@@ -103,6 +103,27 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 	public boolean isUseBPISIC () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseBPISIC);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Is Use BP Municipality.
+		@param IsUseBPMunicipality Is Use BP Municipality	  */
+	public void setIsUseBPMunicipality (boolean IsUseBPMunicipality)
+	{
+		set_Value (COLUMNNAME_IsUseBPMunicipality, Boolean.valueOf(IsUseBPMunicipality));
+	}
+
+	/** Get Is Use BP Municipality.
+		@return Is Use BP Municipality	  */
+	public boolean isUseBPMunicipality () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseBPMunicipality);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -166,6 +187,27 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 	public boolean isUseOrgISIC () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseOrgISIC);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Is Use Org Municipality.
+		@param IsUseOrgMunicipality Is Use Org Municipality	  */
+	public void setIsUseOrgMunicipality (boolean IsUseOrgMunicipality)
+	{
+		set_Value (COLUMNNAME_IsUseOrgMunicipality, Boolean.valueOf(IsUseOrgMunicipality));
+	}
+
+	/** Get Is Use Org Municipality.
+		@return Is Use Org Municipality	  */
+	public boolean isUseOrgMunicipality () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseOrgMunicipality);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 

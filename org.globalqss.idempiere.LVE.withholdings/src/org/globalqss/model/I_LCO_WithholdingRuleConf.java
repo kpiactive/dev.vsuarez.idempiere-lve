@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_WithholdingRuleConf
  *  @author iDempiere (generated) 
- *  @version Release 3.1
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
 public interface I_LCO_WithholdingRuleConf 
@@ -32,7 +32,7 @@ public interface I_LCO_WithholdingRuleConf
     /** TableName=LCO_WithholdingRuleConf */
     public static final String Table_Name = "LCO_WithholdingRuleConf";
 
-    /** AD_Table_ID=1000005 */
+    /** AD_Table_ID=1000012 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -111,6 +111,15 @@ public interface I_LCO_WithholdingRuleConf
 	/** Get Is Use BP ISIC	  */
 	public boolean isUseBPISIC();
 
+    /** Column name IsUseBPMunicipality */
+    public static final String COLUMNNAME_IsUseBPMunicipality = "IsUseBPMunicipality";
+
+	/** Set Is Use BP Municipality	  */
+	public void setIsUseBPMunicipality (boolean IsUseBPMunicipality);
+
+	/** Get Is Use BP Municipality	  */
+	public boolean isUseBPMunicipality();
+
     /** Column name IsUseBPTaxPayerType */
     public static final String COLUMNNAME_IsUseBPTaxPayerType = "IsUseBPTaxPayerType";
 
@@ -137,6 +146,15 @@ public interface I_LCO_WithholdingRuleConf
 
 	/** Get Is Use Org ISIC	  */
 	public boolean isUseOrgISIC();
+
+    /** Column name IsUseOrgMunicipality */
+    public static final String COLUMNNAME_IsUseOrgMunicipality = "IsUseOrgMunicipality";
+
+	/** Set Is Use Org Municipality	  */
+	public void setIsUseOrgMunicipality (boolean IsUseOrgMunicipality);
+
+	/** Get Is Use Org Municipality	  */
+	public boolean isUseOrgMunicipality();
 
     /** Column name IsUseOrgTaxPayerType */
     public static final String COLUMNNAME_IsUseOrgTaxPayerType = "IsUseOrgTaxPayerType";

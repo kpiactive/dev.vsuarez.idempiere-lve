@@ -25,14 +25,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_WithholdingRule
  *  @author iDempiere (generated) 
- *  @version Release 3.1 - $Id$ */
+ *  @version Release 8.2 - $Id$ */
 public class X_LCO_WithholdingRule extends PO implements I_LCO_WithholdingRule, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20151110L;
+	private static final long serialVersionUID = 20210622L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingRule (Properties ctx, int LCO_WithholdingRule_ID, String trxName)
@@ -69,10 +69,27 @@ public class X_LCO_WithholdingRule extends PO implements I_LCO_WithholdingRule, 
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LCO_WithholdingRule[")
-        .append(get_ID()).append("]");
+      StringBuilder sb = new StringBuilder ("X_LCO_WithholdingRule[")
+        .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
+
+	/** Set Validation code.
+		@param Code 
+		Validation Code
+	  */
+	public void setCode (String Code)
+	{
+		set_Value (COLUMNNAME_Code, Code);
+	}
+
+	/** Get Validation code.
+		@return Validation Code
+	  */
+	public String getCode () 
+	{
+		return (String)get_Value(COLUMNNAME_Code);
+	}
 
 	public org.compiere.model.I_C_TaxCategory getC_TaxCategory() throws RuntimeException
     {
@@ -183,6 +200,26 @@ public class X_LCO_WithholdingRule extends PO implements I_LCO_WithholdingRule, 
 		return false;
 	}
 
+	/** Set Is Use BP Municipality.
+		@param IsUseBPMunicipality Is Use BP Municipality	  */
+	public void setIsUseBPMunicipality (boolean IsUseBPMunicipality)
+	{
+		throw new IllegalArgumentException ("IsUseBPMunicipality is virtual column");	}
+
+	/** Get Is Use BP Municipality.
+		@return Is Use BP Municipality	  */
+	public boolean isUseBPMunicipality () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseBPMunicipality);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Is Use BP Tax Payer Type.
 		@param IsUseBPTaxPayerType Is Use BP Tax Payer Type	  */
 	public void setIsUseBPTaxPayerType (boolean IsUseBPTaxPayerType)
@@ -234,6 +271,26 @@ public class X_LCO_WithholdingRule extends PO implements I_LCO_WithholdingRule, 
 	public boolean isUseOrgISIC () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseOrgISIC);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Is Use Org Municipality.
+		@param IsUseOrgMunicipality Is Use Org Municipality	  */
+	public void setIsUseOrgMunicipality (boolean IsUseOrgMunicipality)
+	{
+		throw new IllegalArgumentException ("IsUseOrgMunicipality is virtual column");	}
+
+	/** Get Is Use Org Municipality.
+		@return Is Use Org Municipality	  */
+	public boolean isUseOrgMunicipality () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseOrgMunicipality);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -557,6 +614,46 @@ public class X_LCO_WithholdingRule extends PO implements I_LCO_WithholdingRule, 
 	public int getLCO_WithholdingType_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_LCO_WithholdingType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Municipaly BP.
+		@param LVE_BP_Municipaly_ID Municipaly BP	  */
+	public void setLVE_BP_Municipaly_ID (int LVE_BP_Municipaly_ID)
+	{
+		if (LVE_BP_Municipaly_ID < 1) 
+			set_Value (COLUMNNAME_LVE_BP_Municipaly_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_BP_Municipaly_ID, Integer.valueOf(LVE_BP_Municipaly_ID));
+	}
+
+	/** Get Municipaly BP.
+		@return Municipaly BP	  */
+	public int getLVE_BP_Municipaly_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_BP_Municipaly_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Municipaly Organization.
+		@param LVE_Org_Municipaly_ID Municipaly Organization	  */
+	public void setLVE_Org_Municipaly_ID (int LVE_Org_Municipaly_ID)
+	{
+		if (LVE_Org_Municipaly_ID < 1) 
+			set_Value (COLUMNNAME_LVE_Org_Municipaly_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_Org_Municipaly_ID, Integer.valueOf(LVE_Org_Municipaly_ID));
+	}
+
+	/** Get Municipaly Organization.
+		@return Municipaly Organization	  */
+	public int getLVE_Org_Municipaly_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_Org_Municipaly_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
