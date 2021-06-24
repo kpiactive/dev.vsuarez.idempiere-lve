@@ -42,7 +42,7 @@ public class VWT_GenerateInvoiceWithholding extends SvrProcess {
 			MInvoice[] invoices = VWT_MInvoice.getOfBPartnerDateFromDateTo(getCtx(), voucher, get_TrxName());
 			
 			for (MInvoice mInvoice : invoices) {	
-				log.info("Prueba "+mInvoice.getDateAcct());
+				log.info("Fecha Factura: "+mInvoice.getDateAcct());
 				
 				VWT_MInvoice invoice = new VWT_MInvoice(getCtx(), mInvoice.getC_Invoice_ID(), get_TrxName());
 				cnt += invoice.recalcWithholdings(voucher);
