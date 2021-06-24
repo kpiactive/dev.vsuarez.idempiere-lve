@@ -87,12 +87,15 @@ public class LCO_MInvoice extends MInvoice
 		MBPartnerLocation mbpl = new MBPartnerLocation(getCtx(), getC_BPartner_Location_ID(), get_TrxName());
 		MLocation bpl = MLocation.get(getCtx(), mbpl.getC_Location_ID(), get_TrxName());
 		int bp_city_id = bpl.getC_City_ID();
+		int bp_municipality_id = bpl.get_ValueAsInt("C_Municipality_ID");
+		boolean isMunicipalTaxExempt = bp.get_ValueAsBoolean("IsMunicipalTaxExempt");
 		// OrgInfo variables
 		MOrgInfo oi = MOrgInfo.get(getCtx(), getAD_Org_ID(), get_TrxName());
 		int org_isic_id = oi.get_ValueAsInt("LCO_ISIC_ID");
 		int org_taxpayertype_id = oi.get_ValueAsInt("LCO_TaxPayerType_ID");
 		MLocation ol = MLocation.get(getCtx(), oi.getC_Location_ID(), get_TrxName());
 		int org_city_id = ol.getC_City_ID();
+		int org_municipality_id = ol.get_ValueAsInt("C_Municipality_ID");
 
 		// Search withholding types applicable depending on IsSOTrx
 		List<Object> params = new ArrayList<Object>();
@@ -100,13 +103,17 @@ public class LCO_MInvoice extends MInvoice
 		//currency
 		MAcctSchema m_ass = MClientInfo.get(getCtx(), getAD_Client_ID()).getMAcctSchema1();
 		int C_Currency_ID = m_ass.getC_Currency_ID();
+		
 		String sqlwhere  = "IsSOTrx=?";
 		params.add(isSOTrx() ? "Y" : "N");
+		
+		if(isMunicipalTaxExempt)
+			sqlwhere += " AND Type != 'IAE' ";
+			
 		if (voucher != null){
 			sqlwhere += " AND LCO_WithholdingType_ID = ?";
 			params.add(voucher.getLCO_WithholdingType_ID());
 		}
-			
 		
 		List<X_LCO_WithholdingType> wts = new Query(getCtx(), X_LCO_WithholdingType.Table_Name, sqlwhere, get_TrxName())
 			.setOnlyActiveRecords(true)
@@ -114,9 +121,7 @@ public class LCO_MInvoice extends MInvoice
 			.setParameters(params)
 			.list();
 		
-		for (X_LCO_WithholdingType wt : wts)
-		{
-			
+		for (X_LCO_WithholdingType wt : wts) {
 			String sql = "DELETE FROM LCO_InvoiceWithholding iw USING LVE_VoucherWithholding vw WHERE iw.C_Invoice_ID=? AND (vw.DocStatus = 'DR' OR vw.DocStatus = 'IP' OR iw.LVE_VoucherWithholding_ID IS NULL) AND iw.LCO_WithholdingType_ID=? ";
 				
 			int nodel = DB.executeUpdateEx(
@@ -173,15 +178,29 @@ public class LCO_MInvoice extends MInvoice
 				if (org_city_id <= 0)
 					log.warning("Possible configuration error org city is used but not set");
 			}
+			if(wrc.isUseBPMunicipality()) {
+				wherer.append(" AND LVE_BP_Municipaly_ID=? ");
+				paramsr.add(bp_municipality_id);
+				if (bp_municipality_id <= 0)
+					log.warning("Possible Configuration error BP Municipality is used but not set");
+			}
+			if(wrc.isUseOrgMunicipality()) {
+				wherer.append(" AND LVE_Org_Municipaly_ID=? ");
+				paramsr.add(org_municipality_id);
+				if (org_municipality_id <= 0)
+					log.warning("Possible Configuration error Org Municipality is used but not set");
+			}
 
 			// Add withholding categories of lines
 			if (wrc.isUseWithholdingCategory()) {
 				// look the conf fields
 				String sqlwcs =
-					"SELECT DISTINCT COALESCE (p.LCO_WithholdingCategory_ID, COALESCE (c.LCO_WithholdingCategory_ID, 0)) "
+					"SELECT DISTINCT COALESCE (wcp.LCO_WithholdingCategory_ID, COALESCE (wcc.LCO_WithholdingCategory_ID, 0)) "
 					+ "  FROM C_InvoiceLine il "
 					+ "  LEFT OUTER JOIN M_Product p ON (il.M_Product_ID = p.M_Product_ID) "
+					+ "  LEFT OUTER JOIN LVE_WithholdingCatProduct wcp ON (wcp.M_Product_ID = p.M_Product_ID) "
 					+ "  LEFT OUTER JOIN C_Charge c ON (il.C_Charge_ID = c.C_Charge_ID) "
+					+ "  LEFT OUTER JOIN LVE_WithholdingCatCharge wcc ON (wcc.C_Charge_ID = c.C_Charge_ID) "
 					+ "  WHERE C_Invoice_ID = ? AND il.IsActive='Y' AND (il.M_Product_ID>0 OR il.C_Charge_ID>0)";
 				int[] wcids = DB.getIDsEx(get_TrxName(), sqlwcs, new Object[] {getC_Invoice_ID()});
 				boolean addedlines = false;
@@ -326,14 +345,14 @@ public class LCO_MInvoice extends MInvoice
 							+ " WHERE IsActive='Y' AND C_Invoice_ID = ? "
 							+ "   AND (   EXISTS ( "
 							+ "              SELECT 1 "
-							+ "                FROM M_Product p "
-							+ "               WHERE il.M_Product_ID = p.M_Product_ID "
-							+ "                 AND p.LCO_WithholdingCategory_ID = ?) "
+							+ "                FROM LVE_WithholdingCatProduct wpc "
+							+ "               WHERE il.M_Product_ID = wpc.M_Product_ID "
+							+ "                 AND wpc.LCO_WithholdingCategory_ID = ?) "
 							+ "        OR EXISTS ( "
 							+ "              SELECT 1 "
-							+ "                FROM C_Charge c "
-							+ "               WHERE il.C_Charge_ID = c.C_Charge_ID "
-							+ "                 AND c.LCO_WithholdingCategory_ID = ?) "
+							+ "                FROM LVE_WithholdingCatCharge wcc "
+							+ "               WHERE il.C_Charge_ID = wcc.C_Charge_ID "
+							+ "                 AND wcc.LCO_WithholdingCategory_ID = ?) "
 							+ "       ) ";
 						paramslca.add(wr.getLCO_WithholdingCategory_ID());
 						paramslca.add(wr.getLCO_WithholdingCategory_ID());
