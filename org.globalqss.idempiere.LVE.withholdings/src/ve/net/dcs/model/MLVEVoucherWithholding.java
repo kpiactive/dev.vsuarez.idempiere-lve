@@ -15,21 +15,12 @@ import java.util.logging.Level;
 import org.adempiere.exceptions.AdempiereException;
 import org.compiere.model.MAcctSchema;
 import org.compiere.model.MAllocationHdr;
-import org.compiere.model.MBPartner;
-import org.compiere.model.MBPartnerLocation;
 import org.compiere.model.MBankAccount;
 import org.compiere.model.MClientInfo;
 import org.compiere.model.MConversionRate;
-import org.compiere.model.MDocType;
 import org.compiere.model.MFactAcct;
-import org.compiere.model.MInvoice;
-import org.compiere.model.MLocation;
-import org.compiere.model.MOrgInfo;
 import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
-import org.compiere.model.MPriceList;
-import org.compiere.model.MSysConfig;
-import org.compiere.model.MTax;
 import org.compiere.model.ModelValidationEngine;
 import org.compiere.model.ModelValidator;
 import org.compiere.model.Query;
@@ -45,9 +36,6 @@ import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.globalqss.model.MLCOInvoiceWithholding;
-import org.globalqss.model.X_LCO_WithholdingCalc;
-import org.globalqss.model.X_LCO_WithholdingRule;
-import org.globalqss.model.X_LCO_WithholdingRuleConf;
 import org.globalqss.model.X_LCO_WithholdingType;
 
 public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements DocAction,DocOptions{
@@ -139,7 +127,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			//throw new AdempiereException("@NoLines@");
 		}
 
-		int C_BankAccount_ID = MSysConfig.getIntValue("LVE_Withholding_BankAccount", 0, getAD_Client_ID());
+		int C_BankAccount_ID = getLVE_WHBankAccount_ID();
 
 		if (C_BankAccount_ID == 0) {
 			m_processMsg =
@@ -172,7 +160,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		payment.setDateTrx(getDateTrx());
 		payment.setTenderType("X");
 		payment.setC_BPartner_ID(getC_BPartner_ID());
-		String useCurrencyConversion = MSysConfig.getValue("LVE_WHUseCurrencyConvert", "Y", getAD_Client_ID());
 		//MAcctSchema[] m_ass = MAcctSchema.getClientAcctSchema(getCtx(), getAD_Client_ID());
 		MAcctSchema m_ass = MClientInfo.get(getCtx(), getAD_Client_ID()).getMAcctSchema1();
 		int C_Currency_ID = 0;
@@ -203,9 +190,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			pstmt = null;
 		}
 		*/
-		int C_Doctype_ID = 0;
-		C_Doctype_ID = isSOTrx() ? MSysConfig.getIntValue("LVE_ARWithholdingDocTypeId",0,getAD_Client_ID()) : MSysConfig.getIntValue("LVE_APWithholdingDocTypeId",0,getAD_Client_ID());
-		payment.setC_DocType_ID(C_Doctype_ID);
+		payment.setC_DocType_ID(getLVE_WHPaymentDocType_ID());
 
 		payment.saveEx();
 		String sql = null;
@@ -259,7 +244,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 					rs = null;
 					pstmt = null;
 				}
-				if("Y".equalsIgnoreCase(useCurrencyConversion))
+				if(isWHUseCurrencyConvert())
 					InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, mWithholding.getC_Invoice().getC_Currency_ID(), C_Currency_ID, getDateTrx(), 114, getAD_Client_ID(), getAD_Org_ID());
 				else
 					payment.setC_Currency_ID(mWithholding.getC_Invoice().getC_Currency_ID());
@@ -980,8 +965,9 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 	@Override
 	public String getDocumentInfo() {
-		MDocType dt = MDocType.get(getCtx(),getC_DocType_ID());
-		return dt.getNameTrl() + " " + getDocumentNo();
+		//MDocType dt = MDocType.get(getCtx(),getC_DocType_ID());
+		//return dt.getNameTrl() + " " + getDocumentNo();
+		return getDocumentNo();
 	}
 
 	@Override
@@ -1077,4 +1063,10 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		// ==================================
 		return re.getPDF(file);
 	}	//	createPDF
+
+	@Override
+	public String getDocumentNo() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

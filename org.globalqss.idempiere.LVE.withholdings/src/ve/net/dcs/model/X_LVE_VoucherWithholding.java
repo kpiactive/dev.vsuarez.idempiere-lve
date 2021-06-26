@@ -24,14 +24,14 @@ import org.compiere.model.*;
 
 /** Generated Model for LVE_VoucherWithholding
  *  @author iDempiere (generated) 
- *  @version Release 1.0c - $Id$ */
+ *  @version Release 8.2 - $Id$ */
 public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithholding, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20130907L;
+	private static final long serialVersionUID = 20210626L;
 
     /** Standard Constructor */
     public X_LVE_VoucherWithholding (Properties ctx, int LVE_VoucherWithholding_ID, String trxName)
@@ -42,12 +42,12 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 			setC_BPartner_ID (0);
 			setDateTrx (new Timestamp( System.currentTimeMillis() ));
 // @#Date@
-			setDocAction (null);
-// CO
 			setIsSOTrx (false);
 // N
 			setLCO_WithholdingType_ID (0);
 			setLVE_VoucherWithholding_ID (0);
+			setLVE_WHBankAccount_ID (0);
+			setLVE_WHPaymentDocType_ID (0);
 			setProcessed (false);
         } */
     }
@@ -75,7 +75,7 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LVE_VoucherWithholding[")
+      StringBuilder sb = new StringBuilder ("X_LVE_VoucherWithholding[")
         .append(get_ID()).append("]");
       return sb.toString();
     }
@@ -92,9 +92,9 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	public void setC_BPartner_ID (int C_BPartner_ID)
 	{
 		if (C_BPartner_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_BPartner_ID, null);
+			set_Value (COLUMNNAME_C_BPartner_ID, null);
 		else 
-			set_ValueNoCheck (COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
+			set_Value (COLUMNNAME_C_BPartner_ID, Integer.valueOf(C_BPartner_ID));
 	}
 
 	/** Get Business Partner .
@@ -120,9 +120,9 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	public void setC_Invoice_ID (int C_Invoice_ID)
 	{
 		if (C_Invoice_ID < 1) 
-			set_ValueNoCheck (COLUMNNAME_C_Invoice_ID, null);
+			set_Value (COLUMNNAME_C_Invoice_ID, null);
 		else 
-			set_ValueNoCheck (COLUMNNAME_C_Invoice_ID, Integer.valueOf(C_Invoice_ID));
+			set_Value (COLUMNNAME_C_Invoice_ID, Integer.valueOf(C_Invoice_ID));
 	}
 
 	/** Get Invoice.
@@ -181,6 +181,23 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 		return (String)get_Value(COLUMNNAME_CreateFrom);
 	}
 
+	/** Set Account Date.
+		@param DateAcct 
+		Accounting Date
+	  */
+	public void setDateAcct (Timestamp DateAcct)
+	{
+		set_Value (COLUMNNAME_DateAcct, DateAcct);
+	}
+
+	/** Get Account Date.
+		@return Accounting Date
+	  */
+	public Timestamp getDateAcct () 
+	{
+		return (Timestamp)get_Value(COLUMNNAME_DateAcct);
+	}
+
 	/** Set Date From.
 		@param DateFrom 
 		Starting date for a range
@@ -221,7 +238,7 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	  */
 	public void setDateTrx (Timestamp DateTrx)
 	{
-		set_ValueNoCheck (COLUMNNAME_DateTrx, DateTrx);
+		set_Value (COLUMNNAME_DateTrx, DateTrx);
 	}
 
 	/** Get Transaction Date.
@@ -362,6 +379,27 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 		return false;
 	}
 
+	/** Set Withholding Use Currency Convert.
+		@param IsWHUseCurrencyConvert Withholding Use Currency Convert	  */
+	public void setIsWHUseCurrencyConvert (boolean IsWHUseCurrencyConvert)
+	{
+		set_Value (COLUMNNAME_IsWHUseCurrencyConvert, Boolean.valueOf(IsWHUseCurrencyConvert));
+	}
+
+	/** Get Withholding Use Currency Convert.
+		@return Withholding Use Currency Convert	  */
+	public boolean isWHUseCurrencyConvert () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsWHUseCurrencyConvert);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Withholding Type.
 		@param LCO_WithholdingType_ID Withholding Type	  */
 	public void setLCO_WithholdingType_ID (int LCO_WithholdingType_ID)
@@ -416,6 +454,56 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 		return (String)get_Value(COLUMNNAME_LVE_VoucherWithholding_UU);
 	}
 
+	public org.compiere.model.I_C_BankAccount getLVE_WHBankAccount() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_BankAccount)MTable.get(getCtx(), org.compiere.model.I_C_BankAccount.Table_Name)
+			.getPO(getLVE_WHBankAccount_ID(), get_TrxName());	}
+
+	/** Set Withholding Bank Account.
+		@param LVE_WHBankAccount_ID Withholding Bank Account	  */
+	public void setLVE_WHBankAccount_ID (int LVE_WHBankAccount_ID)
+	{
+		if (LVE_WHBankAccount_ID < 1) 
+			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, Integer.valueOf(LVE_WHBankAccount_ID));
+	}
+
+	/** Get Withholding Bank Account.
+		@return Withholding Bank Account	  */
+	public int getLVE_WHBankAccount_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHBankAccount_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_DocType getLVE_WHPaymentDocType() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
+			.getPO(getLVE_WHPaymentDocType_ID(), get_TrxName());	}
+
+	/** Set Payment Withholding Document Type.
+		@param LVE_WHPaymentDocType_ID Payment Withholding Document Type	  */
+	public void setLVE_WHPaymentDocType_ID (int LVE_WHPaymentDocType_ID)
+	{
+		if (LVE_WHPaymentDocType_ID < 1) 
+			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, Integer.valueOf(LVE_WHPaymentDocType_ID));
+	}
+
+	/** Get Payment Withholding Document Type.
+		@return Payment Withholding Document Type	  */
+	public int getLVE_WHPaymentDocType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHPaymentDocType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
 	/** Set Processed.
 		@param Processed 
 		The document has been processed
@@ -440,6 +528,20 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 		return false;
 	}
 
+	/** Set Document Action.
+		@param VWH_DocAction Document Action	  */
+	public void setVWH_DocAction (String VWH_DocAction)
+	{
+		set_Value (COLUMNNAME_VWH_DocAction, VWH_DocAction);
+	}
+
+	/** Get Document Action.
+		@return Document Action	  */
+	public String getVWH_DocAction () 
+	{
+		return (String)get_Value(COLUMNNAME_VWH_DocAction);
+	}
+
 	/** Set Withholding No.
 		@param WithholdingNo Withholding No	  */
 	public void setWithholdingNo (String WithholdingNo)
@@ -453,27 +555,4 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	{
 		return (String)get_Value(COLUMNNAME_WithholdingNo);
 	}
-	
-	/** Get Document Type.
-	@return Document type or rules
-  */
-	public int getC_DocType_ID () 
-	{
-		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocType_ID);
-		if (ii == null)
-			 return 0;
-		return ii.intValue();
-	}
-	
-	public String getDocumentNo () 
-	{
-		return (String)get_Value(COLUMNNAME_DocumentNo);
-	}
-	/** Set Withholding No.
-	@param WithholdingNo Withholding No	  */
-	public void setDocumentNo (String DocumentNo)
-	{
-		set_Value (COLUMNNAME_DocumentNo, DocumentNo);
-	}
-	
 }

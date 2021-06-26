@@ -57,7 +57,8 @@ public class VWTSetDocumentNo implements IColumnCallout {
 			Integer WHtype= (Integer)value;
 			if(WHtype.intValue()>0){
 				MLCOWithholdingType WithholdingType = new MLCOWithholdingType(ctx, WHtype, null);  
-				mTab.setValue(I_LVE_VoucherWithholding.COLUMNNAME_C_DocType_ID, WithholdingType.get_ValueAsInt("C_Doctype_ID"));
+				//mTab.setValue(I_LVE_VoucherWithholding.COLUMNNAME_C_DocType_ID, WithholdingType.get_ValueAsInt("C_Doctype_ID"));
+				mTab.setValue("C_DocType_ID", WithholdingType.get_ValueAsInt("C_Doctype_ID"));
 				}
 		}
 		//	return 

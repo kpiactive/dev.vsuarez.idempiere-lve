@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LVE_VoucherWithholding
  *  @author iDempiere (generated) 
- *  @version Release 1.0c
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
 public interface I_LVE_VoucherWithholding 
@@ -32,7 +32,7 @@ public interface I_LVE_VoucherWithholding
     /** TableName=LVE_VoucherWithholding */
     public static final String Table_Name = "LVE_VoucherWithholding";
 
-    /** AD_Table_ID=1000009 */
+    /** AD_Table_ID=1000016 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -138,6 +138,19 @@ public interface I_LVE_VoucherWithholding
 	  */
 	public String getCreateFrom();
 
+    /** Column name DateAcct */
+    public static final String COLUMNNAME_DateAcct = "DateAcct";
+
+	/** Set Account Date.
+	  * Accounting Date
+	  */
+	public void setDateAcct (Timestamp DateAcct);
+
+	/** Get Account Date.
+	  * Accounting Date
+	  */
+	public Timestamp getDateAcct();
+
     /** Column name DateFrom */
     public static final String COLUMNNAME_DateFrom = "DateFrom";
 
@@ -238,6 +251,15 @@ public interface I_LVE_VoucherWithholding
 	  */
 	public boolean isSOTrx();
 
+    /** Column name IsWHUseCurrencyConvert */
+    public static final String COLUMNNAME_IsWHUseCurrencyConvert = "IsWHUseCurrencyConvert";
+
+	/** Set Withholding Use Currency Convert	  */
+	public void setIsWHUseCurrencyConvert (boolean IsWHUseCurrencyConvert);
+
+	/** Get Withholding Use Currency Convert	  */
+	public boolean isWHUseCurrencyConvert();
+
     /** Column name LCO_WithholdingType_ID */
     public static final String COLUMNNAME_LCO_WithholdingType_ID = "LCO_WithholdingType_ID";
 
@@ -264,6 +286,28 @@ public interface I_LVE_VoucherWithholding
 
 	/** Get LVE_VoucherWithholding_UU	  */
 	public String getLVE_VoucherWithholding_UU();
+
+    /** Column name LVE_WHBankAccount_ID */
+    public static final String COLUMNNAME_LVE_WHBankAccount_ID = "LVE_WHBankAccount_ID";
+
+	/** Set Withholding Bank Account	  */
+	public void setLVE_WHBankAccount_ID (int LVE_WHBankAccount_ID);
+
+	/** Get Withholding Bank Account	  */
+	public int getLVE_WHBankAccount_ID();
+
+	public org.compiere.model.I_C_BankAccount getLVE_WHBankAccount() throws RuntimeException;
+
+    /** Column name LVE_WHPaymentDocType_ID */
+    public static final String COLUMNNAME_LVE_WHPaymentDocType_ID = "LVE_WHPaymentDocType_ID";
+
+	/** Set Payment Withholding Document Type	  */
+	public void setLVE_WHPaymentDocType_ID (int LVE_WHPaymentDocType_ID);
+
+	/** Get Payment Withholding Document Type	  */
+	public int getLVE_WHPaymentDocType_ID();
+
+	public org.compiere.model.I_C_DocType getLVE_WHPaymentDocType() throws RuntimeException;
 
     /** Column name Processed */
     public static final String COLUMNNAME_Processed = "Processed";
@@ -294,6 +338,15 @@ public interface I_LVE_VoucherWithholding
 	  */
 	public int getUpdatedBy();
 
+    /** Column name VWH_DocAction */
+    public static final String COLUMNNAME_VWH_DocAction = "VWH_DocAction";
+
+	/** Set Document Action	  */
+	public void setVWH_DocAction (String VWH_DocAction);
+
+	/** Get Document Action	  */
+	public String getVWH_DocAction();
+
     /** Column name WithholdingNo */
     public static final String COLUMNNAME_WithholdingNo = "WithholdingNo";
 
@@ -302,10 +355,4 @@ public interface I_LVE_VoucherWithholding
 
 	/** Get Withholding No	  */
 	public String getWithholdingNo();
-	
-    /** Column name C_DocType_ID */
-    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
-    
-    /** Column name DocumentNo */
-    public static final String COLUMNNAME_DocumentNo = "DocumentNo";
 }
