@@ -18,6 +18,7 @@ import org.compiere.model.MAllocationHdr;
 import org.compiere.model.MBankAccount;
 import org.compiere.model.MClientInfo;
 import org.compiere.model.MConversionRate;
+import org.compiere.model.MDocType;
 import org.compiere.model.MFactAcct;
 import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
@@ -510,7 +511,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	 * @return true if it can be deleted
 	 */
 	protected boolean beforeDelete() {
-			if (isProcessed()) {
+		if (isProcessed()) {
 			log.saveError("Error", Msg.getMsg(getCtx(), "CannotDeleteTrx"));
 			return false;
 		}
@@ -965,9 +966,9 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 	@Override
 	public String getDocumentInfo() {
-		//MDocType dt = MDocType.get(getCtx(),getC_DocType_ID());
-		//return dt.getNameTrl() + " " + getDocumentNo();
-		return getDocumentNo();
+		MDocType dt = MDocType.get(getCtx(), getC_DocType_ID());
+		return dt.getNameTrl() + " " + getDocumentNo();
+		//return getDocumentNo();
 	}
 
 	@Override
