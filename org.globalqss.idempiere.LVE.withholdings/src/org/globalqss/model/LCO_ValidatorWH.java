@@ -218,7 +218,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 					String genwh = dt.get_ValueAsString("GenerateWithholding");
 					if (genwh != null) {
 
-						if (genwh.equals("Y")) {
+						if (genwh.equals("Y") && !inv.isSOTrx()) {
 							// document type configured to compel generation of withholdings
 							throw new RuntimeException(Msg.getMsg(inv.getCtx(), "LCO_WithholdingNotGenerated"));
 						}
