@@ -266,7 +266,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		}
 
 		// before posting the allocation - post the payment withholdings vs writeoff amount
-		if (po instanceof MAllocationHdr && (type.equals(IEventTopics.ACCT_FACTS_VALIDATE) || type.equals(IEventTopics.DOC_BEFORE_POST))) {
+		if (po instanceof MAllocationHdr && (type.equals(IEventTopics.ACCT_FACTS_VALIDATE))) {
 			msg = accountingForInvoiceWithholdingOnPayment((MAllocationHdr) po, event);
 			if (msg != null)
 				throw new RuntimeException(msg);
