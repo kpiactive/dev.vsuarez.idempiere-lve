@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_WithholdingType
  *  @author iDempiere (generated) 
- *  @version Release 3.1
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
 public interface I_LCO_WithholdingType 
@@ -32,7 +32,7 @@ public interface I_LCO_WithholdingType
     /** TableName=LCO_WithholdingType */
     public static final String Table_Name = "LCO_WithholdingType";
 
-    /** AD_Table_ID=1000003 */
+    /** AD_Table_ID=1000011 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -63,6 +63,21 @@ public interface I_LCO_WithholdingType
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
+
+    /** Column name C_DocType_ID */
+    public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
+
+	/** Set Document Type.
+	  * Document type or rules
+	  */
+	public void setC_DocType_ID (int C_DocType_ID);
+
+	/** Get Document Type.
+	  * Document type or rules
+	  */
+	public int getC_DocType_ID();
+
+	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException;
 
     /** Column name Counter */
     public static final String COLUMNNAME_Counter = "Counter";
@@ -132,6 +147,15 @@ public interface I_LCO_WithholdingType
 	  */
 	public boolean isSOTrx();
 
+    /** Column name IsUseCurrencyConvert */
+    public static final String COLUMNNAME_IsUseCurrencyConvert = "IsUseCurrencyConvert";
+
+	/** Set Use Currency Convert	  */
+	public void setIsUseCurrencyConvert (boolean IsUseCurrencyConvert);
+
+	/** Get Use Currency Convert	  */
+	public boolean isUseCurrencyConvert();
+
     /** Column name LCO_WithholdingType_ID */
     public static final String COLUMNNAME_LCO_WithholdingType_ID = "LCO_WithholdingType_ID";
 
@@ -162,6 +186,19 @@ public interface I_LCO_WithholdingType
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
+
+    /** Column name Type */
+    public static final String COLUMNNAME_Type = "Type";
+
+	/** Set Type.
+	  * Type of Validation (SQL, Java Script, Java Language)
+	  */
+	public void setType (String Type);
+
+	/** Get Type.
+	  * Type of Validation (SQL, Java Script, Java Language)
+	  */
+	public String getType();
 
     /** Column name Updated */
     public static final String COLUMNNAME_Updated = "Updated";

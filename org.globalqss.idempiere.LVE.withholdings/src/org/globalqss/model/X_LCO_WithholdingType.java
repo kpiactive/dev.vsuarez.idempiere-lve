@@ -24,14 +24,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_WithholdingType
  *  @author iDempiere (generated) 
- *  @version Release 3.1 - $Id$ */
+ *  @version Release 8.2 - $Id$ */
 public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20151110L;
+	private static final long serialVersionUID = 20210818L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingType (Properties ctx, int LCO_WithholdingType_ID, String trxName)
@@ -39,10 +39,13 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
       super (ctx, LCO_WithholdingType_ID, trxName);
       /** if (LCO_WithholdingType_ID == 0)
         {
+			setC_DocType_ID (0);
 			setIsSOTrx (false);
 // N
 			setLCO_WithholdingType_ID (0);
 			setName (null);
+			setType (null);
+// Other
         } */
     }
 
@@ -69,10 +72,38 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LCO_WithholdingType[")
-        .append(get_ID()).append("]");
+      StringBuilder sb = new StringBuilder ("X_LCO_WithholdingType[")
+        .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
+			.getPO(getC_DocType_ID(), get_TrxName());	}
+
+	/** Set Document Type.
+		@param C_DocType_ID 
+		Document type or rules
+	  */
+	public void setC_DocType_ID (int C_DocType_ID)
+	{
+		if (C_DocType_ID < 0) 
+			set_Value (COLUMNNAME_C_DocType_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_DocType_ID, Integer.valueOf(C_DocType_ID));
+	}
+
+	/** Get Document Type.
+		@return Document type or rules
+	  */
+	public int getC_DocType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	/** Set Counter.
 		@param Counter 
@@ -125,6 +156,27 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	public boolean isSOTrx () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsSOTrx);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Use Currency Convert.
+		@param IsUseCurrencyConvert Use Currency Convert	  */
+	public void setIsUseCurrencyConvert (boolean IsUseCurrencyConvert)
+	{
+		set_Value (COLUMNNAME_IsUseCurrencyConvert, Boolean.valueOf(IsUseCurrencyConvert));
+	}
+
+	/** Get Use Currency Convert.
+		@return Use Currency Convert	  */
+	public boolean isUseCurrencyConvert () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseCurrencyConvert);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
@@ -192,4 +244,30 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
     {
         return new KeyNamePair(get_ID(), getName());
     }
+
+	/** ISLR = ISLR */
+	public static final String TYPE_ISLR = "ISLR";
+	/** IVA = IVA */
+	public static final String TYPE_IVA = "IVA";
+	/** Other = Other */
+	public static final String TYPE_Other = "Other";
+	/** Economic Activity (Municipal) = IAE */
+	public static final String TYPE_EconomicActivityMunicipal = "IAE";
+	/** Set Type.
+		@param Type 
+		Type of Validation (SQL, Java Script, Java Language)
+	  */
+	public void setType (String Type)
+	{
+
+		set_Value (COLUMNNAME_Type, Type);
+	}
+
+	/** Get Type.
+		@return Type of Validation (SQL, Java Script, Java Language)
+	  */
+	public String getType () 
+	{
+		return (String)get_Value(COLUMNNAME_Type);
+	}
 }

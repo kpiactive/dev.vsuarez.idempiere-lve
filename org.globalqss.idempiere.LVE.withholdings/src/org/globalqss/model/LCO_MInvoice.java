@@ -475,8 +475,8 @@ public class LCO_MInvoice extends MInvoice
 						taxamt = taxamt.subtract(wc.getAmountRefunded());
 					}
 					if("Y".equalsIgnoreCase(MSysConfig.getValue("LVE_WHUseCurrencyConvert", "Y", getAD_Client_ID()))) {
-						base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), 114, getAD_Client_ID(), getAD_Org_ID());
-						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), 114, getAD_Client_ID(), getAD_Org_ID());
+						base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
+						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 					}
 					iwh.setTaxAmt(taxamt);
 					iwh.setTaxBaseAmt(base);
