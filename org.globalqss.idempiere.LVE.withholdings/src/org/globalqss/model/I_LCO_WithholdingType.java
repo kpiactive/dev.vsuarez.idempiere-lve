@@ -174,6 +174,28 @@ public interface I_LCO_WithholdingType
 	/** Get LCO_WithholdingType_UU	  */
 	public String getLCO_WithholdingType_UU();
 
+    /** Column name LVE_WHBankAccount_ID */
+    public static final String COLUMNNAME_LVE_WHBankAccount_ID = "LVE_WHBankAccount_ID";
+
+	/** Set Withholding Bank Account	  */
+	public void setLVE_WHBankAccount_ID (int LVE_WHBankAccount_ID);
+
+	/** Get Withholding Bank Account	  */
+	public int getLVE_WHBankAccount_ID();
+
+	public org.compiere.model.I_C_BankAccount getLVE_WHBankAccount() throws RuntimeException;
+
+    /** Column name LVE_WHPaymentDocType_ID */
+    public static final String COLUMNNAME_LVE_WHPaymentDocType_ID = "LVE_WHPaymentDocType_ID";
+
+	/** Set Payment Withholding Document Type	  */
+	public void setLVE_WHPaymentDocType_ID (int LVE_WHPaymentDocType_ID);
+
+	/** Get Payment Withholding Document Type	  */
+	public int getLVE_WHPaymentDocType_ID();
+
+	public org.compiere.model.I_C_DocType getLVE_WHPaymentDocType() throws RuntimeException;
+
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";
 

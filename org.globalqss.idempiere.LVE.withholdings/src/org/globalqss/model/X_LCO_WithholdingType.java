@@ -31,7 +31,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210818L;
+	private static final long serialVersionUID = 20210820L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingType (Properties ctx, int LCO_WithholdingType_ID, String trxName)
@@ -218,6 +218,56 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	public String getLCO_WithholdingType_UU () 
 	{
 		return (String)get_Value(COLUMNNAME_LCO_WithholdingType_UU);
+	}
+
+	public org.compiere.model.I_C_BankAccount getLVE_WHBankAccount() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_BankAccount)MTable.get(getCtx(), org.compiere.model.I_C_BankAccount.Table_Name)
+			.getPO(getLVE_WHBankAccount_ID(), get_TrxName());	}
+
+	/** Set Withholding Bank Account.
+		@param LVE_WHBankAccount_ID Withholding Bank Account	  */
+	public void setLVE_WHBankAccount_ID (int LVE_WHBankAccount_ID)
+	{
+		if (LVE_WHBankAccount_ID < 1) 
+			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, Integer.valueOf(LVE_WHBankAccount_ID));
+	}
+
+	/** Get Withholding Bank Account.
+		@return Withholding Bank Account	  */
+	public int getLVE_WHBankAccount_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHBankAccount_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_DocType getLVE_WHPaymentDocType() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
+			.getPO(getLVE_WHPaymentDocType_ID(), get_TrxName());	}
+
+	/** Set Payment Withholding Document Type.
+		@param LVE_WHPaymentDocType_ID Payment Withholding Document Type	  */
+	public void setLVE_WHPaymentDocType_ID (int LVE_WHPaymentDocType_ID)
+	{
+		if (LVE_WHPaymentDocType_ID < 1) 
+			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, null);
+		else 
+			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, Integer.valueOf(LVE_WHPaymentDocType_ID));
+	}
+
+	/** Get Payment Withholding Document Type.
+		@return Payment Withholding Document Type	  */
+	public int getLVE_WHPaymentDocType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHPaymentDocType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
 	}
 
 	/** Set Name.

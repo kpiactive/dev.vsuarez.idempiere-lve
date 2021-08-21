@@ -15,8 +15,11 @@ Export-Package: org.globalqss.model,
 Service-Component: OSGI-INF/lco_modelfactorywh.xml,
  OSGI-INF/lco_processfactorywh.xml,
  OSGI-INF/lco_calloutfactorywh.xml,
- OSGI-INF/lco_validatorwh.xml
-Import-Package: org.osgi.service.event
+ OSGI-INF/lco_validatorwh.xml,
+ OSGI-INF/VWTCalloutFactory.xml,
+ OSGI-INF/VWTModelFactory.xml,
+ OSGI-INF/VWTModelValidator.xml
+Import-Package: org.osgi.service.event;version="0.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/jdom-2.0.5.jar

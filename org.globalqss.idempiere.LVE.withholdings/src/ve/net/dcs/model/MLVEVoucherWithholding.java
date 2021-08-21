@@ -37,6 +37,7 @@ import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
 import org.globalqss.model.MLCOInvoiceWithholding;
+import org.globalqss.model.MLCOWithholdingType;
 import org.globalqss.model.X_LCO_WithholdingType;
 
 public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements DocAction,DocOptions{
@@ -58,6 +59,35 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	public MLVEVoucherWithholding(Properties ctx, ResultSet rs, String trxName) {
 		super(ctx, rs, trxName);
 	}
+
+	@Override
+	protected boolean beforeSave(boolean newRecord) {
+		MLCOWithholdingType whType = new MLCOWithholdingType(getCtx(), getLCO_WithholdingType_ID(), get_TrxName());
+		if(whType.getLVE_WHBankAccount_ID() > 0)
+			setLVE_WHBankAccount_ID(whType.getLVE_WHBankAccount_ID());
+		if(whType.getLVE_WHPaymentDocType_ID() > 0)
+			setLVE_WHPaymentDocType_ID(whType.getLVE_WHPaymentDocType_ID());
+		if(whType.getC_DocType_ID() > 0)
+			setC_DocType_ID(whType.getC_DocType_ID());
+		setIsWHUseCurrencyConvert(whType.isUseCurrencyConvert());
+		
+		if(getLVE_WHBankAccount_ID() <= 0) {
+			log.saveError("", "Debe seleccionar Cuenta Bancaria para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+			return false;
+		}
+		if(getLVE_WHPaymentDocType_ID() <= 0) {
+			log.saveError("", "Debe seleccionar Tipo de Documento de Pago para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+			return false;
+		}
+		if(getC_DocType_ID() <= 0) {
+			log.saveError("", "Debe seleccionar Tipo de Documento para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+			return false;
+		}
+		
+		return super.beforeSave(newRecord);
+	}
+
+
 
 	/** Process Message */
 	private String m_processMsg = null;
@@ -132,7 +162,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 		if (C_BankAccount_ID == 0) {
 			m_processMsg =
-			"Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount";
+			"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
 			return DocAction.STATUS_Invalid;
 			//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
 		}
@@ -141,7 +171,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 		if (baccount.getC_BankAccount_ID() == 0) {
 			m_processMsg =
-			"Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount";
+			"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
 			return DocAction.STATUS_Invalid;
 			//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
 		}
@@ -260,7 +290,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			pa.setOverUnderAmt(InvoiceOpenAmt.subtract(pa.getWriteOffAmt()));
 			
 			pa.saveEx();
-			mWithholding.setProcessed(true);
 			mWithholding.saveEx();
 		}
 		
@@ -486,18 +515,10 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	 * Set the definite document number after completed
 	 */
 	private void createWithholdingNo(X_LCO_WithholdingType wt) {
-
-//		MDocType dt = new MDocType(getCtx(), wt.get_ValueAsInt("C_DocType_ID"), get_TrxName());
+		String month = new SimpleDateFormat("MM").format(getDateTrx());
+		String year = new SimpleDateFormat("yyyy").format(getDateTrx());
+		String value = year + month + getDocumentNo();
 		
-		//String value = DB.getDocumentNo(dt.getC_DocType_ID(), get_TrxName(), false, this);
-		String value = getDocumentNo();
-		//if (dt.getName().equals("Purchase IVA Withholding")) {
-			String month = new SimpleDateFormat("MM").format(getDateTrx());
-			String year = new SimpleDateFormat("yyyy").format(getDateTrx());
-
-			value = year + month + value;
-		//}
-
 		if (value != null){
 			setWithholdingNo(value);
 			//setDocumentNo(value);
@@ -1067,7 +1088,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 	@Override
 	public String getDocumentNo() {
-		// TODO Auto-generated method stub
-		return null;
+		return DB.getDocumentNo(getC_DocType_ID(), get_TrxName(), false, this);
 	}
 }

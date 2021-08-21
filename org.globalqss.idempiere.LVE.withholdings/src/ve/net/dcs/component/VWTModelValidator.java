@@ -87,7 +87,6 @@ public class VWTModelValidator extends AbstractEventHandler {
 			}
 			if(type.equals(IEventTopics.PO_BEFORE_NEW)){
 				validateWithholdingNo(voucher);
-
 			}
 			    
 		
@@ -140,8 +139,6 @@ public class VWTModelValidator extends AbstractEventHandler {
 						voucher.setLCO_WithholdingType_ID(LCO_WithholdingType_ID);
 						voucher.setC_Invoice_ID(iw.getC_Invoice_ID());
 						voucher.setIsSOTrx(invoice.isSOTrx());
-						MDocType doctype = new Query(po.getCtx(), MDocType.Table_Name, "C_DocType_ID IN (SELECT C_DocType_ID FROM LCO_WithholdingType WHERE LCO_WithholdingType_ID = "+iw.getLCO_WithholdingType_ID()+" ) ", po.get_TrxName()).first();
-						voucher.set_ValueOfColumn("C_DocType_ID", doctype.getC_DocType_ID());
 						voucher.saveEx();
 						listVoucher.add(voucher);
 					}
@@ -151,7 +148,13 @@ public class VWTModelValidator extends AbstractEventHandler {
 				}
 
 				for (MLVEVoucherWithholding v : listVoucher) {
-					v.completeIt();
+					try {
+						v.setDocAction(DocAction.ACTION_Complete);
+						if(!v.processIt(DocAction.ACTION_Complete))
+							addErrorMessage(event, "No se Completo Comprobante de Retencion - " + v.getProcessMsg());
+					} catch (Exception e) {
+						addErrorMessage(event, "No se Completo Comprobante de Retencion - " + e.getLocalizedMessage());
+					}
 					v.saveEx();
 				}
 			}

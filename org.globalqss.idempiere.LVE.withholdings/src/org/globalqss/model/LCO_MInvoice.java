@@ -122,7 +122,8 @@ public class LCO_MInvoice extends MInvoice
 			.list();
 		
 		for (X_LCO_WithholdingType wt : wts) {
-			String sql = "DELETE FROM LCO_InvoiceWithholding iw USING LVE_VoucherWithholding vw WHERE iw.C_Invoice_ID=? AND (vw.DocStatus = 'DR' OR vw.DocStatus = 'IP' OR iw.LVE_VoucherWithholding_ID IS NULL) AND iw.LCO_WithholdingType_ID=? ";
+			String sql = "DELETE FROM LCO_InvoiceWithholding iw WHERE iw.C_Invoice_ID = ? AND (iw.LVE_VoucherWithholding_ID IS NULL OR iw.LVE_VoucherWithHolding_ID "
+					+ "		IN (SELECT LVE_VoucherWithholding_ID FROM LVE_VoucherWithholding WHERE DocStatus = 'DR' OR DocStatus = 'IP')) AND iw.LCO_WithholdingType_ID=? ";
 				
 			int nodel = DB.executeUpdateEx(
 					sql,
@@ -475,8 +476,8 @@ public class LCO_MInvoice extends MInvoice
 						taxamt = taxamt.subtract(wc.getAmountRefunded());
 					}
 					if(wt.isUseCurrencyConvert()) {
-						base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
-						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateInvoiced(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
+						base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
+						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 					}
 					iwh.setTaxAmt(taxamt);
 					iwh.setTaxBaseAmt(base);
