@@ -531,12 +531,15 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		return null;
 	}
 
+	/**
+	 * Accounting like Doc_Allocation (Write off) vs (invoice withholding where iscalconpayment=Y)
+	 * 20070807 - globalqss - instead of adding a new WriteOff post, find the
+	 * current WriteOff and subtract from the posting
+	 * @param ah
+	 * @param event
+	 * @return
+	 */
 	private String accountingForInvoiceWithholdingOnPayment(MAllocationHdr ah, Event event) {
-		// Accounting like Doc_Allocation
-		// (Write off) vs (invoice withholding where iscalconpayment=Y)
-		// 20070807 - globalqss - instead of adding a new WriteOff post, find the
-		//  current WriteOff and subtract from the posting
-
 		Doc doc = ah.getDoc();
 		FactsEventData fed = getEventData(event);
 		List<Fact> facts = fed.getFacts();
@@ -632,16 +635,16 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 							if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0)){
 							//if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0) || (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0)) {
 								tl = fact.createLine(null, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
-										as.getC_Currency_ID(), amount, null);
+										ah.getC_Currency_ID(), amount, null);
 							} 
 							//** si es NC proveedor es un iva en compras
 							else if (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0){
 								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
-										as.getC_Currency_ID(), null, amount);
+										ah.getC_Currency_ID(), null, amount);
 							}
 							else {
 								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
-										as.getC_Currency_ID(), null, amount);
+										ah.getC_Currency_ID(), null, amount);
 							}
 							if (tl != null)
 								tl.setC_Tax_ID(taxLine.getC_Tax_ID());
