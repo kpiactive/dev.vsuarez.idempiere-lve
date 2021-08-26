@@ -158,49 +158,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			//throw new AdempiereException("@NoLines@");
 		}
 
-		int C_BankAccount_ID = getLVE_WHBankAccount_ID();
-
-		if (C_BankAccount_ID == 0) {
-			m_processMsg =
-			"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
-			return DocAction.STATUS_Invalid;
-			//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
-		}
-
-		MBankAccount baccount = new MBankAccount(getCtx(), C_BankAccount_ID, get_TrxName());
-
-		if (baccount.getC_BankAccount_ID() == 0) {
-			m_processMsg =
-			"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
-			return DocAction.STATUS_Invalid;
-			//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
-		}
-
-//		if (baccount.getAD_Org_ID() != getAD_Org_ID()) {
-//			// m_processMsg =
-//			// "Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount";
-//			// return DocAction.STATUS_Invalid;
-//			throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
-//		}
-
-		MPayment payment = new MPayment(getCtx(), 0, get_TrxName());
-		payment.setAD_Org_ID(getAD_Org_ID());
-		payment.setC_BankAccount_ID(C_BankAccount_ID);
-		payment.setDescription("Retencion No: " + getWithholdingNo());
-		payment.setDateAcct(getDateTrx());
-		payment.setDateTrx(getDateTrx());
-		payment.setTenderType("X");
-		payment.setC_BPartner_ID(getC_BPartner_ID());
-		//MAcctSchema[] m_ass = MAcctSchema.getClientAcctSchema(getCtx(), getAD_Client_ID());
-		MAcctSchema m_ass = MClientInfo.get(getCtx(), getAD_Client_ID()).getMAcctSchema1();
-		int C_Currency_ID = 0;
-		//if (m_ass.length > 0)
-			C_Currency_ID = m_ass.getC_Currency_ID();
-		payment.setC_Currency_ID(C_Currency_ID);
-		payment.setPayAmt(Env.ZERO);
-		payment.setOverUnderAmt(Env.ZERO);
-		payment.setWriteOffAmt(Env.ZERO);
-
 		/*String dtname = isSOTrx() ? "AR Withholding" : "AP Withholding";
 		
 		String sql = "SELECT C_Doctype_ID FROM C_Doctype WHERE Name = '" + dtname + "' AND AD_Client_ID = " + getAD_Client_ID();
@@ -221,93 +178,115 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			pstmt = null;
 		}
 		*/
-		payment.setC_DocType_ID(getLVE_WHPaymentDocType_ID());
 
-		payment.saveEx();
 		String sql = null;
-
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		int id_aux = -1;
+		int C_Currency_ID = 0;
+		MPayment payment = null;
 		for (MLCOInvoiceWithholding mWithholding : lines) {
-
 			mWithholding.set_ValueOfColumn("NroReten", getWithholdingNo());
-			mWithholding.set_ValueOfColumn("C_Payment_ID", payment.getC_Payment_ID());
-			//mWithholding.set_ValueOfColumn("lve_voucherwithholding_id", getLVE_VoucherWithholding_ID());
-			//mWithholding.setProcessed(true);
 			mWithholding.setDateAcct((Timestamp)get_Value("DateAcct"));
 			
-			if (!mWithholding.save()) {
-				// m_processMsg = "Could not update Withholding Line";
-				// return DocAction.STATUS_Invalid;
-				throw new AdempiereException("Could not update Withholding Line");
-			}
-			
-			if (id_aux != mWithholding.getC_Invoice_ID()) {
-				id_aux = mWithholding.getC_Invoice_ID();
-				pa = new MPaymentAllocate(getCtx(), 0, get_TrxName());
-				pa.setC_Invoice_ID(mWithholding.getC_Invoice_ID());
-				pa.setAD_Org_ID(mWithholding.getAD_Org_ID());
-				pa.setAmount(Env.ZERO);
-				pa.setC_Payment_ID(payment.getC_Payment_ID());
-
-				sql = "SELECT invoiceOpen(C_Invoice_ID,0)" // 3 #1
-						+ "FROM C_Invoice WHERE C_Invoice_ID=?"; // #4
-
-				pstmt = null;
-				rs = null;
-				try {
-					pstmt = DB.prepareStatement(sql, null);
-					pstmt.setInt(1, mWithholding.getC_Invoice_ID());
-					rs = pstmt.executeQuery();
-					if (rs.next()) {
-						InvoiceOpenAmt = rs.getBigDecimal(1); // Set Invoice
-																// Open
-						// Amount
-						if (InvoiceOpenAmt == null)
-							InvoiceOpenAmt = Env.ZERO;
+			if(mWithholding.isCalcOnPayment()) {
+				if(payment == null) {			
+					if (getLVE_WHBankAccount_ID() == 0) {
+						m_processMsg =
+						"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
+						return DocAction.STATUS_Invalid;
+						//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
 					}
-				} catch (SQLException e) {
-					log.log(Level.SEVERE, sql, e);
-					return e.getLocalizedMessage();
-				} finally {
-					DB.close(rs, pstmt);
-					rs = null;
-					pstmt = null;
+					MBankAccount baccount = new MBankAccount(getCtx(), getLVE_WHBankAccount_ID(), get_TrxName());
+					if (baccount.getC_BankAccount_ID() == 0) {
+						m_processMsg =
+						"Debe Establecer un Caja para las Retenciones en el Tipo de Retencion o en el Comprobante de Retencion";
+						return DocAction.STATUS_Invalid;
+						//throw new AdempiereException("Debe Establecer un Caja para las Retenciones, Configurador del Sistema LVE_Withholding_BankAccount");
+					}
+					payment = new MPayment(getCtx(), 0, get_TrxName());
+					payment.setAD_Org_ID(getAD_Org_ID());
+					payment.setC_BankAccount_ID(getLVE_WHBankAccount_ID());
+					payment.setDescription("Retencion No: " + getWithholdingNo());
+					payment.setDateAcct(getDateTrx());
+					payment.setDateTrx(getDateTrx());
+					payment.setTenderType("X");
+					payment.setC_BPartner_ID(getC_BPartner_ID());
+					//MAcctSchema[] m_ass = MAcctSchema.getClientAcctSchema(getCtx(), getAD_Client_ID());
+					MAcctSchema m_ass = MClientInfo.get(getCtx(), getAD_Client_ID()).getMAcctSchema1();
+					C_Currency_ID = m_ass.getC_Currency_ID();
+					payment.setC_Currency_ID(C_Currency_ID);
+					payment.setPayAmt(Env.ZERO);
+					payment.setOverUnderAmt(Env.ZERO);
+					payment.setWriteOffAmt(Env.ZERO);
+					payment.setC_DocType_ID(getLVE_WHPaymentDocType_ID());
+					payment.saveEx();
 				}
-				if(isWHUseCurrencyConvert())
-					InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, mWithholding.getC_Invoice().getC_Currency_ID(), C_Currency_ID, getDateTrx(), 114, getAD_Client_ID(), getAD_Org_ID());
+				mWithholding.set_ValueOfColumn("C_Payment_ID", payment.getC_Payment_ID());
+				//mWithholding.set_ValueOfColumn("lve_voucherwithholding_id", getLVE_VoucherWithholding_ID());
+				//mWithholding.setProcessed(true);
+				
+				if (!mWithholding.save()) {
+					// m_processMsg = "Could not update Withholding Line";
+					// return DocAction.STATUS_Invalid;
+					throw new AdempiereException("Could not update Withholding Line");
+				}
+				
+				if (id_aux != mWithholding.getC_Invoice_ID()) {
+					id_aux = mWithholding.getC_Invoice_ID();
+					pa = new MPaymentAllocate(getCtx(), 0, get_TrxName());
+					pa.setC_Invoice_ID(mWithholding.getC_Invoice_ID());
+					pa.setAD_Org_ID(mWithholding.getAD_Org_ID());
+					pa.setAmount(Env.ZERO);
+					pa.setC_Payment_ID(payment.getC_Payment_ID());
+	
+					sql = "SELECT invoiceOpen(C_Invoice_ID,0)" // 3 #1
+							+ "FROM C_Invoice WHERE C_Invoice_ID=?"; // #4
+	
+					pstmt = null;
+					rs = null;
+					try {
+						pstmt = DB.prepareStatement(sql, null);
+						pstmt.setInt(1, mWithholding.getC_Invoice_ID());
+						rs = pstmt.executeQuery();
+						if (rs.next()) {
+							InvoiceOpenAmt = rs.getBigDecimal(1); // Set Invoice
+																	// Open
+							// Amount
+							if (InvoiceOpenAmt == null)
+								InvoiceOpenAmt = Env.ZERO;
+						}
+					} catch (SQLException e) {
+						log.log(Level.SEVERE, sql, e);
+						return e.getLocalizedMessage();
+					} finally {
+						DB.close(rs, pstmt);
+						rs = null;
+						pstmt = null;
+					}
+					if(isWHUseCurrencyConvert())
+						InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, mWithholding.getC_Invoice().getC_Currency_ID(), C_Currency_ID, getDateTrx(), 114, getAD_Client_ID(), getAD_Org_ID());
+					else
+						payment.setC_Currency_ID(mWithholding.getC_Invoice().getC_Currency_ID());
+					pa.setInvoiceAmt(InvoiceOpenAmt);
+				}
+				if (mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("ARC") || mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("APC"))
+					pa.setWriteOffAmt(pa.getWriteOffAmt().add(mWithholding.getTaxAmt().negate()));
 				else
-					payment.setC_Currency_ID(mWithholding.getC_Invoice().getC_Currency_ID());
-				pa.setInvoiceAmt(InvoiceOpenAmt);
+					pa.setWriteOffAmt(pa.getWriteOffAmt().add(mWithholding.getTaxAmt()));
+				pa.setOverUnderAmt(InvoiceOpenAmt.subtract(pa.getWriteOffAmt()));
+				pa.saveEx();
+				mWithholding.saveEx();
 			}
-
-			if (mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("ARC") || mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("APC"))
-				pa.setWriteOffAmt(pa.getWriteOffAmt().add(mWithholding.getTaxAmt().negate()));
-			else
-				pa.setWriteOffAmt(pa.getWriteOffAmt().add(mWithholding.getTaxAmt()));
-
-			pa.setOverUnderAmt(InvoiceOpenAmt.subtract(pa.getWriteOffAmt()));
-			
-			pa.saveEx();
-			mWithholding.saveEx();
 		}
-		
-		setC_Payment_ID(payment.getC_Payment_ID());
-		
-		if (!payment.processIt(MPayment.DOCACTION_Complete)) {
-			log.warning("Payment Process Failed: " + payment + " - " + payment.getProcessMsg());
-			throw new AdempiereException("Payment Process Failed: " + payment + " - " + payment.getProcessMsg());
+		if(payment != null) {
+			setC_Payment_ID(payment.getC_Payment_ID());
+			if (!payment.processIt(MPayment.DOCACTION_Complete)) {
+				log.warning("Payment Process Failed: " + payment + " - " + payment.getProcessMsg());
+				throw new AdempiereException("Payment Process Failed: " + payment + " - " + payment.getProcessMsg());
+			}
+			payment.saveEx();
 		}
-
-		payment.saveEx();
-
-		
-		setProcessed(true);
-		//setDocAction(DOCACTION_Close);
-		//setProcessed(true);
-		//setDocStatus(DOCSTATUS_Completed);
-		saveEx();
 
 		// User Validation
 		String valid = ModelValidationEngine.get().fireDocValidate(this,
