@@ -32,7 +32,6 @@ import org.compiere.process.DocOptions;
 import org.compiere.process.DocumentEngine;
 import org.compiere.process.ProcessInfo;
 import org.compiere.process.ServerProcessCtl;
-//import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
@@ -496,7 +495,8 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	private void createWithholdingNo(X_LCO_WithholdingType wt) {
 		String month = new SimpleDateFormat("MM").format(getDateTrx());
 		String year = new SimpleDateFormat("yyyy").format(getDateTrx());
-		String value = year + month + getDocumentNo();
+		setWithholdingNo(DB.getDocumentNo(getC_DocType_ID(), get_TrxName(), false, this));
+		String value = year + month + getWithholdingNo();
 		
 		if (value != null){
 			setWithholdingNo(value);
@@ -1067,6 +1067,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 
 	@Override
 	public String getDocumentNo() {
-		return DB.getDocumentNo(getC_DocType_ID(), get_TrxName(), false, this);
+		return getWithholdingNo();
 	}
+	
 }
