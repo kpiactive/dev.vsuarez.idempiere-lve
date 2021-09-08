@@ -28,6 +28,8 @@ package org.globalqss.process;
 import org.adempiere.base.IProcessFactory;
 import org.compiere.process.ProcessCall;
 
+import ve.net.dcs.process.VWT_GenerateInvoiceWithholding;
+
 public class LCO_ProcessFactoryWH implements IProcessFactory {
 
 	@Override
@@ -40,6 +42,10 @@ public class LCO_ProcessFactoryWH implements IProcessFactory {
 		} else if ("org.globalqss.process.LCO_CreateWithholdingReversal".equals(className)) {
 			try {
 				process =  LCO_CreateWithholdingReversal.class.getConstructor().newInstance();
+			} catch (Exception e) {}
+		} else if(VWT_GenerateInvoiceWithholding.class.getName().equals(className)) {
+			try {
+				process =  VWT_GenerateInvoiceWithholding.class.getConstructor().newInstance();
 			} catch (Exception e) {}
 		}
 
