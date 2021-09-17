@@ -26,14 +26,14 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_WithholdingCalc
  *  @author iDempiere (generated) 
- *  @version Release 3.1 - $Id$ */
+ *  @version Release 8.2 - $Id$ */
 public class X_LCO_WithholdingCalc extends PO implements I_LCO_WithholdingCalc, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20151110L;
+	private static final long serialVersionUID = 20210916L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingCalc (Properties ctx, int LCO_WithholdingCalc_ID, String trxName)
@@ -70,8 +70,8 @@ public class X_LCO_WithholdingCalc extends PO implements I_LCO_WithholdingCalc, 
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LCO_WithholdingCalc[")
-        .append(get_ID()).append("]");
+      StringBuilder sb = new StringBuilder ("X_LCO_WithholdingCalc[")
+        .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
 
@@ -181,6 +181,27 @@ public class X_LCO_WithholdingCalc extends PO implements I_LCO_WithholdingCalc, 
 	public String getDescription () 
 	{
 		return (String)get_Value(COLUMNNAME_Description);
+	}
+
+	/** Set Is Apply OnZero.
+		@param IsApplyOnZero Is Apply OnZero	  */
+	public void setIsApplyOnZero (boolean IsApplyOnZero)
+	{
+		set_Value (COLUMNNAME_IsApplyOnZero, Boolean.valueOf(IsApplyOnZero));
+	}
+
+	/** Get Is Apply OnZero.
+		@return Is Apply OnZero	  */
+	public boolean isApplyOnZero () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsApplyOnZero);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set Is Calc On Invoice.
@@ -329,6 +350,23 @@ public class X_LCO_WithholdingCalc extends PO implements I_LCO_WithholdingCalc, 
     {
         return new KeyNamePair(get_ID(), getName());
     }
+
+	/** Set Subtrahend Factor.
+		@param SubtrahendFactor Subtrahend Factor	  */
+	public void setSubtrahendFactor (BigDecimal SubtrahendFactor)
+	{
+		set_Value (COLUMNNAME_SubtrahendFactor, SubtrahendFactor);
+	}
+
+	/** Get Subtrahend Factor.
+		@return Subtrahend Factor	  */
+	public BigDecimal getSubtrahendFactor () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_SubtrahendFactor);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
+	}
 
 	/** Set Threshold max.
 		@param ThresholdMax 

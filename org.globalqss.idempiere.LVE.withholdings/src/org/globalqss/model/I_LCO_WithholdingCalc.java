@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_WithholdingCalc
  *  @author iDempiere (generated) 
- *  @version Release 3.1
+ *  @version Release 8.2
  */
 @SuppressWarnings("all")
 public interface I_LCO_WithholdingCalc 
@@ -32,7 +32,7 @@ public interface I_LCO_WithholdingCalc
     /** TableName=LCO_WithholdingCalc */
     public static final String Table_Name = "LCO_WithholdingCalc";
 
-    /** AD_Table_ID=1000004 */
+    /** AD_Table_ID=1000014 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -150,6 +150,15 @@ public interface I_LCO_WithholdingCalc
 	  */
 	public boolean isActive();
 
+    /** Column name IsApplyOnZero */
+    public static final String COLUMNNAME_IsApplyOnZero = "IsApplyOnZero";
+
+	/** Set Is Apply OnZero	  */
+	public void setIsApplyOnZero (boolean IsApplyOnZero);
+
+	/** Get Is Apply OnZero	  */
+	public boolean isApplyOnZero();
+
     /** Column name IsCalcOnInvoice */
     public static final String COLUMNNAME_IsCalcOnInvoice = "IsCalcOnInvoice";
 
@@ -218,6 +227,15 @@ public interface I_LCO_WithholdingCalc
 	  * Alphanumeric identifier of the entity
 	  */
 	public String getName();
+
+    /** Column name SubtrahendFactor */
+    public static final String COLUMNNAME_SubtrahendFactor = "SubtrahendFactor";
+
+	/** Set Subtrahend Factor	  */
+	public void setSubtrahendFactor (BigDecimal SubtrahendFactor);
+
+	/** Get Subtrahend Factor	  */
+	public BigDecimal getSubtrahendFactor();
 
     /** Column name ThresholdMax */
     public static final String COLUMNNAME_ThresholdMax = "ThresholdMax";

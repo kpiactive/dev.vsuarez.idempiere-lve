@@ -452,8 +452,10 @@ public class LCO_MInvoice extends MInvoice
 						base.compareTo(Env.ZERO) != 0 &&
 						base.compareTo(wc.getThresholdmin()) >= 0 &&
 						(wc.getThresholdMax() == null || wc.getThresholdMax().compareTo(Env.ZERO) == 0 || base.compareTo(wc.getThresholdMax()) <= 0) &&
-						tax.getRate() != null &&
-						tax.getRate().compareTo(Env.ZERO) != 0) {
+						tax.getRate() != null) {
+					
+					if (tax.getRate().signum() == 0 && !wc.isApplyOnZero())
+						continue;
 
 					// insert new withholding record
 					// with: type, tax, base amt, percent, tax amt, trx date, acct date, rule
