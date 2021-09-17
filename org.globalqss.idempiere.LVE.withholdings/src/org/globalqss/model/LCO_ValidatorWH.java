@@ -555,7 +555,11 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				BigDecimal tottax = new BigDecimal(0);
 
 				MAllocationLine alloc_line = alloc_lines[j];
-//				DocLine_Allocation docLine = new DocLine_Allocation(alloc_line, doc);
+				DocLine_Allocation_WH docLine = new DocLine_Allocation_WH(alloc_line, doc);
+				MPayment payment = new MPayment(ah.getCtx(), alloc_line.getC_Payment_ID(), ah.get_TrxName());
+				if(payment.isOverrideCurrencyRate())
+					docLine.setCurrencyRate(payment.getCurrencyRate());
+				
 				doc.setC_BPartner_ID(alloc_line.getC_BPartner_ID());
 
 				int inv_id = alloc_line.getC_Invoice_ID();
@@ -634,16 +638,15 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 							FactLine tl = null;
 							if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0)){
 							//if ((invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("ARI")==0) || (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0)) {
-								tl = fact.createLine(null, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
+								tl = fact.createLine(docLine, taxLine.getAccount(DocTax.ACCTTYPE_TaxDue, as),
 										ah.getC_Currency_ID(), amount, null);
 							} 
 							//** si es NC proveedor es un iva en compras
 							else if (!invoice.isSOTrx() && invoice.getC_DocTypeTarget().getDocBaseType().compareTo("APC")==0){
-								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
+								tl = fact.createLine(docLine, taxLine.getAccount(taxLine.getAPTaxType(), as),
 										ah.getC_Currency_ID(), null, amount);
-							}
-							else {
-								tl = fact.createLine(null, taxLine.getAccount(taxLine.getAPTaxType(), as),
+							} else {
+								tl = fact.createLine(docLine, taxLine.getAccount(taxLine.getAPTaxType(), as),
 										ah.getC_Currency_ID(), null, amount);
 							}
 							if (tl != null)
@@ -842,6 +845,16 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		}
 
 		return null;
+	}
+	
+	public class DocLine_Allocation_WH extends DocLine_Allocation {
+		public DocLine_Allocation_WH (MAllocationLine line, Doc doc) {
+			super (line, doc);
+		}
+		
+		public void setCurrencyRate(BigDecimal currencyRate) {
+			super.setCurrencyRate(currencyRate);
+		}
 	}
 
 }	//	LCO_ValidatorWH
