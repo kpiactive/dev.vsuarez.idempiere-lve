@@ -555,10 +555,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				BigDecimal tottax = new BigDecimal(0);
 
 				MAllocationLine alloc_line = alloc_lines[j];
-				DocLine_Allocation_WH docLine = new DocLine_Allocation_WH(alloc_line, doc);
-				MPayment payment = new MPayment(ah.getCtx(), alloc_line.getC_Payment_ID(), ah.get_TrxName());
-				if(payment.isOverrideCurrencyRate())
-					docLine.setCurrencyRate(payment.getCurrencyRate());
+				DocLine_Allocation docLine = new DocLine_Allocation(alloc_line, doc);
 				
 				doc.setC_BPartner_ID(alloc_line.getC_BPartner_ID());
 
@@ -705,9 +702,11 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 						if (invoice.isSOTrx()) {
 							fl = fact.createLine (line, doc.getAccount(Doc.ACCTTYPE_WriteOff, as),
 									ah.getC_Currency_ID(), null, tottax);
+							fl.convert();
 						} else {
 							fl = fact.createLine (line, doc.getAccount(Doc.ACCTTYPE_WriteOff, as),
 									ah.getC_Currency_ID(), tottax, null);
+							fl.convert();
 						}
 						if (fl != null)
 							fl.setAD_Org_ID(ah.getAD_Org_ID());
