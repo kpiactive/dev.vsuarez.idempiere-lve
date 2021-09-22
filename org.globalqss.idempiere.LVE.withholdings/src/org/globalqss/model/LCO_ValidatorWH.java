@@ -566,6 +566,8 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				invoice = new MInvoice (ah.getCtx(), alloc_line.getC_Invoice_ID(), ah.get_TrxName());
 				if (invoice == null || invoice.getC_Invoice_ID() == 0)
 					continue;
+				doc.setDateAcct(invoice.getDateAcct());
+				docLine.setDateAcct(invoice.getDateAcct());
 				/*String sql = 
 				  "SELECT i.C_Tax_ID, NVL(SUM(i.TaxBaseAmt),0) AS TaxBaseAmt, NVL(SUM(i.TaxAmt),0) AS TaxAmt, t.Name, t.Rate, t.IsSalesTax "
 				 + " FROM LCO_InvoiceWithholding i, C_Tax t "
