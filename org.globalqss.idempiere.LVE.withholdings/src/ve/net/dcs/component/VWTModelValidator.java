@@ -20,6 +20,7 @@ import org.adempiere.exceptions.AdempiereException;
 //import org.compiere.acct.FactLine;
 import org.compiere.model.I_C_BPartner;
 import org.compiere.model.I_C_Invoice;
+import org.compiere.model.MAllocationHdr;
 //import org.compiere.model.MAcctSchema;
 //import org.compiere.model.MAllocationHdr;
 //import org.compiere.model.MAllocationLine;
@@ -31,10 +32,12 @@ import org.compiere.model.PO;
 import org.compiere.model.Query;
 import org.compiere.model.X_C_BPartner;
 import org.compiere.process.DocAction;
+import org.compiere.process.DocumentEngine;
 import org.compiere.util.CLogger;
 import org.compiere.util.DB;
 import org.compiere.util.Env;
 import org.compiere.util.Msg;
+import org.compiere.util.Util;
 import org.globalqss.model.MLCOInvoiceWithholding;
 import org.globalqss.model.MLCOWithholdingType;
 import org.globalqss.model.X_LCO_InvoiceWithholding;
@@ -50,6 +53,7 @@ public class VWTModelValidator extends AbstractEventHandler {
 	@Override
 	protected void initialize() {
 		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, I_C_Invoice.Table_Name);
+		registerTableEvent(IEventTopics.DOC_AFTER_POST, I_C_Invoice.Table_Name);
 		registerTableEvent(IEventTopics.DOC_BEFORE_COMPLETE, I_C_Invoice.Table_Name);
 		registerTableEvent(IEventTopics.DOC_BEFORE_VOID, I_C_Invoice.Table_Name);
 		registerTableEvent(IEventTopics.DOC_BEFORE_REACTIVATE, I_C_Invoice.Table_Name);
@@ -227,6 +231,19 @@ public class VWTModelValidator extends AbstractEventHandler {
 						}
 					}
 				}
+		} else if(po.get_TableName().equals(I_C_Invoice.Table_Name) && type.equals(IEventTopics.DOC_AFTER_POST)) {
+			MInvoice invoice = (MInvoice) po;
+			MAllocationHdr[] allocations = MAllocationHdr.getOfInvoice(invoice.getCtx(), invoice.getC_Invoice_ID(), invoice.get_TrxName());
+			for(MAllocationHdr allocation : allocations) {
+				if(!allocation.isPosted()) {
+					String ignoreError = DocumentEngine.postImmediate(allocation.getCtx(), allocation.getAD_Client_ID(), allocation.get_Table_ID(), allocation.get_ID(), true, allocation.get_TrxName());
+					if (!Util.isEmpty(ignoreError, true)) {
+						log.warning("Error posting " + allocation + ". Error="+ignoreError);
+					} else {
+						allocation.load(allocation.get_TrxName());
+					}
+				}
+			}
 		}
 
 	}
