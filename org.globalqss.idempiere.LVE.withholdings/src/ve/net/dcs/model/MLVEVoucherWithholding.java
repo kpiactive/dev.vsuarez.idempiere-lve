@@ -229,6 +229,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 						payment.setCurrencyRate(BigDecimal.ONE.divide(getCurrencyRate(), 50, RoundingMode.HALF_UP));
 					}
 					payment.setPayAmt(Env.ZERO);
+					payment.setConvertedAmt(new BigDecimal(0.00000001));
 					payment.setOverUnderAmt(Env.ZERO);
 					payment.setWriteOffAmt(Env.ZERO);
 					payment.setC_DocType_ID(getLVE_WHPaymentDocType_ID());
@@ -1026,12 +1027,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	public int getDoc_User_ID() {
 
 		return getCreatedBy();
-	}
-
-	@Override
-	public int getC_Currency_ID() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
