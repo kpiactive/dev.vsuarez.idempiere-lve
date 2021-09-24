@@ -17,10 +17,12 @@
 /** Generated Model - DO NOT CHANGE */
 package ve.net.dcs.model;
 
+import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.Timestamp;
 import java.util.Properties;
 import org.compiere.model.*;
+import org.compiere.util.Env;
 
 /** Generated Model for LVE_VoucherWithholding
  *  @author iDempiere (generated) 
@@ -31,7 +33,7 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210707L;
+	private static final long serialVersionUID = 20210924L;
 
     /** Standard Constructor */
     public X_LVE_VoucherWithholding (Properties ctx, int LVE_VoucherWithholding_ID, String trxName)
@@ -46,8 +48,6 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 // N
 			setLCO_WithholdingType_ID (0);
 			setLVE_VoucherWithholding_ID (0);
-			setLVE_WHBankAccount_ID (0);
-			setLVE_WHPaymentDocType_ID (0);
 			setProcessed (false);
         } */
     }
@@ -103,6 +103,62 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	public int getC_BPartner_ID () 
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_BPartner_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_ConversionType getC_ConversionType() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_ConversionType)MTable.get(getCtx(), org.compiere.model.I_C_ConversionType.Table_Name)
+			.getPO(getC_ConversionType_ID(), get_TrxName());	}
+
+	/** Set Currency Type.
+		@param C_ConversionType_ID 
+		Currency Conversion Rate Type
+	  */
+	public void setC_ConversionType_ID (int C_ConversionType_ID)
+	{
+		if (C_ConversionType_ID < 1) 
+			set_Value (COLUMNNAME_C_ConversionType_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_ConversionType_ID, Integer.valueOf(C_ConversionType_ID));
+	}
+
+	/** Get Currency Type.
+		@return Currency Conversion Rate Type
+	  */
+	public int getC_ConversionType_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_ConversionType_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Currency)MTable.get(getCtx(), org.compiere.model.I_C_Currency.Table_Name)
+			.getPO(getC_Currency_ID(), get_TrxName());	}
+
+	/** Set Currency.
+		@param C_Currency_ID 
+		The Currency for this record
+	  */
+	public void setC_Currency_ID (int C_Currency_ID)
+	{
+		if (C_Currency_ID < 1) 
+			set_Value (COLUMNNAME_C_Currency_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Currency_ID, Integer.valueOf(C_Currency_ID));
+	}
+
+	/** Get Currency.
+		@return The Currency for this record
+	  */
+	public int getC_Currency_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Currency_ID);
 		if (ii == null)
 			 return 0;
 		return ii.intValue();
@@ -207,6 +263,26 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	public String getCreateFrom () 
 	{
 		return (String)get_Value(COLUMNNAME_CreateFrom);
+	}
+
+	/** Set Rate.
+		@param CurrencyRate 
+		Currency Conversion Rate
+	  */
+	public void setCurrencyRate (BigDecimal CurrencyRate)
+	{
+		set_Value (COLUMNNAME_CurrencyRate, CurrencyRate);
+	}
+
+	/** Get Rate.
+		@return Currency Conversion Rate
+	  */
+	public BigDecimal getCurrencyRate () 
+	{
+		BigDecimal bd = (BigDecimal)get_Value(COLUMNNAME_CurrencyRate);
+		if (bd == null)
+			 return Env.ZERO;
+		return bd;
 	}
 
 	/** Set Account Date.
@@ -381,6 +457,54 @@ public class X_LVE_VoucherWithholding extends PO implements I_LVE_VoucherWithhol
 	public String getGenerateWithholding () 
 	{
 		return (String)get_Value(COLUMNNAME_GenerateWithholding);
+	}
+
+	/** Set Approved.
+		@param IsApproved 
+		Indicates if this document requires approval
+	  */
+	public void setIsApproved (boolean IsApproved)
+	{
+		set_ValueNoCheck (COLUMNNAME_IsApproved, Boolean.valueOf(IsApproved));
+	}
+
+	/** Get Approved.
+		@return Indicates if this document requires approval
+	  */
+	public boolean isApproved () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsApproved);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Override Currency Conversion Rate.
+		@param IsOverrideCurrencyRate 
+		Override Currency Conversion Rate
+	  */
+	public void setIsOverrideCurrencyRate (boolean IsOverrideCurrencyRate)
+	{
+		set_Value (COLUMNNAME_IsOverrideCurrencyRate, Boolean.valueOf(IsOverrideCurrencyRate));
+	}
+
+	/** Get Override Currency Conversion Rate.
+		@return Override Currency Conversion Rate
+	  */
+	public boolean isOverrideCurrencyRate () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsOverrideCurrencyRate);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
 	}
 
 	/** Set Sales Transaction.

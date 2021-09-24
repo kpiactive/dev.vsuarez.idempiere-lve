@@ -79,6 +79,36 @@ public interface I_LVE_VoucherWithholding
 
 	public org.compiere.model.I_C_BPartner getC_BPartner() throws RuntimeException;
 
+    /** Column name C_ConversionType_ID */
+    public static final String COLUMNNAME_C_ConversionType_ID = "C_ConversionType_ID";
+
+	/** Set Currency Type.
+	  * Currency Conversion Rate Type
+	  */
+	public void setC_ConversionType_ID (int C_ConversionType_ID);
+
+	/** Get Currency Type.
+	  * Currency Conversion Rate Type
+	  */
+	public int getC_ConversionType_ID();
+
+	public org.compiere.model.I_C_ConversionType getC_ConversionType() throws RuntimeException;
+
+    /** Column name C_Currency_ID */
+    public static final String COLUMNNAME_C_Currency_ID = "C_Currency_ID";
+
+	/** Set Currency.
+	  * The Currency for this record
+	  */
+	public void setC_Currency_ID (int C_Currency_ID);
+
+	/** Get Currency.
+	  * The Currency for this record
+	  */
+	public int getC_Currency_ID();
+
+	public org.compiere.model.I_C_Currency getC_Currency() throws RuntimeException;
+
     /** Column name C_DocType_ID */
     public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
 
@@ -152,6 +182,19 @@ public interface I_LVE_VoucherWithholding
 	  * Process which will generate a new document lines based on an existing document
 	  */
 	public String getCreateFrom();
+
+    /** Column name CurrencyRate */
+    public static final String COLUMNNAME_CurrencyRate = "CurrencyRate";
+
+	/** Set Rate.
+	  * Currency Conversion Rate
+	  */
+	public void setCurrencyRate (BigDecimal CurrencyRate);
+
+	/** Get Rate.
+	  * Currency Conversion Rate
+	  */
+	public BigDecimal getCurrencyRate();
 
     /** Column name DateAcct */
     public static final String COLUMNNAME_DateAcct = "DateAcct";
@@ -252,6 +295,32 @@ public interface I_LVE_VoucherWithholding
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsApproved */
+    public static final String COLUMNNAME_IsApproved = "IsApproved";
+
+	/** Set Approved.
+	  * Indicates if this document requires approval
+	  */
+	public void setIsApproved (boolean IsApproved);
+
+	/** Get Approved.
+	  * Indicates if this document requires approval
+	  */
+	public boolean isApproved();
+
+    /** Column name IsOverrideCurrencyRate */
+    public static final String COLUMNNAME_IsOverrideCurrencyRate = "IsOverrideCurrencyRate";
+
+	/** Set Override Currency Conversion Rate.
+	  * Override Currency Conversion Rate
+	  */
+	public void setIsOverrideCurrencyRate (boolean IsOverrideCurrencyRate);
+
+	/** Get Override Currency Conversion Rate.
+	  * Override Currency Conversion Rate
+	  */
+	public boolean isOverrideCurrencyRate();
 
     /** Column name IsSOTrx */
     public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";

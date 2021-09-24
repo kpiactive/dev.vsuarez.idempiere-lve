@@ -26,6 +26,7 @@
 package org.globalqss.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -477,9 +478,39 @@ public class LCO_MInvoice extends MInvoice
 							wc.getAmountRefunded().compareTo(Env.ZERO) > 0) {
 						taxamt = taxamt.subtract(wc.getAmountRefunded());
 					}
-					if(wt.isUseCurrencyConvert()) {
+					if(wt.isUseCurrencyConvert() && voucher == null) {
 						base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
+					}
+					if(voucher != null) {
+						if(voucher.getC_Currency_ID() > 0 && voucher.getC_Currency_ID() != getC_Currency_ID()) {
+							int conversionType_ID = voucher.getC_ConversionType_ID();
+							if(conversionType_ID <= 0)
+								conversionType_ID = getC_ConversionType_ID();
+							boolean overrideCurrencyRate = voucher.isOverrideCurrencyRate();
+							if(!overrideCurrencyRate)
+								overrideCurrencyRate = isOverrideCurrencyRate();
+							if(!overrideCurrencyRate) {
+								base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+							} else {
+								BigDecimal currencyRate = voucher.getCurrencyRate();
+								if((currencyRate == null || currencyRate.signum() == 0) && get_Value("DivideRate") != null)
+									currencyRate = (BigDecimal) get_Value("DivideRate");
+								if(currencyRate != null && currencyRate.signum() != 0) {
+									if(voucher.getC_Currency_ID() == MClientInfo.get(getAD_Client_ID()).getMAcctSchema1().getC_Currency_ID()) {
+										base = base.divide(currencyRate, 2, RoundingMode.HALF_UP);
+										taxamt = taxamt.divide(currencyRate, 2, RoundingMode.HALF_UP);
+									} else {
+										base = base.multiply(currencyRate);
+										taxamt = taxamt.multiply(currencyRate);
+									}
+								} else {
+									base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+									taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								}
+							}
+						}
 					}
 					iwh.setTaxAmt(taxamt);
 					iwh.setTaxBaseAmt(base);

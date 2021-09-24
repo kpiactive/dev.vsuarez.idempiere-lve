@@ -2,6 +2,7 @@ package ve.net.dcs.model;
 
 import java.io.File;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,13 +14,13 @@ import java.util.Properties;
 import java.util.logging.Level;
 
 import org.adempiere.exceptions.AdempiereException;
-import org.compiere.model.MAcctSchema;
 import org.compiere.model.MAllocationHdr;
 import org.compiere.model.MBankAccount;
 import org.compiere.model.MClientInfo;
 import org.compiere.model.MConversionRate;
 import org.compiere.model.MDocType;
 import org.compiere.model.MFactAcct;
+import org.compiere.model.MInvoice;
 import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
 import org.compiere.model.ModelValidationEngine;
@@ -83,6 +84,13 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			return false;
 		}
 		
+		if(is_ValueChanged(MLVEVoucherWithholding.COLUMNNAME_C_Currency_ID)) {
+			if(getLines(null).length > 0) {
+				log.saveError("", "No puede cambiar moneda porque ya se generaron las retenciones, debe eliminarlas primero.");
+				return false;
+			}
+		}
+		
 		return super.beforeSave(newRecord);
 	}
 
@@ -116,7 +124,6 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	}
 
 	public String completeIt() {
-
 		log.info(toString());
 		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,
 		ModelValidator.TIMING_BEFORE_COMPLETE);
@@ -184,6 +191,7 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		int id_aux = -1;
 		int C_Currency_ID = 0;
 		MPayment payment = null;
+		MInvoice inv = (MInvoice) getC_Invoice();
 		for (MLCOInvoiceWithholding mWithholding : lines) {
 			mWithholding.set_ValueOfColumn("NroReten", getWithholdingNo());
 			mWithholding.setDateAcct((Timestamp)get_Value("DateAcct"));
@@ -211,10 +219,15 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 					payment.setDateTrx(getDateTrx());
 					payment.setTenderType("X");
 					payment.setC_BPartner_ID(getC_BPartner_ID());
-					//MAcctSchema[] m_ass = MAcctSchema.getClientAcctSchema(getCtx(), getAD_Client_ID());
-					MAcctSchema m_ass = MClientInfo.get(getCtx(), getAD_Client_ID()).getMAcctSchema1();
-					C_Currency_ID = m_ass.getC_Currency_ID();
+					C_Currency_ID = getC_Currency_ID();
+					if(C_Currency_ID == 0)
+						C_Currency_ID = inv.getC_Currency_ID();
 					payment.setC_Currency_ID(C_Currency_ID);
+					if(isOverrideCurrencyRate() && getCurrencyRate() != null && getCurrencyRate().signum() > 0) {
+						payment.setIsOverrideCurrencyRate(isOverrideCurrencyRate());
+						payment.set_ValueOfColumn("DivideRate", getCurrencyRate());
+						payment.setCurrencyRate(BigDecimal.ONE.divide(getCurrencyRate(), 50, RoundingMode.HALF_UP));
+					}
 					payment.setPayAmt(Env.ZERO);
 					payment.setOverUnderAmt(Env.ZERO);
 					payment.setWriteOffAmt(Env.ZERO);
@@ -263,10 +276,28 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 						rs = null;
 						pstmt = null;
 					}
-					if(isWHUseCurrencyConvert())
-						InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, mWithholding.getC_Invoice().getC_Currency_ID(), C_Currency_ID, getDateTrx(), 114, getAD_Client_ID(), getAD_Org_ID());
-					else
-						payment.setC_Currency_ID(mWithholding.getC_Invoice().getC_Currency_ID());
+					if(C_Currency_ID != inv.getC_Currency_ID()) {
+						int conversionType_ID = getC_ConversionType_ID();
+						if(conversionType_ID <= 0)
+							conversionType_ID = inv.getC_ConversionType_ID();
+						boolean overrideCurrencyRate = isOverrideCurrencyRate();
+						if(!overrideCurrencyRate)
+							overrideCurrencyRate = inv.isOverrideCurrencyRate();
+						if(!overrideCurrencyRate)
+							InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, inv.getC_Currency_ID(), C_Currency_ID, getDateTrx(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+						 else {
+							BigDecimal currencyRate = getCurrencyRate();
+							if((currencyRate == null || currencyRate.signum() == 0) && inv.get_Value("DivideRate") != null)
+								currencyRate = (BigDecimal) inv.get_Value("DivideRate");
+							if(currencyRate != null && currencyRate.signum() != 0) {
+								if(getC_Currency_ID() == MClientInfo.get(getAD_Client_ID()).getMAcctSchema1().getC_Currency_ID())
+									InvoiceOpenAmt = InvoiceOpenAmt.divide(currencyRate, 2, RoundingMode.HALF_UP);
+								else
+									InvoiceOpenAmt = InvoiceOpenAmt.multiply(currencyRate);
+							} else
+								InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, inv.getC_Currency_ID(), C_Currency_ID, getDateTrx(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+						}
+					}
 					pa.setInvoiceAmt(InvoiceOpenAmt);
 				}
 				if (mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("ARC") || mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("APC"))
