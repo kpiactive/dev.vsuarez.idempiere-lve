@@ -340,6 +340,18 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		ModelValidator.TIMING_BEFORE_VOID);
 		if (m_processMsg != null)
 			return false;
+		
+		boolean isCalcOnPayment = true;
+		MLCOInvoiceWithholding[] withholdings = getLines(" AND IsCalcOnPayment='N' ");
+		if(withholdings.length > 0)
+			isCalcOnPayment = false;
+		if(getC_Payment_ID() <= 0 && !isCalcOnPayment) {
+			setDocStatus(DOCSTATUS_Drafted);
+			setDocAction(DOCACTION_None);
+			setProcessed(false);
+			saveEx();
+			return true;
+		}
 
 		if (getC_Payment_ID() > 0 && getDocStatus().equals(DOCSTATUS_Completed)) {
 			/*
@@ -425,7 +437,18 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		// ModelValidator.TIMING_BEFORE_VOID);
 		// if (m_processMsg != null)
 		// return false;
-
+		
+		boolean isCalcOnPayment = true;
+		MLCOInvoiceWithholding[] withholdings = getLines(" AND IsCalcOnPayment='N' ");
+		if(withholdings.length > 0)
+			isCalcOnPayment = false;
+		if(getC_Payment_ID() <= 0 && !isCalcOnPayment) {
+			setDocStatus(DOCSTATUS_Drafted);
+			setProcessed(false);
+			saveEx();
+			return "@Success@";
+		}
+		
 		if (getC_Payment_ID() > 0 && getDocStatus().equals(DOCSTATUS_Completed)) {
 			/*
 			 * globalqss - 2317928 - Reactivating/Voiding order must reset
@@ -525,6 +548,9 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 	 * Set the definite document number after completed
 	 */
 	private void createWithholdingNo(X_LCO_WithholdingType wt) {
+		if(getWithholdingNo() != null)
+			return;
+		
 		String month = new SimpleDateFormat("MM").format(getDateTrx());
 		String year = new SimpleDateFormat("yyyy").format(getDateTrx());
 		setWithholdingNo(DB.getDocumentNo(getC_DocType_ID(), get_TrxName(), false, this));
@@ -910,6 +936,17 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 		m_processMsg = ModelValidationEngine.get().fireDocValidate(this,ModelValidator.TIMING_BEFORE_REACTIVATE);
 		if (m_processMsg != null)
 			return false;
+		
+		boolean isCalcOnPayment = true;
+		MLCOInvoiceWithholding[] withholdings = getLines(" AND IsCalcOnPayment='N' ");
+		if(withholdings.length > 0)
+			isCalcOnPayment = false;
+		if(getC_Payment_ID() <= 0 && !isCalcOnPayment) {
+			setDocAction(DOCACTION_Re_Activate);
+			setProcessed(false);
+			saveEx();
+			return true;
+		}
 
 		if (getC_Payment_ID() > 0 && getDocStatus().equals(DOCSTATUS_Completed)) {
 			/*

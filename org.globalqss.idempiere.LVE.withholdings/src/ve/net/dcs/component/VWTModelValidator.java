@@ -171,12 +171,11 @@ public class VWTModelValidator extends AbstractEventHandler {
 			
 			if (list.size() > 0){
 				for (MLCOInvoiceWithholding mlcoInvoiceWithholding : list) {
-					if (mlcoInvoiceWithholding.get_ValueAsInt("LVE_VoucherWithholding_ID") > 0){
+					if (mlcoInvoiceWithholding.get_ValueAsInt("LVE_VoucherWithholding_ID") > 0) {
 						MLVEVoucherWithholding vw = new MLVEVoucherWithholding(invoice.getCtx(), mlcoInvoiceWithholding.get_ValueAsInt("LVE_VoucherWithholding_ID"), invoice.get_TrxName());
-						if (vw.getDocStatus().equalsIgnoreCase(DocAction.STATUS_Completed) || vw.getDocStatus().equalsIgnoreCase(DocAction.STATUS_Drafted)){
+						if (vw.getDocStatus().equalsIgnoreCase(DocAction.STATUS_Completed) || vw.getDocStatus().equalsIgnoreCase(DocAction.STATUS_Drafted)) {
 							throw new AdempiereException("RETENCIÓN. "+vw.getWithholdingNo()+", Debe Anular primero la Retención Asociada");
 						}
-					}else{
 						mlcoInvoiceWithholding.deleteEx(true);
 					}
 				}
