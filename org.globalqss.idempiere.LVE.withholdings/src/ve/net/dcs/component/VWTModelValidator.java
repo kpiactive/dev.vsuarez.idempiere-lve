@@ -156,6 +156,8 @@ public class VWTModelValidator extends AbstractEventHandler {
 						v.setDocAction(DocAction.ACTION_Complete);
 						if(!v.processIt(DocAction.ACTION_Complete))
 							addErrorMessage(event, "No se Completo Comprobante de Retencion - " + v.getProcessMsg());
+						else
+							v.setProcessed(true);
 					} catch (Exception e) {
 						addErrorMessage(event, "No se Completo Comprobante de Retencion - " + e.getLocalizedMessage());
 					}
