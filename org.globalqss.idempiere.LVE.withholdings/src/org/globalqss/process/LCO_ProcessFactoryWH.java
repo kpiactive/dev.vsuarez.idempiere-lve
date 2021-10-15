@@ -28,6 +28,8 @@ package org.globalqss.process;
 import org.adempiere.base.IProcessFactory;
 import org.compiere.process.ProcessCall;
 
+import ve.net.dcs.process.LVE_GenerateTxtSeniat;
+import ve.net.dcs.process.LVE_GenerateXmlSeniat;
 import ve.net.dcs.process.VWT_GenerateInvoiceWithholding;
 
 public class LCO_ProcessFactoryWH implements IProcessFactory {
@@ -46,6 +48,14 @@ public class LCO_ProcessFactoryWH implements IProcessFactory {
 		} else if(VWT_GenerateInvoiceWithholding.class.getName().equals(className)) {
 			try {
 				process =  VWT_GenerateInvoiceWithholding.class.getConstructor().newInstance();
+			} catch (Exception e) {}
+		} else if(LVE_GenerateTxtSeniat.class.getName().equals(className)) {
+			try {
+				process = LVE_GenerateTxtSeniat.class.getConstructor().newInstance();
+			} catch (Exception e) {}
+		} else if(LVE_GenerateXmlSeniat.class.getName().equals(className)) {
+			try {
+				process = LVE_GenerateXmlSeniat.class.getConstructor().newInstance();
 			} catch (Exception e) {}
 		}
 
