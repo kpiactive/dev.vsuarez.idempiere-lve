@@ -30,9 +30,7 @@ public class VWT_MInvoice extends LCO_MInvoice {
 	 *	@return array
 	 */
 
-	public static MInvoice[] getOfBPartnerDateFromDateTo (Properties ctx, MLVEVoucherWithholding voucher, String trxName)
-	{
-		
+	public static MInvoice[] getOfBPartnerDateFromDateTo (Properties ctx, MLVEVoucherWithholding voucher, String trxName) {
 		ArrayList<Object> parameters = new ArrayList<Object>();
 		
 		X_LCO_WithholdingType wt = new X_LCO_WithholdingType(ctx, voucher.getLCO_WithholdingType_ID(), trxName);
@@ -43,22 +41,21 @@ public class VWT_MInvoice extends LCO_MInvoice {
 		parameters.add(voucher.getC_BPartner_ID());
 		parameters.add(isIssotrx);
 		
-		if (voucher.get_ValueAsInt("C_Invoice_ID") != 0){
+		if (voucher.get_ValueAsInt("C_Invoice_ID") != 0) {
 			sqlwhere += " AND "+COLUMNNAME_C_Invoice_ID+"=? ";
 			parameters.add(voucher.get_ValueAsInt("C_Invoice_ID"));
-		}
-		
-		if (voucher.getDateTo() != null && voucher.getDateFrom() != null){
-			sqlwhere += " AND "+COLUMNNAME_DateAcct+" BETWEEN ? AND ? ";
-			parameters.add(voucher.getDateFrom());
-			parameters.add(voucher.getDateTo());
-		}
-		else if (voucher.getDateFrom() != null) {
-			sqlwhere += " AND "+COLUMNNAME_DateAcct+" >= ? ";
-			parameters.add(voucher.getDateFrom());
-		}else if (voucher.getDateTo() != null) {
-			sqlwhere += " AND "+COLUMNNAME_DateAcct+" <= ? ";
-			parameters.add(voucher.getDateTo());
+		} else {
+			if (voucher.getDateTo() != null && voucher.getDateFrom() != null) {
+				sqlwhere += " AND "+COLUMNNAME_DateAcct+" BETWEEN ? AND ? ";
+				parameters.add(voucher.getDateFrom());
+				parameters.add(voucher.getDateTo());
+			} else if (voucher.getDateFrom() != null) {
+				sqlwhere += " AND "+COLUMNNAME_DateAcct+" >= ? ";
+				parameters.add(voucher.getDateFrom());
+			} else if (voucher.getDateTo() != null) {
+				sqlwhere += " AND "+COLUMNNAME_DateAcct+" <= ? ";
+				parameters.add(voucher.getDateTo());
+			}
 		}
 		
 		sqlwhere += " AND AD_Org_ID = ? AND DOCSTATUS IN ('CO','CL') ";
