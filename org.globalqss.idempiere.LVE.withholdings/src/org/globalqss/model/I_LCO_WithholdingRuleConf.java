@@ -129,6 +129,15 @@ public interface I_LCO_WithholdingRuleConf
 	/** Get Is Use BP Tax Payer Type	  */
 	public boolean isUseBPTaxPayerType();
 
+    /** Column name IsUseCurrency */
+    public static final String COLUMNNAME_IsUseCurrency = "IsUseCurrency";
+
+	/** Set Use Currency	  */
+	public void setIsUseCurrency (boolean IsUseCurrency);
+
+	/** Get Use Currency	  */
+	public boolean isUseCurrency();
+
     /** Column name IsUseOrgCity */
     public static final String COLUMNNAME_IsUseOrgCity = "IsUseOrgCity";
 
@@ -173,6 +182,15 @@ public interface I_LCO_WithholdingRuleConf
 
 	/** Get Is Use Product Tax Category	  */
 	public boolean isUseProductTaxCategory();
+
+    /** Column name IsUseTenderType */
+    public static final String COLUMNNAME_IsUseTenderType = "IsUseTenderType";
+
+	/** Set Use Tender Type	  */
+	public void setIsUseTenderType (boolean IsUseTenderType);
+
+	/** Get Use Tender Type	  */
+	public boolean isUseTenderType();
 
     /** Column name IsUseWithholdingCategory */
     public static final String COLUMNNAME_IsUseWithholdingCategory = "IsUseWithholdingCategory";

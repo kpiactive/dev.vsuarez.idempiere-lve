@@ -299,6 +299,8 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 								InvoiceOpenAmt = MConversionRate.convert(getCtx(), InvoiceOpenAmt, inv.getC_Currency_ID(), C_Currency_ID, getDateTrx(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
 						}
 					}
+					if(InvoiceOpenAmt == null)
+						InvoiceOpenAmt = BigDecimal.ZERO;
 					pa.setInvoiceAmt(InvoiceOpenAmt);
 				}
 				if (mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("ARC") || mWithholding.getC_Invoice().getC_DocType().getDocBaseType().equals("APC"))

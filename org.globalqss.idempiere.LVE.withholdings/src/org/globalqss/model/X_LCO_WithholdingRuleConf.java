@@ -30,7 +30,7 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210622L;
+	private static final long serialVersionUID = 20220329L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingRuleConf (Properties ctx, int LCO_WithholdingRuleConf_ID, String trxName)
@@ -154,6 +154,27 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 		return false;
 	}
 
+	/** Set Use Currency.
+		@param IsUseCurrency Use Currency	  */
+	public void setIsUseCurrency (boolean IsUseCurrency)
+	{
+		set_Value (COLUMNNAME_IsUseCurrency, Boolean.valueOf(IsUseCurrency));
+	}
+
+	/** Get Use Currency.
+		@return Use Currency	  */
+	public boolean isUseCurrency () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseCurrency);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Is Use Org City.
 		@param IsUseOrgCity Is Use Org City	  */
 	public void setIsUseOrgCity (boolean IsUseOrgCity)
@@ -250,6 +271,27 @@ public class X_LCO_WithholdingRuleConf extends PO implements I_LCO_WithholdingRu
 	public boolean isUseProductTaxCategory () 
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseProductTaxCategory);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Use Tender Type.
+		@param IsUseTenderType Use Tender Type	  */
+	public void setIsUseTenderType (boolean IsUseTenderType)
+	{
+		set_Value (COLUMNNAME_IsUseTenderType, Boolean.valueOf(IsUseTenderType));
+	}
+
+	/** Get Use Tender Type.
+		@return Use Tender Type	  */
+	public boolean isUseTenderType () 
+	{
+		Object oo = get_Value(COLUMNNAME_IsUseTenderType);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 
