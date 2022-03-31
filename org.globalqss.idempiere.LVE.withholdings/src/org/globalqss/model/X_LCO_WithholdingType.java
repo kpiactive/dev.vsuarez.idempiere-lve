@@ -31,7 +31,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20210820L;
+	private static final long serialVersionUID = 20220331L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingType (Properties ctx, int LCO_WithholdingType_ID, String trxName)
@@ -76,6 +76,59 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
         .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
+
+	public org.compiere.model.I_C_Charge getC_Charge() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_Charge)MTable.get(getCtx(), org.compiere.model.I_C_Charge.Table_Name)
+			.getPO(getC_Charge_ID(), get_TrxName());	}
+
+	/** Set Charge.
+		@param C_Charge_ID 
+		Additional document charges
+	  */
+	public void setC_Charge_ID (int C_Charge_ID)
+	{
+		if (C_Charge_ID < 1) 
+			set_Value (COLUMNNAME_C_Charge_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_Charge_ID, Integer.valueOf(C_Charge_ID));
+	}
+
+	/** Get Charge.
+		@return Additional document charges
+	  */
+	public int getC_Charge_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Charge_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	public org.compiere.model.I_C_DocType getC_DocTypeDN() throws RuntimeException
+    {
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
+			.getPO(getC_DocTypeDN_ID(), get_TrxName());	}
+
+	/** Set Document Type Debit Note.
+		@param C_DocTypeDN_ID Document Type Debit Note	  */
+	public void setC_DocTypeDN_ID (int C_DocTypeDN_ID)
+	{
+		if (C_DocTypeDN_ID < 1) 
+			set_Value (COLUMNNAME_C_DocTypeDN_ID, null);
+		else 
+			set_Value (COLUMNNAME_C_DocTypeDN_ID, Integer.valueOf(C_DocTypeDN_ID));
+	}
+
+	/** Get Document Type Debit Note.
+		@return Document Type Debit Note	  */
+	public int getC_DocTypeDN_ID () 
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocTypeDN_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
 
 	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException
     {
@@ -303,6 +356,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	public static final String TYPE_Other = "Other";
 	/** Economic Activity (Municipal) = IAE */
 	public static final String TYPE_EconomicActivityMunicipal = "IAE";
+	/** IGTF = IGTF */
+	public static final String TYPE_IGTF = "IGTF";
 	/** Set Type.
 		@param Type 
 		Type of Validation (SQL, Java Script, Java Language)

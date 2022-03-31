@@ -64,6 +64,32 @@ public interface I_LCO_WithholdingType
 	  */
 	public int getAD_Org_ID();
 
+    /** Column name C_Charge_ID */
+    public static final String COLUMNNAME_C_Charge_ID = "C_Charge_ID";
+
+	/** Set Charge.
+	  * Additional document charges
+	  */
+	public void setC_Charge_ID (int C_Charge_ID);
+
+	/** Get Charge.
+	  * Additional document charges
+	  */
+	public int getC_Charge_ID();
+
+	public org.compiere.model.I_C_Charge getC_Charge() throws RuntimeException;
+
+    /** Column name C_DocTypeDN_ID */
+    public static final String COLUMNNAME_C_DocTypeDN_ID = "C_DocTypeDN_ID";
+
+	/** Set Document Type Debit Note	  */
+	public void setC_DocTypeDN_ID (int C_DocTypeDN_ID);
+
+	/** Get Document Type Debit Note	  */
+	public int getC_DocTypeDN_ID();
+
+	public org.compiere.model.I_C_DocType getC_DocTypeDN() throws RuntimeException;
+
     /** Column name C_DocType_ID */
     public static final String COLUMNNAME_C_DocType_ID = "C_DocType_ID";
 
