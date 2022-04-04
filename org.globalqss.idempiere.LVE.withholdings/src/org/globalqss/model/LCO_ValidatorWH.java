@@ -57,6 +57,7 @@ import org.compiere.model.MLocation;
 import org.compiere.model.MOrgInfo;
 import org.compiere.model.MPayment;
 import org.compiere.model.MPaymentAllocate;
+import org.compiere.model.MPaymentTerm;
 import org.compiere.model.MSysConfig;
 import org.compiere.model.MTax;
 import org.compiere.model.PO;
@@ -491,7 +492,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		debitNote.setM_PriceList_ID(invoice.getM_PriceList_ID());
 		debitNote.setSalesRep_ID(invoice.getSalesRep_ID());
 		debitNote.setPaymentRule(invoice.getPaymentRule());
-		debitNote.setC_PaymentTerm_ID(invoice.getC_PaymentTerm_ID());
+		debitNote.setC_PaymentTerm_ID(getC_PaymentTerm_ID(payment));
 		debitNote.setDescription("Nota de Debito Generada por el Cobro: " + payment.getDocumentNo() + " por IGTF");
 		BigDecimal amount = tax.calculateTax(base, false, payment.getC_Currency().getStdPrecision());
 		if(debitNote.save()) {
@@ -521,6 +522,28 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 			return "No se Completo Nota de Debito " + debitNote.getDocumentNo() + " por IGTF - Error: " + debitNote.getProcessMsg() + " - " + e.getLocalizedMessage();
 		}
 		return null;
+	}
+
+	/**
+	 * Get or Generate Payment Term for Debit Note
+	 * @param payment MPayment
+	 * @return int C_PaymentTerm_ID
+	 */
+	private int getC_PaymentTerm_ID(MPayment payment) {
+		int C_PaymentTerm_ID = new Query(payment.getCtx(), MPaymentTerm.Table_Name, "Discount = 0 AND Discount2 = 0 AND IsValid = 'Y' AND PaymentTermUsage IN ('S', 'B')", payment.get_TrxName())
+				.setClient_ID().setOnlyActiveRecords(true).firstId();
+		if(C_PaymentTerm_ID <=0) {
+			MPaymentTerm paymentTerm = new MPaymentTerm(payment.getCtx(), 0, payment.get_TrxName());
+			paymentTerm.set_ValueOfColumn("AD_Client_ID", payment.getAD_Client_ID());
+			paymentTerm.setAD_Org_ID(0);
+			paymentTerm.setName("Contado para Nota de Debito");
+			paymentTerm.setDescription("Termino de Pago para Notas de Debito");
+			paymentTerm.setPaymentTermUsage(MPaymentTerm.PAYMENTTERMUSAGE_Both);
+			paymentTerm.setIsValid(true);
+			paymentTerm.save(null);
+			C_PaymentTerm_ID = paymentTerm.getC_PaymentTerm_ID();
+		}
+		return C_PaymentTerm_ID;
 	}
 
 	/**
