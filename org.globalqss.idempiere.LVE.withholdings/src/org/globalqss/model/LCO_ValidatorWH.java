@@ -293,7 +293,11 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				&& (type.equals(IEventTopics.DOC_AFTER_VOID) ||
 					type.equals(IEventTopics.DOC_AFTER_REVERSECORRECT) ||
 					type.equals(IEventTopics.DOC_AFTER_REVERSEACCRUAL))) {
-			msg = reversePaymentWithholdings((MAllocationHdr) po);
+			MAllocationHdr allocation = (MAllocationHdr) po;
+			msg = reversePaymentWithholdings(allocation);
+			if (msg != null)
+				throw new RuntimeException(msg);
+			msg = reverseDebitNote(allocation);
 			if (msg != null)
 				throw new RuntimeException(msg);
 		}
@@ -301,9 +305,69 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 	}	//	doHandleEvent
 
 	/**
+	 * Reverse Debit Note Generated for IGTF
+	 * @param allocation MAllocation
+	 * @return null when no error
+	 */
+	private String reverseDebitNote(MAllocationHdr allocation) {
+		MAllocationLine[] allocLines = allocation.getLines(false);
+		MInvoice invoice = null;
+		MPayment payment = null;
+		for(MAllocationLine line : allocLines) {
+			if(line.getC_Invoice() != null)
+				invoice = (MInvoice) line.getC_Invoice();
+			if(line.getC_Payment() != null)
+				payment = (MPayment) line.getC_Payment();
+		}
+		if(invoice == null || payment == null)
+			return null;
+		ArrayList<Integer> chargeIGTF_IDs = getC_ChargeIGTF_ID(payment, invoice);
+		if(chargeIGTF_IDs.size() == 0)
+			return null;
+		List<MInvoice> debitNotes = new Query(invoice.getCtx(), MInvoice.Table_Name, "LVE_InvoiceAffected_ID =? AND DocStatus = 'CO'",
+				invoice.get_TrxName()).setOnlyActiveRecords(true).setParameters(invoice.getC_Invoice_ID()).list();
+		for(MInvoice debitNote : debitNotes) {
+			boolean haveIGTF = new Query(debitNote.getCtx(), MInvoiceLine.Table_Name, "C_Invoice_ID =? AND C_Charge_ID IN (" +chargeIGTF_IDs.toString().replace("[","" ).replace("]", "") + ")", 
+					debitNote.get_TrxName()).setOnlyActiveRecords(true).setParameters(debitNote.getC_Invoice_ID()).match();
+			if(haveIGTF) {
+				try {
+					debitNote.setDocAction(MInvoice.DOCACTION_Reverse_Correct);
+					if(debitNote.processIt(MInvoice.DOCACTION_Reverse_Correct)) {
+						debitNote.save();
+					} else {
+						debitNote.save();
+						return "No se pudo Reversar la Nota de Debito IGTF " + debitNote.getDocumentNo() + " - " + debitNote.getProcessMsg();
+					}
+				} catch (Exception e) {
+					return "No se pudo Reversar la Nota de Debito IGTF " + debitNote.getDocumentNo() + " - " + debitNote.getProcessMsg() + " - " + e.getLocalizedMessage();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Get C_Charge IGTF
+	 * @param payment MPayment
+	 * @param invoice MInvoice
+	 * @return ArrayList<Integer> charges IGTF 
+	 */
+	private ArrayList<Integer> getC_ChargeIGTF_ID(MPayment payment, MInvoice invoice) {
+		ArrayList<Integer> C_ChargeIGTF_IDs = new ArrayList<>();
+		List<X_LCO_WithholdingRule> wrs = getWithHoldingRules(payment, invoice);
+		for(X_LCO_WithholdingRule wr : wrs) {
+			if(MLCOWithholdingType.TYPE_IGTF.equalsIgnoreCase(wr.getLCO_WithholdingType().getType())) {
+				if(wr.getLCO_WithholdingType().isSOTrx() && wr.getLCO_WithholdingType().getC_Charge_ID() > 0)
+					C_ChargeIGTF_IDs.add(wr.getLCO_WithholdingType().getC_Charge_ID());
+			}
+		}
+		return C_ChargeIGTF_IDs;
+	}
+
+	/**
 	 * Generate Payment With Holding
 	 * @param payment MPayment
-	 * @return
+	 * @return null when no error
 	 */
 	private String generatePaymentWithHolding(MAllocationHdr allocation) {
 		MAllocationLine[] allocLines = allocation.getLines(false);
@@ -325,134 +389,37 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		if("N".equalsIgnoreCase(dt.get_ValueAsString("GenerateWithholding")) || dt.get_ValueAsString("GenerateWithholding") == null)
 			return null;
 		
-		// Fill variables normally needed
-		// BP variables
-		MBPartner bp = new MBPartner(payment.getCtx(), payment.getC_BPartner_ID(), payment.get_TrxName());
-		int bp_isic_id = bp.get_ValueAsInt("LCO_ISIC_ID");
-		int bp_taxpayertype_id = bp.get_ValueAsInt("LCO_TaxPayerType_ID");
-		MBPartnerLocation mbpl = new MBPartnerLocation(invoice.getCtx(), invoice.getC_BPartner_Location_ID(), invoice.get_TrxName());
-		MLocation bpl = MLocation.get(payment.getCtx(), mbpl.getC_Location_ID(), payment.get_TrxName());
-		int bp_city_id = bpl.getC_City_ID();
-		int bp_municipality_id = bpl.get_ValueAsInt("C_Municipality_ID");
-		// OrgInfo variables
-		MOrgInfo oi = MOrgInfo.get(payment.getCtx(), payment.getAD_Org_ID(), payment.get_TrxName());
-		int org_isic_id = oi.get_ValueAsInt("LCO_ISIC_ID");
-		int org_taxpayertype_id = oi.get_ValueAsInt("LCO_TaxPayerType_ID");
-		MLocation ol = MLocation.get(payment.getCtx(), oi.getC_Location_ID(), payment.get_TrxName());
-		int org_city_id = ol.getC_City_ID();
-		int org_municipality_id = ol.get_ValueAsInt("C_Municipality_ID");
-
-		StringBuilder sqlWhere = new StringBuilder("");
-		sqlWhere.append("Type = 'IGTF'");
-		sqlWhere.append(" AND IsSOTrx=? ");
-		
-		List<X_LCO_WithholdingType> wts = new Query(payment.getCtx(), X_LCO_WithholdingType.Table_Name, sqlWhere.toString(), payment.get_TrxName())
-				.setOnlyActiveRecords(true)
-				.setClient_ID()
-				.setParameters(dt.isSOTrx())
-				.list();
-		
-		for (X_LCO_WithholdingType wt : wts) {
-			X_LCO_WithholdingRuleConf wrc = new Query(wt.getCtx(),
-					X_LCO_WithholdingRuleConf.Table_Name,
-					"LCO_WithholdingType_ID=?",
-					wt.get_TrxName())
-					.setOnlyActiveRecords(true)
-					.setParameters(wt.getLCO_WithholdingType_ID())
-					.first();
-			if (wrc == null) {
-				log.warning("No LCO_WithholdingRuleConf for LCO_WithholdingType = "+wt.getLCO_WithholdingType_ID());
+		List<X_LCO_WithholdingRule> wrs = getWithHoldingRules(payment, invoice);
+		for(X_LCO_WithholdingRule wr : wrs) {
+			// for each applicable rule
+			// bring record for withholding calculation
+			X_LCO_WithholdingCalc wc = (X_LCO_WithholdingCalc) wr.getLCO_WithholdingCalc();
+			if (wc == null || wc.getLCO_WithholdingCalc_ID() == 0) {
+				log.severe("Rule without calc " + wr.getLCO_WithholdingRule_ID());
 				continue;
 			}
-			
-			// look for applicable rules according to config fields (rule)
-			StringBuffer wherer = new StringBuffer(" LCO_WithholdingType_ID=? AND ValidFrom <=? ");
-			List<Object> paramsr = new ArrayList<Object>();
-			paramsr.add(wt.getLCO_WithholdingType_ID());
-			paramsr.add(invoice.getDateAcct());
-			if (wrc.isUseBPISIC()) {
-				wherer.append(" AND LCO_BP_ISIC_ID=? ");
-				paramsr.add(bp_isic_id);
-			}
-			if (wrc.isUseBPTaxPayerType()) {
-				wherer.append(" AND LCO_BP_TaxPayerType_ID=? ");
-				paramsr.add(bp_taxpayertype_id);
-			}
-			if (wrc.isUseOrgISIC()) {
-				wherer.append(" AND LCO_Org_ISIC_ID=? ");
-				paramsr.add(org_isic_id);
-			}
-			if (wrc.isUseOrgTaxPayerType()) {
-				wherer.append(" AND LCO_Org_TaxPayerType_ID=? ");
-				paramsr.add(org_taxpayertype_id);
-			}
-			if (wrc.isUseBPCity()) {
-				wherer.append(" AND LCO_BP_City_ID=? ");
-				paramsr.add(bp_city_id);
-				if (bp_city_id <= 0)
-					log.warning("Possible configuration error bp city is used but not set");
-			}
-			if (wrc.isUseOrgCity()) {
-				wherer.append(" AND LCO_Org_City_ID=? ");
-				paramsr.add(org_city_id);
-				if (org_city_id <= 0)
-					log.warning("Possible configuration error org city is used but not set");
-			}
-			if(wrc.isUseBPMunicipality()) {
-				wherer.append(" AND LVE_BP_Municipaly_ID=? ");
-				paramsr.add(bp_municipality_id);
-				if (bp_municipality_id <= 0)
-					log.warning("Possible Configuration error BP Municipality is used but not set");
-			}
-			if(wrc.isUseOrgMunicipality()) {
-				wherer.append(" AND LVE_Org_Municipaly_ID=? ");
-				paramsr.add(org_municipality_id);
-				if (org_municipality_id <= 0)
-					log.warning("Possible Configuration error Org Municipality is used but not set");
-			}
-			if(wrc.isUseTenderType()) {
-				wherer.append(" AND TenderType=? ");
-				paramsr.add(payment.getTenderType());
-			}
-			if(wrc.isUseCurrency()) {
-				wherer.append(" AND C_Currency_ID=? ");
-				paramsr.add(payment.getC_Currency_ID());
-			}
-			List<X_LCO_WithholdingRule> wrs = new Query(payment.getCtx(), X_LCO_WithholdingRule.Table_Name, wherer.toString(), payment.get_TrxName())
-					.setOnlyActiveRecords(true)
-					.setParameters(paramsr)
-					.list();
-			for(X_LCO_WithholdingRule wr : wrs) {
-				// for each applicable rule
-				// bring record for withholding calculation
-				X_LCO_WithholdingCalc wc = (X_LCO_WithholdingCalc) wr.getLCO_WithholdingCalc();
-				if (wc == null || wc.getLCO_WithholdingCalc_ID() == 0) {
-					log.severe("Rule without calc " + wr.getLCO_WithholdingRule_ID());
-					continue;
-				}
-				// bring record for tax
-				MTax tax = new MTax(payment.getCtx(), wc.getC_Tax_ID(), payment.get_TrxName());
+			// bring record for tax
+			MTax tax = new MTax(payment.getCtx(), wc.getC_Tax_ID(), payment.get_TrxName());
 
-				log.info("WithholdingRule: "+wr.getLCO_WithholdingRule_ID()+"/"+wr.getName()
-						+" BaseType:"+wc.getBaseType()
-						+" Calc: "+wc.getLCO_WithholdingCalc_ID()+"/"+wc.getName()
-						+" CalcOnInvoice:"+wc.isCalcOnInvoice()
-						+" Tax: "+tax.getC_Tax_ID()+"/"+tax.getName());
-				// calc base
-				// apply rule to calc base
-				BigDecimal base = payAmt;
-				
-				// if base between thresholdmin and thresholdmax inclusive
-				// if thresholdmax = 0 it is ignored
-				if (base != null &&
-						base.compareTo(BigDecimal.ZERO) != 0 &&
-						base.compareTo(wc.getThresholdmin()) >= 0 &&
-						(wc.getThresholdMax() == null || wc.getThresholdMax().compareTo(BigDecimal.ZERO) == 0 || base.compareTo(wc.getThresholdMax()) <= 0) &&
-						tax.getRate() != null) {
-					if (tax.getRate().signum() == 0 && !wc.isApplyOnZero())
-						continue;
-					return generateDN(invoice, payment, wr, wc, tax, base);
-				}
+			log.info("WithholdingRule: "+wr.getLCO_WithholdingRule_ID()+"/"+wr.getName()
+					+" BaseType:"+wc.getBaseType()
+					+" Calc: "+wc.getLCO_WithholdingCalc_ID()+"/"+wc.getName()
+					+" CalcOnInvoice:"+wc.isCalcOnInvoice()
+					+" Tax: "+tax.getC_Tax_ID()+"/"+tax.getName());
+			// calc base
+			// apply rule to calc base
+			BigDecimal base = payAmt;
+			
+			// if base between thresholdmin and thresholdmax inclusive
+			// if thresholdmax = 0 it is ignored
+			if (base != null &&
+					base.compareTo(BigDecimal.ZERO) != 0 &&
+					base.compareTo(wc.getThresholdmin()) >= 0 &&
+					(wc.getThresholdMax() == null || wc.getThresholdMax().compareTo(BigDecimal.ZERO) == 0 || base.compareTo(wc.getThresholdMax()) <= 0) &&
+					tax.getRate() != null) {
+				if (tax.getRate().signum() == 0 && !wc.isApplyOnZero())
+					continue;
+				return generateDN(invoice, payment, wr, wc, tax, base);
 			}
 		}
 		
@@ -466,6 +433,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 	 * @param wc X_LCO_WithholdingCalc
 	 * @param tax MTax
 	 * @param base BigDecimal
+	 * @return null when no error
 	 */
 	private String generateDN(MInvoice invoice, MPayment payment, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, MTax tax, BigDecimal base) {
 		int C_DocTypeDN_ID = wr.getLCO_WithholdingType().getC_DocTypeDN_ID();
@@ -488,6 +456,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		debitNote.setDateAcct(payment.getDateAcct());
 		debitNote.setC_DocTypeTarget_ID(C_DocTypeDN_ID);
 		debitNote.set_ValueOfColumn("LVE_InvoiceAffected_ID", invoice.getC_Invoice_ID());
+		debitNote.setRelatedInvoice_ID(invoice.getC_Invoice_ID());
 		debitNote.setAD_User_ID(invoice.getAD_User_ID());
 		debitNote.setM_PriceList_ID(invoice.getM_PriceList_ID());
 		debitNote.setSalesRep_ID(invoice.getSalesRep_ID());
@@ -579,6 +548,116 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		iwh.setTaxBaseAmt(base);
 		iwh.set_ValueOfColumn("Subtrahend", wc.getAmountRefunded());
 		iwh.saveEx();
+	}
+	
+	/**
+	 * Get With Holding Rules
+	 * @param payment MPayment
+	 * @param invoice MInvoice
+	 * @return List of X_LCO_WithholdingRule
+	 */
+	private List<X_LCO_WithholdingRule> getWithHoldingRules(MPayment payment, MInvoice invoice) {
+		List<X_LCO_WithholdingRule> withHoldingRules = new ArrayList<>();
+		// Fill variables normally needed
+		// BP variables
+		MBPartner bp = new MBPartner(payment.getCtx(), payment.getC_BPartner_ID(), payment.get_TrxName());
+		int bp_isic_id = bp.get_ValueAsInt("LCO_ISIC_ID");
+		int bp_taxpayertype_id = bp.get_ValueAsInt("LCO_TaxPayerType_ID");
+		MBPartnerLocation mbpl = new MBPartnerLocation(invoice.getCtx(), invoice.getC_BPartner_Location_ID(), invoice.get_TrxName());
+		MLocation bpl = MLocation.get(payment.getCtx(), mbpl.getC_Location_ID(), payment.get_TrxName());
+		int bp_city_id = bpl.getC_City_ID();
+		int bp_municipality_id = bpl.get_ValueAsInt("C_Municipality_ID");
+		// OrgInfo variables
+		MOrgInfo oi = MOrgInfo.get(payment.getCtx(), payment.getAD_Org_ID(), payment.get_TrxName());
+		int org_isic_id = oi.get_ValueAsInt("LCO_ISIC_ID");
+		int org_taxpayertype_id = oi.get_ValueAsInt("LCO_TaxPayerType_ID");
+		MLocation ol = MLocation.get(payment.getCtx(), oi.getC_Location_ID(), payment.get_TrxName());
+		int org_city_id = ol.getC_City_ID();
+		int org_municipality_id = ol.get_ValueAsInt("C_Municipality_ID");
+
+		StringBuilder sqlWhere = new StringBuilder("");
+		sqlWhere.append("Type = 'IGTF'");
+		sqlWhere.append(" AND IsSOTrx=? ");
+		
+		List<X_LCO_WithholdingType> wts = new Query(invoice.getCtx(), X_LCO_WithholdingType.Table_Name, sqlWhere.toString(), invoice.get_TrxName())
+				.setOnlyActiveRecords(true)
+				.setClient_ID()
+				.setParameters(invoice.isSOTrx())
+				.list();
+		
+		for (X_LCO_WithholdingType wt : wts) {
+			X_LCO_WithholdingRuleConf wrc = new Query(wt.getCtx(),
+					X_LCO_WithholdingRuleConf.Table_Name,
+					"LCO_WithholdingType_ID=?",
+					wt.get_TrxName())
+					.setOnlyActiveRecords(true)
+					.setParameters(wt.getLCO_WithholdingType_ID())
+					.first();
+			if (wrc == null) {
+				log.warning("No LCO_WithholdingRuleConf for LCO_WithholdingType = " + wt.getLCO_WithholdingType_ID());
+				continue;
+			}
+			
+			// look for applicable rules according to config fields (rule)
+			StringBuffer wherer = new StringBuffer(" LCO_WithholdingType_ID=? AND ValidFrom <=? ");
+			List<Object> paramsr = new ArrayList<Object>();
+			paramsr.add(wt.getLCO_WithholdingType_ID());
+			paramsr.add(invoice.getDateAcct());
+			if (wrc.isUseBPISIC()) {
+				wherer.append(" AND LCO_BP_ISIC_ID=? ");
+				paramsr.add(bp_isic_id);
+			}
+			if (wrc.isUseBPTaxPayerType()) {
+				wherer.append(" AND LCO_BP_TaxPayerType_ID=? ");
+				paramsr.add(bp_taxpayertype_id);
+			}
+			if (wrc.isUseOrgISIC()) {
+				wherer.append(" AND LCO_Org_ISIC_ID=? ");
+				paramsr.add(org_isic_id);
+			}
+			if (wrc.isUseOrgTaxPayerType()) {
+				wherer.append(" AND LCO_Org_TaxPayerType_ID=? ");
+				paramsr.add(org_taxpayertype_id);
+			}
+			if (wrc.isUseBPCity()) {
+				wherer.append(" AND LCO_BP_City_ID=? ");
+				paramsr.add(bp_city_id);
+				if (bp_city_id <= 0)
+					log.warning("Possible configuration error bp city is used but not set");
+			}
+			if (wrc.isUseOrgCity()) {
+				wherer.append(" AND LCO_Org_City_ID=? ");
+				paramsr.add(org_city_id);
+				if (org_city_id <= 0)
+					log.warning("Possible configuration error org city is used but not set");
+			}
+			if(wrc.isUseBPMunicipality()) {
+				wherer.append(" AND LVE_BP_Municipaly_ID=? ");
+				paramsr.add(bp_municipality_id);
+				if (bp_municipality_id <= 0)
+					log.warning("Possible Configuration error BP Municipality is used but not set");
+			}
+			if(wrc.isUseOrgMunicipality()) {
+				wherer.append(" AND LVE_Org_Municipaly_ID=? ");
+				paramsr.add(org_municipality_id);
+				if (org_municipality_id <= 0)
+					log.warning("Possible Configuration error Org Municipality is used but not set");
+			}
+			if(wrc.isUseTenderType()) {
+				wherer.append(" AND TenderType=? ");
+				paramsr.add(payment.getTenderType());
+			}
+			if(wrc.isUseCurrency()) {
+				wherer.append(" AND C_Currency_ID=? ");
+				paramsr.add(payment.getC_Currency_ID());
+			}
+			List<X_LCO_WithholdingRule> wrs = new Query(payment.getCtx(), X_LCO_WithholdingRule.Table_Name, wherer.toString(), payment.get_TrxName())
+					.setOnlyActiveRecords(true)
+					.setParameters(paramsr)
+					.list();
+			withHoldingRules.addAll(wrs);
+		}
+		return withHoldingRules;
 	}
 
 	private String clearInvoiceWithholdingAmtFromInvoice(MInvoice inv) {
