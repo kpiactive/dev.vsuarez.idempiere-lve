@@ -324,8 +324,8 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		ArrayList<Integer> chargeIGTF_IDs = getC_ChargeIGTF_ID(payment, invoice);
 		if(chargeIGTF_IDs.size() == 0)
 			return null;
-		List<MInvoice> debitNotes = new Query(invoice.getCtx(), MInvoice.Table_Name, "LVE_InvoiceAffected_ID =? AND DocStatus = 'CO'",
-				invoice.get_TrxName()).setOnlyActiveRecords(true).setParameters(invoice.getC_Invoice_ID()).list();
+		List<MInvoice> debitNotes = new Query(invoice.getCtx(), MInvoice.Table_Name, "LVE_InvoiceAffected_ID =? AND DocStatus = 'CO' AND C_Payment_ID =?",
+				invoice.get_TrxName()).setOnlyActiveRecords(true).setParameters(invoice.getC_Invoice_ID(), payment.getC_Payment_ID()).list();
 		for(MInvoice debitNote : debitNotes) {
 			boolean haveIGTF = new Query(debitNote.getCtx(), MInvoiceLine.Table_Name, "C_Invoice_ID =? AND C_Charge_ID IN (" +chargeIGTF_IDs.toString().replace("[","" ).replace("]", "") + ")", 
 					debitNote.get_TrxName()).setOnlyActiveRecords(true).setParameters(debitNote.getC_Invoice_ID()).match();
@@ -334,6 +334,9 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 					debitNote.setDocAction(MInvoice.DOCACTION_Reverse_Correct);
 					if(debitNote.processIt(MInvoice.DOCACTION_Reverse_Correct)) {
 						debitNote.save();
+						MLCOInvoiceWithholding invoiceWithHolding = new Query(debitNote.getCtx(), MLCOInvoiceWithholding.Table_Name, "TaxAmt =? AND DateAcct=?", 
+								debitNote.get_TrxName()).setOnlyActiveRecords(true).setParameters(debitNote.getGrandTotal(), debitNote.getDateAcct()).first();
+						invoiceWithHolding.delete(true);
 					} else {
 						debitNote.save();
 						return "No se pudo Reversar la Nota de Debito IGTF " + debitNote.getDocumentNo() + " - " + debitNote.getProcessMsg();
@@ -463,6 +466,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		debitNote.setPaymentRule(invoice.getPaymentRule());
 		debitNote.setC_PaymentTerm_ID(getC_PaymentTerm_ID(payment));
 		debitNote.setDescription("Nota de Debito Generada por el Cobro: " + payment.getDocumentNo() + " por IGTF");
+		debitNote.setC_Payment_ID(payment.getC_Payment_ID());
 		BigDecimal amount = tax.calculateTax(base, false, payment.getC_Currency().getStdPrecision());
 		if(debitNote.save()) {
 			MInvoiceLine debitNoteLine = new MInvoiceLine(debitNote);
