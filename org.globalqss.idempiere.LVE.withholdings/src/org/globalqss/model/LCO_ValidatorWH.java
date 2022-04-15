@@ -106,6 +106,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		registerTableEvent(IEventTopics.DOC_AFTER_VOID, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_REVERSECORRECT, MAllocationHdr.Table_Name);
 		registerTableEvent(IEventTopics.DOC_AFTER_REVERSEACCRUAL, MAllocationHdr.Table_Name);
+		registerTableEvent(IEventTopics.PO_AFTER_DELETE, MAllocationLine.Table_Name);
 
 		registerEvent(IEventTopics.AFTER_LOGIN);
 	}	//	initialize
@@ -301,6 +302,14 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 			if (msg != null)
 				throw new RuntimeException(msg);
 		}
+		
+		// After delete Allocation Line - Reverse Debit Note and Delete Invoice With Holding
+		if(po instanceof MAllocationLine && type.equals(IEventTopics.PO_AFTER_DELETE)) {
+			MAllocationLine allocationLine = (MAllocationLine) po;
+			msg = reverseDebitNote(allocationLine.getParent());
+			if (msg != null)
+				throw new RuntimeException(msg);
+		}
 
 	}	//	doHandleEvent
 
@@ -377,12 +386,14 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		MInvoice invoice = null;
 		MPayment payment = null;
 		BigDecimal payAmt = BigDecimal.ZERO;
+		int C_AllocationLine_ID = 0;
 		for(MAllocationLine line : allocLines) {
 			if(line.getC_Invoice() != null)
 				invoice = (MInvoice) line.getC_Invoice();
 			if(line.getC_Payment() != null) {
 				payment = (MPayment) line.getC_Payment();
 				payAmt = line.getAmount();
+				C_AllocationLine_ID = line.getC_AllocationLine_ID();
 			}
 		}
 		if(invoice == null || payment == null)
@@ -422,7 +433,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 					tax.getRate() != null) {
 				if (tax.getRate().signum() == 0 && !wc.isApplyOnZero())
 					continue;
-				return generateDN(invoice, payment, wr, wc, tax, base);
+				return generateDN(invoice, payment, wr, wc, tax, base, C_AllocationLine_ID);
 			}
 		}
 		
@@ -436,9 +447,10 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 	 * @param wc X_LCO_WithholdingCalc
 	 * @param tax MTax
 	 * @param base BigDecimal
+	 * @param C_AllocationLine_ID int
 	 * @return null when no error
 	 */
-	private String generateDN(MInvoice invoice, MPayment payment, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, MTax tax, BigDecimal base) {
+	private String generateDN(MInvoice invoice, MPayment payment, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, MTax tax, BigDecimal base, int C_AllocationLine_ID) {
 		int C_DocTypeDN_ID = wr.getLCO_WithholdingType().getC_DocTypeDN_ID();
 		int C_Charge_ID = wr.getLCO_WithholdingType().getC_Charge_ID();
 		if(C_DocTypeDN_ID <=0)
@@ -485,7 +497,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 				debitNote.save();
 				payment.addDescription("Se genero la Nota de Debito " + debitNote.getDocumentNo() + ", por el Monto de " + amount + ", por IGTF ");
 				payment.save();
-				addInvoiceWithHolding(debitNote, invoice, wr, wc, tax, amount, base);
+				addInvoiceWithHolding(debitNote, invoice, wr, wc, tax, amount, base, C_AllocationLine_ID);
 			} else {
 				debitNote.save();
 				return "No se Completo Nota de Debito " + debitNote.getDocumentNo() + " por IGTF - Error: " + debitNote.getProcessMsg();
@@ -528,9 +540,10 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 	 * @param tax MTax
 	 * @param amount BigDecimal
 	 * @param base BigDecimal
+	 * @param int C_AllocationLine_ID
 	 */
 	private void addInvoiceWithHolding(MInvoice debitNote, MInvoice invoice, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, 
-			MTax tax, BigDecimal amount, BigDecimal base) {
+			MTax tax, BigDecimal amount, BigDecimal base, int C_AllocationLine_ID) {
 		// insert new withholding record
 		// with: type, tax, base amt, percent, tax amt, trx date, acct date, rule
 		MLCOInvoiceWithholding iwh = new MLCOInvoiceWithholding(invoice.getCtx(), 0, invoice.get_TrxName());
@@ -551,6 +564,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		iwh.setTaxAmt(amount);
 		iwh.setTaxBaseAmt(base);
 		iwh.set_ValueOfColumn("Subtrahend", wc.getAmountRefunded());
+		iwh.setC_AllocationLine_ID(C_AllocationLine_ID);
 		iwh.saveEx();
 	}
 	
