@@ -620,7 +620,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 			StringBuffer wherer = new StringBuffer(" LCO_WithholdingType_ID=? AND ValidFrom <=? ");
 			List<Object> paramsr = new ArrayList<Object>();
 			paramsr.add(wt.getLCO_WithholdingType_ID());
-			paramsr.add(invoice.getDateAcct());
+			paramsr.add(payment.getDateAcct());
 			if (wrc.isUseBPISIC()) {
 				wherer.append(" AND LCO_BP_ISIC_ID=? ");
 				paramsr.add(bp_isic_id);
