@@ -29,6 +29,7 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -433,7 +434,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 					tax.getRate() != null) {
 				if (tax.getRate().signum() == 0 && !wc.isApplyOnZero())
 					continue;
-				return generateDN(invoice, payment, wr, wc, tax, base, C_AllocationLine_ID);
+				return generateDN(invoice, payment, wr, wc, tax, base, C_AllocationLine_ID, allocation.getDateAcct());
 			}
 		}
 		
@@ -448,9 +449,10 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 	 * @param tax MTax
 	 * @param base BigDecimal
 	 * @param C_AllocationLine_ID int
+	 * @param Date Acct of Allocation Header Timestamp
 	 * @return null when no error
 	 */
-	private String generateDN(MInvoice invoice, MPayment payment, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, MTax tax, BigDecimal base, int C_AllocationLine_ID) {
+	private String generateDN(MInvoice invoice, MPayment payment, X_LCO_WithholdingRule wr, X_LCO_WithholdingCalc wc, MTax tax, BigDecimal base, int C_AllocationLine_ID, Timestamp dateAcct) {
 		int C_DocTypeDN_ID = wr.getLCO_WithholdingType().getC_DocTypeDN_ID();
 		int C_Charge_ID = wr.getLCO_WithholdingType().getC_Charge_ID();
 		if(C_DocTypeDN_ID <=0)
@@ -467,8 +469,8 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		debitNote.setIsOverrideCurrencyRate(payment.isOverrideCurrencyRate());
 		debitNote.set_ValueOfColumn("DivideRate", payment.get_Value("DivideRate"));
 		debitNote.setIsSOTrx(invoice.isSOTrx());
-		debitNote.setDateInvoiced(payment.getDateAcct());
-		debitNote.setDateAcct(payment.getDateAcct());
+		debitNote.setDateInvoiced(dateAcct);
+		debitNote.setDateAcct(dateAcct);
 		debitNote.setC_DocTypeTarget_ID(C_DocTypeDN_ID);
 		debitNote.set_ValueOfColumn("LVE_InvoiceAffected_ID", invoice.getC_Invoice_ID());
 		debitNote.setRelatedInvoice_ID(invoice.getC_Invoice_ID());
