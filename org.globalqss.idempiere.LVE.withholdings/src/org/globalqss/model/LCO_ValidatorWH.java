@@ -389,9 +389,9 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 		BigDecimal payAmt = BigDecimal.ZERO;
 		int C_AllocationLine_ID = 0;
 		for(MAllocationLine line : allocLines) {
-			if(line.getC_Invoice() != null)
+			if(line.getC_Invoice_ID() > 0)
 				invoice = (MInvoice) line.getC_Invoice();
-			if(line.getC_Payment() != null) {
+			if(line.getC_Payment_ID() > 0) {
 				payment = (MPayment) line.getC_Payment();
 				payAmt = line.getAmount();
 				C_AllocationLine_ID = line.getC_AllocationLine_ID();
