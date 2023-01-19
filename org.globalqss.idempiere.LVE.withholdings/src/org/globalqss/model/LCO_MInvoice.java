@@ -483,6 +483,9 @@ public class LCO_MInvoice extends MInvoice
 						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 					}
 					if(voucher != null) {
+						iwh.set_ValueOfColumn("LVE_VoucherWithholding_ID", voucher.getLVE_VoucherWithholding_ID());
+						iwh.setDateTrx(voucher.getDateTrx());
+						iwh.setDateAcct(voucher.getDateAcct());
 						if(voucher.getC_Currency_ID() > 0 && voucher.getC_Currency_ID() != getC_Currency_ID()) {
 							int conversionType_ID = voucher.getC_ConversionType_ID();
 							if(conversionType_ID <= 0)
@@ -491,8 +494,8 @@ public class LCO_MInvoice extends MInvoice
 							if(!overrideCurrencyRate)
 								overrideCurrencyRate = isOverrideCurrencyRate();
 							if(!overrideCurrencyRate) {
-								base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
-								taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
 							} else {
 								BigDecimal currencyRate = voucher.getCurrencyRate();
 								if((currencyRate == null || currencyRate.signum() == 0) && get_Value("DivideRate") != null)
@@ -506,8 +509,8 @@ public class LCO_MInvoice extends MInvoice
 										taxamt = taxamt.multiply(currencyRate);
 									}
 								} else {
-									base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
-									taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+									base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+									taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
 								}
 							}
 						}
@@ -527,9 +530,6 @@ public class LCO_MInvoice extends MInvoice
 					//SUBTRAHEND
 					iwh.saveEx();
 					totwith = totwith.add(taxamt);
-					if (voucher != null)
-						iwh.set_ValueOfColumn("LVE_VoucherWithholding_ID", voucher.getLVE_VoucherWithholding_ID());
-					iwh.saveEx();
 					noins++;
 					log.info("LCO_InvoiceWithholding saved:"+iwh.getTaxAmt());
 				}

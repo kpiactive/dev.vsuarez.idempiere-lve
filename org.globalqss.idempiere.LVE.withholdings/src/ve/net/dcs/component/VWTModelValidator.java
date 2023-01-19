@@ -101,8 +101,8 @@ public class VWTModelValidator extends AbstractEventHandler {
 			if(partner.is_ValueChanged("TaxID")){
 				int value = 0;
 				String cadena = partner.getTaxID();
-				
-				value = DB.getSQLValue(partner.get_TrxName(), "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ?", partner.get_ValueAsInt("LCO_TaxIDType_ID"),cadena,partner.get_ID());
+				String sql = "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ? AND AD_Client_ID =? AND AD_Org_ID =?";
+				value = DB.getSQLValue(partner.get_TrxName(), sql, partner.get_ValueAsInt("LCO_TaxIDType_ID"),cadena, partner.get_ID(), partner.getAD_Client_ID(), partner.getAD_Org_ID());
 				
 				if (value > 0)
 					throw new RuntimeException("Tercero Ya Existe");
