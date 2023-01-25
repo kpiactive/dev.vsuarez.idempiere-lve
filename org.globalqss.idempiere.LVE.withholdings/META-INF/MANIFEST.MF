@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Localization Venezuela - Withholdings
 Bundle-SymbolicName: org.globalqss.idempiere.LVE.withholdings;singleton:=true
-Bundle-Version: 9.0.0.qualifier
+Bundle-Version: 10.0.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
 Bundle-Vendor: GlobalQSS
 Require-Bundle: org.adempiere.base;bundle-version="8.2.0",
