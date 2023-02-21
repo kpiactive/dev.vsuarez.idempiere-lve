@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_TaxIdType
  *  @author iDempiere (generated) 
- *  @version Release 1.0c
+ *  @version Release 11
  */
 @SuppressWarnings("all")
 public interface I_LCO_TaxIdType 
@@ -32,7 +32,7 @@ public interface I_LCO_TaxIdType
     /** TableName=LCO_TaxIdType */
     public static final String Table_Name = "LCO_TaxIdType";
 
-    /** AD_Table_ID=1000010 */
+    /** AD_Table_ID=1000017 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -63,6 +63,21 @@ public interface I_LCO_TaxIdType
 	  * Organizational entity within client
 	  */
 	public int getAD_Org_ID();
+
+    /** Column name C_Country_ID */
+    public static final String COLUMNNAME_C_Country_ID = "C_Country_ID";
+
+	/** Set Country.
+	  * Country 
+	  */
+	public void setC_Country_ID (int C_Country_ID);
+
+	/** Get Country.
+	  * Country 
+	  */
+	public int getC_Country_ID();
+
+	public org.compiere.model.I_C_Country getC_Country() throws RuntimeException;
 
     /** Column name Created */
     public static final String COLUMNNAME_Created = "Created";
@@ -106,6 +121,15 @@ public interface I_LCO_TaxIdType
 	  */
 	public boolean isActive();
 
+    /** Column name IsAllowRepeated */
+    public static final String COLUMNNAME_IsAllowRepeated = "IsAllowRepeated";
+
+	/** Set Allow Repeated	  */
+	public void setIsAllowRepeated (boolean IsAllowRepeated);
+
+	/** Get Allow Repeated	  */
+	public boolean isAllowRepeated();
+
     /** Column name IsDefault */
     public static final String COLUMNNAME_IsDefault = "IsDefault";
 
@@ -132,10 +156,10 @@ public interface I_LCO_TaxIdType
     public static final String COLUMNNAME_IsDigitChecked = "IsDigitChecked";
 
 	/** Set Is Digit Checked	  */
-	public void setIsDigitChecked (boolean IsDigitChecked);
+	public void setIsDigitChecked (String IsDigitChecked);
 
 	/** Get Is Digit Checked	  */
-	public boolean isDigitChecked();
+	public String getIsDigitChecked();
 
     /** Column name IsUseTaxIdDigit */
     public static final String COLUMNNAME_IsUseTaxIdDigit = "IsUseTaxIdDigit";
@@ -149,10 +173,10 @@ public interface I_LCO_TaxIdType
     /** Column name LCO_TaxCodeDian */
     public static final String COLUMNNAME_LCO_TaxCodeDian = "LCO_TaxCodeDian";
 
-	/** Set Tax Code DIAN	  */
+	/** Set Tax Code	  */
 	public void setLCO_TaxCodeDian (String LCO_TaxCodeDian);
 
-	/** Get Tax Code DIAN	  */
+	/** Get Tax Code	  */
 	public String getLCO_TaxCodeDian();
 
     /** Column name LCO_TaxIdType_ID */
@@ -172,6 +196,28 @@ public interface I_LCO_TaxIdType
 
 	/** Get LCO_TaxIdType_UU	  */
 	public String getLCO_TaxIdType_UU();
+
+    /** Column name MaxLength */
+    public static final String COLUMNNAME_MaxLength = "MaxLength";
+
+	/** Set Maximum Length.
+	  * Maximum Length of Data
+	  */
+	public void setMaxLength (int MaxLength);
+
+	/** Get Maximum Length.
+	  * Maximum Length of Data
+	  */
+	public int getMaxLength();
+
+    /** Column name MinLength */
+    public static final String COLUMNNAME_MinLength = "MinLength";
+
+	/** Set Minimum Length	  */
+	public void setMinLength (int MinLength);
+
+	/** Get Minimum Length	  */
+	public int getMinLength();
 
     /** Column name Name */
     public static final String COLUMNNAME_Name = "Name";

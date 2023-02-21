@@ -41,6 +41,7 @@ import org.compiere.util.Util;
 import org.globalqss.model.MLCOInvoiceWithholding;
 import org.globalqss.model.MLCOWithholdingType;
 import org.globalqss.model.X_LCO_InvoiceWithholding;
+import org.globalqss.model.X_LCO_TaxIdType;
 import org.osgi.service.event.Event;
 
 import ve.net.dcs.model.I_LVE_VoucherWithholding;
@@ -98,15 +99,20 @@ public class VWTModelValidator extends AbstractEventHandler {
 		
 		if (po.get_TableName().equals(I_C_BPartner.Table_Name) && (type.equals(IEventTopics.PO_BEFORE_CHANGE) || type.equals(IEventTopics.PO_BEFORE_NEW))) {
 			X_C_BPartner partner = (X_C_BPartner) po;
-			if(partner.is_ValueChanged("TaxID")){
-				int value = 0;
-				String cadena = partner.getTaxID();
-				String sql = "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ? AND AD_Client_ID =? AND AD_Org_ID =?";
-				value = DB.getSQLValue(partner.get_TrxName(), sql, partner.get_ValueAsInt("LCO_TaxIDType_ID"),cadena, partner.get_ID(), partner.getAD_Client_ID(), partner.getAD_Org_ID());
-				
-				if (value > 0)
-					throw new RuntimeException("Tercero Ya Existe");
-				partner.setTaxID(cadena);
+			if(partner.is_ValueChanged("TaxID")) {
+				X_LCO_TaxIdType TaxIdType = new X_LCO_TaxIdType(partner.getCtx(), partner.get_ValueAsInt("LCO_TaxIdType_ID"), partner.get_TrxName());
+				if(TaxIdType != null && TaxIdType.getLCO_TaxIdType_ID() != 0 && TaxIdType.isAllowRepeated())
+					;
+				else {
+					int value = 0;
+					String cadena = partner.getTaxID();
+					String sql = "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ? AND AD_Client_ID =? AND AD_Org_ID =?";
+					value = DB.getSQLValue(partner.get_TrxName(), sql, partner.get_ValueAsInt("LCO_TaxIDType_ID"),cadena, partner.get_ID(), partner.getAD_Client_ID(), partner.getAD_Org_ID());
+					
+					if (value > 0)
+						throw new RuntimeException("Tercero Ya Existe");
+					partner.setTaxID(cadena);
+				}	
 			}
 		}
 		
