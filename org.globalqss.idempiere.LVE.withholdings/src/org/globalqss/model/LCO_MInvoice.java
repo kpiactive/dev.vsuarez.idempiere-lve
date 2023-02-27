@@ -152,45 +152,58 @@ public class LCO_MInvoice extends MInvoice
 			List<Object> paramsr = new ArrayList<Object>();
 			paramsr.add(wt.getLCO_WithholdingType_ID());
 			paramsr.add(getDateInvoiced());
+			boolean findWHR = false;
 			if (wrc.isUseBPISIC()) {
 				wherer.append(" AND LCO_BP_ISIC_ID=? ");
 				paramsr.add(bp_isic_id);
+				findWHR = true;
 			}
 			if (wrc.isUseBPTaxPayerType()) {
 				wherer.append(" AND LCO_BP_TaxPayerType_ID=? ");
 				paramsr.add(bp_taxpayertype_id);
+				findWHR = true;
 			}
 			if (wrc.isUseOrgISIC()) {
 				wherer.append(" AND LCO_Org_ISIC_ID=? ");
 				paramsr.add(org_isic_id);
+				findWHR = true;
 			}
 			if (wrc.isUseOrgTaxPayerType()) {
 				wherer.append(" AND LCO_Org_TaxPayerType_ID=? ");
 				paramsr.add(org_taxpayertype_id);
+				findWHR = true;
 			}
 			if (wrc.isUseBPCity()) {
 				wherer.append(" AND LCO_BP_City_ID=? ");
 				paramsr.add(bp_city_id);
 				if (bp_city_id <= 0)
 					log.warning("Possible configuration error bp city is used but not set");
+				else
+					findWHR = true;
 			}
 			if (wrc.isUseOrgCity()) {
 				wherer.append(" AND LCO_Org_City_ID=? ");
 				paramsr.add(org_city_id);
 				if (org_city_id <= 0)
 					log.warning("Possible configuration error org city is used but not set");
+				else
+					findWHR = true;
 			}
 			if(wrc.isUseBPMunicipality()) {
 				wherer.append(" AND LVE_BP_Municipaly_ID=? ");
 				paramsr.add(bp_municipality_id);
 				if (bp_municipality_id <= 0)
 					log.warning("Possible Configuration error BP Municipality is used but not set");
+				else
+					findWHR = true;
 			}
 			if(wrc.isUseOrgMunicipality()) {
 				wherer.append(" AND LVE_Org_Municipaly_ID=? ");
 				paramsr.add(org_municipality_id);
 				if (org_municipality_id <= 0)
 					log.warning("Possible Configuration error Org Municipality is used but not set");
+				else
+					findWHR = true;
 			}
 
 			// Add withholding categories of lines
@@ -216,6 +229,7 @@ public class LCO_MInvoice extends MInvoice
 							wherer.append(",");
 						}
 						wherer.append(wcid);
+						findWHR = true;
 					}
 				}
 				if (addedlines)
@@ -243,11 +257,15 @@ public class LCO_MInvoice extends MInvoice
 							wherer.append(",");
 						}
 						wherer.append(wcid);
+						findWHR = true;
 					}
 				}
 				if (addedlines)
 					wherer.append(") ");
 			}
+			
+			if(!findWHR)
+				continue;
 
 			List<X_LCO_WithholdingRule> wrs = new Query(getCtx(), X_LCO_WithholdingRule.Table_Name, wherer.toString(), get_TrxName())
 				.setOnlyActiveRecords(true)
