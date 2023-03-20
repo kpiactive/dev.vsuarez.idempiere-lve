@@ -44,7 +44,6 @@ import org.globalqss.model.X_LCO_InvoiceWithholding;
 import org.globalqss.model.X_LCO_TaxIdType;
 import org.osgi.service.event.Event;
 
-import ve.net.dcs.model.I_LVE_VoucherWithholding;
 import ve.net.dcs.model.MLVEVoucherWithholding;
 
 public class VWTModelValidator extends AbstractEventHandler {
@@ -64,7 +63,7 @@ public class VWTModelValidator extends AbstractEventHandler {
 		registerTableEvent(IEventTopics.PO_BEFORE_CHANGE, I_C_BPartner.Table_Name);
 		registerTableEvent(IEventTopics.PO_AFTER_CHANGE, MLVEVoucherWithholding.Table_Name);
 		registerTableEvent(IEventTopics.PO_BEFORE_NEW, MLVEVoucherWithholding.Table_Name);
-		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, I_LVE_VoucherWithholding.Table_Name);
+		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, MLVEVoucherWithholding.Table_Name);
 	}
 
 	@Override
