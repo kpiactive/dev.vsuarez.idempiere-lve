@@ -24,7 +24,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_TaxIdType
  *  @author iDempiere (generated) 
- *  @version Release 11 - $Id$ */
+ *  @version Release 10 - $Id$ */
 @org.adempiere.base.Model(table="LCO_TaxIdType")
 public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent 
 {
@@ -32,7 +32,7 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20230221L;
+	private static final long serialVersionUID = 20230403L;
 
     /** Standard Constructor */
     public X_LCO_TaxIdType (Properties ctx, int LCO_TaxIdType_ID, String trxName)
@@ -153,6 +153,28 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	public boolean isAllowRepeated()
 	{
 		Object oo = get_Value(COLUMNNAME_IsAllowRepeated);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Allow Special Characters.
+		@param IsAllowSpecialCharacters Allow Special Characters
+	*/
+	public void setIsAllowSpecialCharacters (boolean IsAllowSpecialCharacters)
+	{
+		set_Value (COLUMNNAME_IsAllowSpecialCharacters, Boolean.valueOf(IsAllowSpecialCharacters));
+	}
+
+	/** Get Allow Special Characters.
+		@return Allow Special Characters	  */
+	public boolean isAllowSpecialCharacters()
+	{
+		Object oo = get_Value(COLUMNNAME_IsAllowSpecialCharacters);
 		if (oo != null) 
 		{
 			 if (oo instanceof Boolean) 

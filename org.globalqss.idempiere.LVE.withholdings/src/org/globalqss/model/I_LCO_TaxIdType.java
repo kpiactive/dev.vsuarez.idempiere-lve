@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_TaxIdType
  *  @author iDempiere (generated) 
- *  @version Release 11
+ *  @version Release 10
  */
 @SuppressWarnings("all")
 public interface I_LCO_TaxIdType 
@@ -32,7 +32,7 @@ public interface I_LCO_TaxIdType
     /** TableName=LCO_TaxIdType */
     public static final String Table_Name = "LCO_TaxIdType";
 
-    /** AD_Table_ID=1000017 */
+    /** AD_Table_ID=1000019 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -129,6 +129,15 @@ public interface I_LCO_TaxIdType
 
 	/** Get Allow Repeated	  */
 	public boolean isAllowRepeated();
+
+    /** Column name IsAllowSpecialCharacters */
+    public static final String COLUMNNAME_IsAllowSpecialCharacters = "IsAllowSpecialCharacters";
+
+	/** Set Allow Special Characters	  */
+	public void setIsAllowSpecialCharacters (boolean IsAllowSpecialCharacters);
+
+	/** Get Allow Special Characters	  */
+	public boolean isAllowSpecialCharacters();
 
     /** Column name IsDefault */
     public static final String COLUMNNAME_IsDefault = "IsDefault";
