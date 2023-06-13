@@ -121,8 +121,11 @@ public class VWTModelValidator extends AbstractEventHandler {
 			MInvoice invoice = (MInvoice) po;
 			
 			if (!invoice.isReversal()){
-				String sqlwhere = " C_Invoice_ID = ? AND LVE_VoucherWithholding_ID IS NULL";
-				List<MLCOInvoiceWithholding> invoiceW = new Query(po.getCtx(), X_LCO_InvoiceWithholding.Table_Name, sqlwhere, po.get_TrxName()).setOnlyActiveRecords(true).setParameters(invoice.get_ID()).setOrderBy("LCO_WithholdingType_ID").list();
+				String sqlwhere = " LCO_InvoiceWithholding.C_Invoice_ID = ? AND LCO_InvoiceWithholding.LVE_VoucherWithholding_ID IS NULL "
+						+ "AND EXISTS(SELECT 1 FROM LCO_WithholdingType wt WHERE wt.IsGenerateVoucherWithHolding = 'Y' "
+						+ "AND wt.LCO_WithholdingType_ID = LCO_InvoiceWithholding.LCO_WithholdingType_ID) ";
+				List<MLCOInvoiceWithholding> invoiceW = new Query(po.getCtx(), X_LCO_InvoiceWithholding.Table_Name, sqlwhere, po.get_TrxName())
+						.setOnlyActiveRecords(true).setParameters(invoice.get_ID()).setOrderBy("LCO_WithholdingType_ID").list();
 
 				int LCO_WithholdingType_ID = 0;
 				MLVEVoucherWithholding voucher = null;

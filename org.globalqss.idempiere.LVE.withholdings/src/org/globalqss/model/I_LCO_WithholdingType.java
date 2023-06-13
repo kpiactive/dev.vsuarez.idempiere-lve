@@ -23,7 +23,7 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Interface for LCO_WithholdingType
  *  @author iDempiere (generated) 
- *  @version Release 8.2
+ *  @version Release 10
  */
 @SuppressWarnings("all")
 public interface I_LCO_WithholdingType 
@@ -32,7 +32,7 @@ public interface I_LCO_WithholdingType
     /** TableName=LCO_WithholdingType */
     public static final String Table_Name = "LCO_WithholdingType";
 
-    /** AD_Table_ID=1000011 */
+    /** AD_Table_ID=1000010 */
     public static final int Table_ID = MTable.getTable_ID(Table_Name);
 
     KeyNamePair Model = new KeyNamePair(Table_ID, Table_Name);
@@ -159,6 +159,15 @@ public interface I_LCO_WithholdingType
 	  * The record is active in the system
 	  */
 	public boolean isActive();
+
+    /** Column name IsGenerateVoucherWithHolding */
+    public static final String COLUMNNAME_IsGenerateVoucherWithHolding = "IsGenerateVoucherWithHolding";
+
+	/** Set Generate Voucher WithHolding	  */
+	public void setIsGenerateVoucherWithHolding (boolean IsGenerateVoucherWithHolding);
+
+	/** Get Generate Voucher WithHolding	  */
+	public boolean isGenerateVoucherWithHolding();
 
     /** Column name IsSOTrx */
     public static final String COLUMNNAME_IsSOTrx = "IsSOTrx";
