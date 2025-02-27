@@ -184,7 +184,7 @@ public class LCO_ValidatorWH extends AbstractEventHandler
 					String sql =
 						  "SELECT LCO_InvoiceWithholding_ID "
 						 + " FROM LCO_InvoiceWithholding "
-						+ " WHERE C_Invoice_ID = ? "
+						+ " WHERE C_Invoice_ID = ? AND Processed = 'Y' "
 						+ " ORDER BY LCO_InvoiceWithholding_ID";
 					try (PreparedStatement pstmt = DB.prepareStatement(sql, inv.get_TrxName());)
 					{
