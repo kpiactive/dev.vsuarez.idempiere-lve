@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Localization Venezuela - Withholdings
 Bundle-SymbolicName: org.globalqss.idempiere.LVE.withholdings;singleton:=true
-Bundle-Version: 10.0.0.qualifier
+Bundle-Version: 12.0.0.qualifier
 Bundle-Activator: org.adempiere.plugin.utils.Incremental2PackActivator
 Bundle-Vendor: GlobalQSS
-Require-Bundle: org.adempiere.base;bundle-version="8.2.0",
- org.adempiere.plugin.utils;bundle-version="8.2.0",
- org.adempiere.base.callout;bundle-version="8.2.0"
+Require-Bundle: org.adempiere.base,
+ org.adempiere.plugin.utils,
+ org.adempiere.base.callout
 Export-Package: org.globalqss.model,
  org.globalqss.process,
  ve.net.dcs.model,
@@ -24,5 +24,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .,
  lib/jdom-2.0.5.jar
 Automatic-Module-Name: org.globalqss.idempiere.LVE.withholdings
-Bundle-RequiredExecutionEnvironment: JavaSE-11
-Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=11))"
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Capability: osgi.ee;filter:="(&(osgi.ee=JavaSE)(version>=17))"
