@@ -24,14 +24,15 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_TaxIdType
  *  @author iDempiere (generated) 
- *  @version Release 1.0c - $Id$ */
+ *  @version Release 10 - $Id$ */
+@org.adempiere.base.Model(table="LCO_TaxIdType")
 public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20130807L;
+	private static final long serialVersionUID = 20230403L;
 
     /** Standard Constructor */
     public X_LCO_TaxIdType (Properties ctx, int LCO_TaxIdType_ID, String trxName)
@@ -41,8 +42,25 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
         {
 			setIsDetailedNames (false);
 // N
-			setIsDigitChecked (false);
+			setIsDigitChecked (null);
+// C
+			setIsUseTaxIdDigit (false);
 // N
+			setLCO_TaxIdType_ID (0);
+			setName (null);
+        } */
+    }
+
+    /** Standard Constructor */
+    public X_LCO_TaxIdType (Properties ctx, int LCO_TaxIdType_ID, String trxName, String ... virtualColumns)
+    {
+      super (ctx, LCO_TaxIdType_ID, trxName, virtualColumns);
+      /** if (LCO_TaxIdType_ID == 0)
+        {
+			setIsDetailedNames (false);
+// N
+			setIsDigitChecked (null);
+// C
 			setIsUseTaxIdDigit (false);
 // N
 			setLCO_TaxIdType_ID (0);
@@ -73,15 +91,42 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 
     public String toString()
     {
-      StringBuffer sb = new StringBuffer ("X_LCO_TaxIdType[")
-        .append(get_ID()).append("]");
+      StringBuilder sb = new StringBuilder ("X_LCO_TaxIdType[")
+        .append(get_ID()).append(",Name=").append(getName()).append("]");
       return sb.toString();
     }
 
-	/** Set Description.
-		@param Description 
-		Optional short description of the record
+	public org.compiere.model.I_C_Country getC_Country() throws RuntimeException
+	{
+		return (org.compiere.model.I_C_Country)MTable.get(getCtx(), org.compiere.model.I_C_Country.Table_ID)
+			.getPO(getC_Country_ID(), get_TrxName());
+	}
+
+	/** Set Country.
+		@param C_Country_ID Country 
+	*/
+	public void setC_Country_ID (int C_Country_ID)
+	{
+		if (C_Country_ID < 1)
+			set_Value (COLUMNNAME_C_Country_ID, null);
+		else
+			set_Value (COLUMNNAME_C_Country_ID, Integer.valueOf(C_Country_ID));
+	}
+
+	/** Get Country.
+		@return Country 
 	  */
+	public int getC_Country_ID()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_C_Country_ID);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Description.
+		@param Description Optional short description of the record
+	*/
 	public void setDescription (String Description)
 	{
 		set_Value (COLUMNNAME_Description, Description);
@@ -90,15 +135,58 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	/** Get Description.
 		@return Optional short description of the record
 	  */
-	public String getDescription () 
+	public String getDescription()
 	{
 		return (String)get_Value(COLUMNNAME_Description);
 	}
 
+	/** Set Allow Repeated.
+		@param IsAllowRepeated Allow Repeated
+	*/
+	public void setIsAllowRepeated (boolean IsAllowRepeated)
+	{
+		set_Value (COLUMNNAME_IsAllowRepeated, Boolean.valueOf(IsAllowRepeated));
+	}
+
+	/** Get Allow Repeated.
+		@return Allow Repeated	  */
+	public boolean isAllowRepeated()
+	{
+		Object oo = get_Value(COLUMNNAME_IsAllowRepeated);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
+	/** Set Allow Special Characters.
+		@param IsAllowSpecialCharacters Allow Special Characters
+	*/
+	public void setIsAllowSpecialCharacters (boolean IsAllowSpecialCharacters)
+	{
+		set_Value (COLUMNNAME_IsAllowSpecialCharacters, Boolean.valueOf(IsAllowSpecialCharacters));
+	}
+
+	/** Get Allow Special Characters.
+		@return Allow Special Characters	  */
+	public boolean isAllowSpecialCharacters()
+	{
+		Object oo = get_Value(COLUMNNAME_IsAllowSpecialCharacters);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Default.
-		@param IsDefault 
-		Default value
-	  */
+		@param IsDefault Default value
+	*/
 	public void setIsDefault (boolean IsDefault)
 	{
 		set_Value (COLUMNNAME_IsDefault, Boolean.valueOf(IsDefault));
@@ -107,7 +195,7 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	/** Get Default.
 		@return Default value
 	  */
-	public boolean isDefault () 
+	public boolean isDefault()
 	{
 		Object oo = get_Value(COLUMNNAME_IsDefault);
 		if (oo != null) 
@@ -120,7 +208,8 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	}
 
 	/** Set Detailed Names.
-		@param IsDetailedNames Detailed Names	  */
+		@param IsDetailedNames Detailed Names
+	*/
 	public void setIsDetailedNames (boolean IsDetailedNames)
 	{
 		set_Value (COLUMNNAME_IsDetailedNames, Boolean.valueOf(IsDetailedNames));
@@ -128,7 +217,7 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 
 	/** Get Detailed Names.
 		@return Detailed Names	  */
-	public boolean isDetailedNames () 
+	public boolean isDetailedNames()
 	{
 		Object oo = get_Value(COLUMNNAME_IsDetailedNames);
 		if (oo != null) 
@@ -140,29 +229,31 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 		return false;
 	}
 
+	/** Callout = C */
+	public static final String ISDIGITCHECKED_Callout = "C";
+	/** Generate = N */
+	public static final String ISDIGITCHECKED_Generate = "N";
+	/** Check = Y */
+	public static final String ISDIGITCHECKED_Check = "Y";
 	/** Set Is Digit Checked.
-		@param IsDigitChecked Is Digit Checked	  */
-	public void setIsDigitChecked (boolean IsDigitChecked)
+		@param IsDigitChecked Is Digit Checked
+	*/
+	public void setIsDigitChecked (String IsDigitChecked)
 	{
-		set_Value (COLUMNNAME_IsDigitChecked, Boolean.valueOf(IsDigitChecked));
+
+		set_Value (COLUMNNAME_IsDigitChecked, IsDigitChecked);
 	}
 
 	/** Get Is Digit Checked.
 		@return Is Digit Checked	  */
-	public boolean isDigitChecked () 
+	public String getIsDigitChecked()
 	{
-		Object oo = get_Value(COLUMNNAME_IsDigitChecked);
-		if (oo != null) 
-		{
-			 if (oo instanceof Boolean) 
-				 return ((Boolean)oo).booleanValue(); 
-			return "Y".equals(oo);
-		}
-		return false;
+		return (String)get_Value(COLUMNNAME_IsDigitChecked);
 	}
 
 	/** Set Use Tax Id Digit.
-		@param IsUseTaxIdDigit Use Tax Id Digit	  */
+		@param IsUseTaxIdDigit Use Tax Id Digit
+	*/
 	public void setIsUseTaxIdDigit (boolean IsUseTaxIdDigit)
 	{
 		set_Value (COLUMNNAME_IsUseTaxIdDigit, Boolean.valueOf(IsUseTaxIdDigit));
@@ -170,7 +261,7 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 
 	/** Get Use Tax Id Digit.
 		@return Use Tax Id Digit	  */
-	public boolean isUseTaxIdDigit () 
+	public boolean isUseTaxIdDigit()
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseTaxIdDigit);
 		if (oo != null) 
@@ -182,33 +273,35 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 		return false;
 	}
 
-	/** Set Tax Code DIAN.
-		@param LCO_TaxCodeDian Tax Code DIAN	  */
+	/** Set Tax Code.
+		@param LCO_TaxCodeDian Tax Code
+	*/
 	public void setLCO_TaxCodeDian (String LCO_TaxCodeDian)
 	{
 		set_Value (COLUMNNAME_LCO_TaxCodeDian, LCO_TaxCodeDian);
 	}
 
-	/** Get Tax Code DIAN.
-		@return Tax Code DIAN	  */
-	public String getLCO_TaxCodeDian () 
+	/** Get Tax Code.
+		@return Tax Code	  */
+	public String getLCO_TaxCodeDian()
 	{
 		return (String)get_Value(COLUMNNAME_LCO_TaxCodeDian);
 	}
 
 	/** Set Tax ID Type.
-		@param LCO_TaxIdType_ID Tax ID Type	  */
+		@param LCO_TaxIdType_ID Tax ID Type
+	*/
 	public void setLCO_TaxIdType_ID (int LCO_TaxIdType_ID)
 	{
-		if (LCO_TaxIdType_ID < 1) 
+		if (LCO_TaxIdType_ID < 1)
 			set_ValueNoCheck (COLUMNNAME_LCO_TaxIdType_ID, null);
-		else 
+		else
 			set_ValueNoCheck (COLUMNNAME_LCO_TaxIdType_ID, Integer.valueOf(LCO_TaxIdType_ID));
 	}
 
 	/** Get Tax ID Type.
 		@return Tax ID Type	  */
-	public int getLCO_TaxIdType_ID () 
+	public int getLCO_TaxIdType_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_LCO_TaxIdType_ID);
 		if (ii == null)
@@ -217,7 +310,8 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	}
 
 	/** Set LCO_TaxIdType_UU.
-		@param LCO_TaxIdType_UU LCO_TaxIdType_UU	  */
+		@param LCO_TaxIdType_UU LCO_TaxIdType_UU
+	*/
 	public void setLCO_TaxIdType_UU (String LCO_TaxIdType_UU)
 	{
 		set_Value (COLUMNNAME_LCO_TaxIdType_UU, LCO_TaxIdType_UU);
@@ -225,15 +319,51 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 
 	/** Get LCO_TaxIdType_UU.
 		@return LCO_TaxIdType_UU	  */
-	public String getLCO_TaxIdType_UU () 
+	public String getLCO_TaxIdType_UU()
 	{
 		return (String)get_Value(COLUMNNAME_LCO_TaxIdType_UU);
 	}
 
-	/** Set Name.
-		@param Name 
-		Alphanumeric identifier of the entity
+	/** Set Maximum Length.
+		@param MaxLength Maximum Length of Data
+	*/
+	public void setMaxLength (int MaxLength)
+	{
+		set_Value (COLUMNNAME_MaxLength, Integer.valueOf(MaxLength));
+	}
+
+	/** Get Maximum Length.
+		@return Maximum Length of Data
 	  */
+	public int getMaxLength()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_MaxLength);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Minimum Length.
+		@param MinLength Minimum Length
+	*/
+	public void setMinLength (int MinLength)
+	{
+		set_Value (COLUMNNAME_MinLength, Integer.valueOf(MinLength));
+	}
+
+	/** Get Minimum Length.
+		@return Minimum Length	  */
+	public int getMinLength()
+	{
+		Integer ii = (Integer)get_Value(COLUMNNAME_MinLength);
+		if (ii == null)
+			 return 0;
+		return ii.intValue();
+	}
+
+	/** Set Name.
+		@param Name Alphanumeric identifier of the entity
+	*/
 	public void setName (String Name)
 	{
 		set_Value (COLUMNNAME_Name, Name);
@@ -242,7 +372,7 @@ public class X_LCO_TaxIdType extends PO implements I_LCO_TaxIdType, I_Persistent
 	/** Get Name.
 		@return Alphanumeric identifier of the entity
 	  */
-	public String getName () 
+	public String getName()
 	{
 		return (String)get_Value(COLUMNNAME_Name);
 	}

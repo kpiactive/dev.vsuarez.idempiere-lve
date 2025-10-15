@@ -24,14 +24,15 @@ import org.compiere.util.KeyNamePair;
 
 /** Generated Model for LCO_WithholdingType
  *  @author iDempiere (generated) 
- *  @version Release 8.2 - $Id$ */
+ *  @version Release 10 - $Id$ */
+@org.adempiere.base.Model(table="LCO_WithholdingType")
 public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, I_Persistent 
 {
 
 	/**
 	 *
 	 */
-	private static final long serialVersionUID = 20220331L;
+	private static final long serialVersionUID = 20230612L;
 
     /** Standard Constructor */
     public X_LCO_WithholdingType (Properties ctx, int LCO_WithholdingType_ID, String trxName)
@@ -39,7 +40,21 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
       super (ctx, LCO_WithholdingType_ID, trxName);
       /** if (LCO_WithholdingType_ID == 0)
         {
-			setC_DocType_ID (0);
+			setIsSOTrx (false);
+// N
+			setLCO_WithholdingType_ID (0);
+			setName (null);
+			setType (null);
+// Other
+        } */
+    }
+
+    /** Standard Constructor */
+    public X_LCO_WithholdingType (Properties ctx, int LCO_WithholdingType_ID, String trxName, String ... virtualColumns)
+    {
+      super (ctx, LCO_WithholdingType_ID, trxName, virtualColumns);
+      /** if (LCO_WithholdingType_ID == 0)
+        {
 			setIsSOTrx (false);
 // N
 			setLCO_WithholdingType_ID (0);
@@ -78,26 +93,26 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
     }
 
 	public org.compiere.model.I_C_Charge getC_Charge() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_Charge)MTable.get(getCtx(), org.compiere.model.I_C_Charge.Table_Name)
-			.getPO(getC_Charge_ID(), get_TrxName());	}
+	{
+		return (org.compiere.model.I_C_Charge)MTable.get(getCtx(), org.compiere.model.I_C_Charge.Table_ID)
+			.getPO(getC_Charge_ID(), get_TrxName());
+	}
 
 	/** Set Charge.
-		@param C_Charge_ID 
-		Additional document charges
-	  */
+		@param C_Charge_ID Additional document charges
+	*/
 	public void setC_Charge_ID (int C_Charge_ID)
 	{
-		if (C_Charge_ID < 1) 
+		if (C_Charge_ID < 1)
 			set_Value (COLUMNNAME_C_Charge_ID, null);
-		else 
+		else
 			set_Value (COLUMNNAME_C_Charge_ID, Integer.valueOf(C_Charge_ID));
 	}
 
 	/** Get Charge.
 		@return Additional document charges
 	  */
-	public int getC_Charge_ID () 
+	public int getC_Charge_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_Charge_ID);
 		if (ii == null)
@@ -106,23 +121,25 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	public org.compiere.model.I_C_DocType getC_DocTypeDN() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
-			.getPO(getC_DocTypeDN_ID(), get_TrxName());	}
+	{
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_ID)
+			.getPO(getC_DocTypeDN_ID(), get_TrxName());
+	}
 
 	/** Set Document Type Debit Note.
-		@param C_DocTypeDN_ID Document Type Debit Note	  */
+		@param C_DocTypeDN_ID Document Type Debit Note
+	*/
 	public void setC_DocTypeDN_ID (int C_DocTypeDN_ID)
 	{
-		if (C_DocTypeDN_ID < 1) 
+		if (C_DocTypeDN_ID < 1)
 			set_Value (COLUMNNAME_C_DocTypeDN_ID, null);
-		else 
+		else
 			set_Value (COLUMNNAME_C_DocTypeDN_ID, Integer.valueOf(C_DocTypeDN_ID));
 	}
 
 	/** Get Document Type Debit Note.
 		@return Document Type Debit Note	  */
-	public int getC_DocTypeDN_ID () 
+	public int getC_DocTypeDN_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocTypeDN_ID);
 		if (ii == null)
@@ -131,26 +148,26 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	public org.compiere.model.I_C_DocType getC_DocType() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
-			.getPO(getC_DocType_ID(), get_TrxName());	}
+	{
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_ID)
+			.getPO(getC_DocType_ID(), get_TrxName());
+	}
 
 	/** Set Document Type.
-		@param C_DocType_ID 
-		Document type or rules
-	  */
+		@param C_DocType_ID Document type or rules
+	*/
 	public void setC_DocType_ID (int C_DocType_ID)
 	{
-		if (C_DocType_ID < 0) 
+		if (C_DocType_ID < 0)
 			set_Value (COLUMNNAME_C_DocType_ID, null);
-		else 
+		else
 			set_Value (COLUMNNAME_C_DocType_ID, Integer.valueOf(C_DocType_ID));
 	}
 
 	/** Get Document Type.
 		@return Document type or rules
 	  */
-	public int getC_DocType_ID () 
+	public int getC_DocType_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_C_DocType_ID);
 		if (ii == null)
@@ -159,9 +176,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set Counter.
-		@param Counter 
-		Count Value
-	  */
+		@param Counter Count Value
+	*/
 	public void setCounter (int Counter)
 	{
 		throw new IllegalArgumentException ("Counter is virtual column");	}
@@ -169,7 +185,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/** Get Counter.
 		@return Count Value
 	  */
-	public int getCounter () 
+	public int getCounter()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_Counter);
 		if (ii == null)
@@ -178,9 +194,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set Description.
-		@param Description 
-		Optional short description of the record
-	  */
+		@param Description Optional short description of the record
+	*/
 	public void setDescription (String Description)
 	{
 		set_Value (COLUMNNAME_Description, Description);
@@ -189,15 +204,36 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/** Get Description.
 		@return Optional short description of the record
 	  */
-	public String getDescription () 
+	public String getDescription()
 	{
 		return (String)get_Value(COLUMNNAME_Description);
 	}
 
+	/** Set Generate Voucher WithHolding.
+		@param IsGenerateVoucherWithHolding Generate Voucher WithHolding
+	*/
+	public void setIsGenerateVoucherWithHolding (boolean IsGenerateVoucherWithHolding)
+	{
+		set_Value (COLUMNNAME_IsGenerateVoucherWithHolding, Boolean.valueOf(IsGenerateVoucherWithHolding));
+	}
+
+	/** Get Generate Voucher WithHolding.
+		@return Generate Voucher WithHolding	  */
+	public boolean isGenerateVoucherWithHolding()
+	{
+		Object oo = get_Value(COLUMNNAME_IsGenerateVoucherWithHolding);
+		if (oo != null) 
+		{
+			 if (oo instanceof Boolean) 
+				 return ((Boolean)oo).booleanValue(); 
+			return "Y".equals(oo);
+		}
+		return false;
+	}
+
 	/** Set Sales Transaction.
-		@param IsSOTrx 
-		This is a Sales Transaction
-	  */
+		@param IsSOTrx This is a Sales Transaction
+	*/
 	public void setIsSOTrx (boolean IsSOTrx)
 	{
 		set_Value (COLUMNNAME_IsSOTrx, Boolean.valueOf(IsSOTrx));
@@ -206,7 +242,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/** Get Sales Transaction.
 		@return This is a Sales Transaction
 	  */
-	public boolean isSOTrx () 
+	public boolean isSOTrx()
 	{
 		Object oo = get_Value(COLUMNNAME_IsSOTrx);
 		if (oo != null) 
@@ -219,7 +255,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set Use Currency Convert.
-		@param IsUseCurrencyConvert Use Currency Convert	  */
+		@param IsUseCurrencyConvert Use Currency Convert
+	*/
 	public void setIsUseCurrencyConvert (boolean IsUseCurrencyConvert)
 	{
 		set_Value (COLUMNNAME_IsUseCurrencyConvert, Boolean.valueOf(IsUseCurrencyConvert));
@@ -227,7 +264,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 
 	/** Get Use Currency Convert.
 		@return Use Currency Convert	  */
-	public boolean isUseCurrencyConvert () 
+	public boolean isUseCurrencyConvert()
 	{
 		Object oo = get_Value(COLUMNNAME_IsUseCurrencyConvert);
 		if (oo != null) 
@@ -240,18 +277,19 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set Withholding Type.
-		@param LCO_WithholdingType_ID Withholding Type	  */
+		@param LCO_WithholdingType_ID Withholding Type
+	*/
 	public void setLCO_WithholdingType_ID (int LCO_WithholdingType_ID)
 	{
-		if (LCO_WithholdingType_ID < 1) 
+		if (LCO_WithholdingType_ID < 1)
 			set_ValueNoCheck (COLUMNNAME_LCO_WithholdingType_ID, null);
-		else 
+		else
 			set_ValueNoCheck (COLUMNNAME_LCO_WithholdingType_ID, Integer.valueOf(LCO_WithholdingType_ID));
 	}
 
 	/** Get Withholding Type.
 		@return Withholding Type	  */
-	public int getLCO_WithholdingType_ID () 
+	public int getLCO_WithholdingType_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_LCO_WithholdingType_ID);
 		if (ii == null)
@@ -260,7 +298,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set LCO_WithholdingType_UU.
-		@param LCO_WithholdingType_UU LCO_WithholdingType_UU	  */
+		@param LCO_WithholdingType_UU LCO_WithholdingType_UU
+	*/
 	public void setLCO_WithholdingType_UU (String LCO_WithholdingType_UU)
 	{
 		set_Value (COLUMNNAME_LCO_WithholdingType_UU, LCO_WithholdingType_UU);
@@ -268,29 +307,31 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 
 	/** Get LCO_WithholdingType_UU.
 		@return LCO_WithholdingType_UU	  */
-	public String getLCO_WithholdingType_UU () 
+	public String getLCO_WithholdingType_UU()
 	{
 		return (String)get_Value(COLUMNNAME_LCO_WithholdingType_UU);
 	}
 
 	public org.compiere.model.I_C_BankAccount getLVE_WHBankAccount() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_BankAccount)MTable.get(getCtx(), org.compiere.model.I_C_BankAccount.Table_Name)
-			.getPO(getLVE_WHBankAccount_ID(), get_TrxName());	}
+	{
+		return (org.compiere.model.I_C_BankAccount)MTable.get(getCtx(), org.compiere.model.I_C_BankAccount.Table_ID)
+			.getPO(getLVE_WHBankAccount_ID(), get_TrxName());
+	}
 
 	/** Set Withholding Bank Account.
-		@param LVE_WHBankAccount_ID Withholding Bank Account	  */
+		@param LVE_WHBankAccount_ID Withholding Bank Account
+	*/
 	public void setLVE_WHBankAccount_ID (int LVE_WHBankAccount_ID)
 	{
-		if (LVE_WHBankAccount_ID < 1) 
+		if (LVE_WHBankAccount_ID < 1)
 			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, null);
-		else 
+		else
 			set_Value (COLUMNNAME_LVE_WHBankAccount_ID, Integer.valueOf(LVE_WHBankAccount_ID));
 	}
 
 	/** Get Withholding Bank Account.
 		@return Withholding Bank Account	  */
-	public int getLVE_WHBankAccount_ID () 
+	public int getLVE_WHBankAccount_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHBankAccount_ID);
 		if (ii == null)
@@ -299,23 +340,25 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	public org.compiere.model.I_C_DocType getLVE_WHPaymentDocType() throws RuntimeException
-    {
-		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_Name)
-			.getPO(getLVE_WHPaymentDocType_ID(), get_TrxName());	}
+	{
+		return (org.compiere.model.I_C_DocType)MTable.get(getCtx(), org.compiere.model.I_C_DocType.Table_ID)
+			.getPO(getLVE_WHPaymentDocType_ID(), get_TrxName());
+	}
 
 	/** Set Payment Withholding Document Type.
-		@param LVE_WHPaymentDocType_ID Payment Withholding Document Type	  */
+		@param LVE_WHPaymentDocType_ID Payment Withholding Document Type
+	*/
 	public void setLVE_WHPaymentDocType_ID (int LVE_WHPaymentDocType_ID)
 	{
-		if (LVE_WHPaymentDocType_ID < 1) 
+		if (LVE_WHPaymentDocType_ID < 1)
 			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, null);
-		else 
+		else
 			set_Value (COLUMNNAME_LVE_WHPaymentDocType_ID, Integer.valueOf(LVE_WHPaymentDocType_ID));
 	}
 
 	/** Get Payment Withholding Document Type.
 		@return Payment Withholding Document Type	  */
-	public int getLVE_WHPaymentDocType_ID () 
+	public int getLVE_WHPaymentDocType_ID()
 	{
 		Integer ii = (Integer)get_Value(COLUMNNAME_LVE_WHPaymentDocType_ID);
 		if (ii == null)
@@ -324,9 +367,8 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	}
 
 	/** Set Name.
-		@param Name 
-		Alphanumeric identifier of the entity
-	  */
+		@param Name Alphanumeric identifier of the entity
+	*/
 	public void setName (String Name)
 	{
 		set_Value (COLUMNNAME_Name, Name);
@@ -335,7 +377,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/** Get Name.
 		@return Alphanumeric identifier of the entity
 	  */
-	public String getName () 
+	public String getName()
 	{
 		return (String)get_Value(COLUMNNAME_Name);
 	}
@@ -348,20 +390,19 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
         return new KeyNamePair(get_ID(), getName());
     }
 
+	/** Economic Activity (Municipal) = IAE */
+	public static final String TYPE_EconomicActivityMunicipal = "IAE";
+	/** IGTF = IGTF */
+	public static final String TYPE_IGTF = "IGTF";
 	/** ISLR = ISLR */
 	public static final String TYPE_ISLR = "ISLR";
 	/** IVA = IVA */
 	public static final String TYPE_IVA = "IVA";
 	/** Other = Other */
 	public static final String TYPE_Other = "Other";
-	/** Economic Activity (Municipal) = IAE */
-	public static final String TYPE_EconomicActivityMunicipal = "IAE";
-	/** IGTF = IGTF */
-	public static final String TYPE_IGTF = "IGTF";
 	/** Set Type.
-		@param Type 
-		Type of Validation (SQL, Java Script, Java Language)
-	  */
+		@param Type Type of Validation (SQL, Java Script, Java Language)
+	*/
 	public void setType (String Type)
 	{
 
@@ -371,7 +412,7 @@ public class X_LCO_WithholdingType extends PO implements I_LCO_WithholdingType, 
 	/** Get Type.
 		@return Type of Validation (SQL, Java Script, Java Language)
 	  */
-	public String getType () 
+	public String getType()
 	{
 		return (String)get_Value(COLUMNNAME_Type);
 	}

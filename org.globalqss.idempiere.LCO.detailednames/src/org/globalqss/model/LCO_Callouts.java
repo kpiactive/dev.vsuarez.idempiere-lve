@@ -154,7 +154,13 @@ public class LCO_Callouts implements IColumnCalloutFactory
 		String ln1 = mTab.get_ValueAsString("LastName1");
 		String ln2 = mTab.get_ValueAsString("LastName2");
 		int AD_Client_ID = Env.getAD_Client_ID(Env.getCtx());
-		String fullName = LCO_Utils.getFullName(fn1, fn2, ln1, ln2, AD_Client_ID);
+		String nameSeparator = " ";
+		if(mTab.getValue("LCO_TaxIdType_ID") != null) {
+			int taxidtype_id = (int) mTab.getValue("LCO_TaxIdType_ID");
+			X_LCO_TaxIdType tt = new X_LCO_TaxIdType(ctx, taxidtype_id, null);
+			nameSeparator = tt.get_ValueAsString("NameSeparator");
+		}
+		String fullName = LCO_Utils.getFullName(fn1, fn2, ln1, ln2, AD_Client_ID, nameSeparator);
 		mTab.setValue(MBPartner.COLUMNNAME_Name, fullName);
 		return "";
 	}	//	fillName

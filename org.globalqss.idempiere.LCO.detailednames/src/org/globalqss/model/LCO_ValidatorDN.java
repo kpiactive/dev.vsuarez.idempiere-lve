@@ -214,7 +214,13 @@ public class LCO_ValidatorDN extends AbstractEventHandler
 		 if (ln1 == null || ln1.length() == 0)
 			return Msg.getMsg(bpartner.getCtx(), "LCO_LastName1Required");
 
-		String fullName = LCO_Utils.getFullName(fn1, fn2, ln1, ln2, bpartner.getAD_Client_ID());
+		 String nameSeparator = " ";
+		 int LCO_TaxIdType_ID = bpartner.get_ValueAsInt("LCO_TaxIdType_ID");
+		 if(LCO_TaxIdType_ID > 0) {
+			 X_LCO_TaxIdType tt = new X_LCO_TaxIdType(bpartner.getCtx(), LCO_TaxIdType_ID, bpartner.get_TrxName());
+			 nameSeparator = tt.get_ValueAsString("NameSeparator");
+		 }
+		String fullName = LCO_Utils.getFullName(fn1, fn2, ln1, ln2, bpartner.getAD_Client_ID(), nameSeparator);
 		bpartner.setName(fullName);
 		return null;
 	}	//	mfillName

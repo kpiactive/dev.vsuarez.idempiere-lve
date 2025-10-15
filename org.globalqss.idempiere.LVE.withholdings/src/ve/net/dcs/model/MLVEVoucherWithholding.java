@@ -71,18 +71,18 @@ public class MLVEVoucherWithholding extends X_LVE_VoucherWithholding implements 
 			setC_DocType_ID(whType.getC_DocType_ID());
 		setIsWHUseCurrencyConvert(whType.isUseCurrencyConvert());
 		
-		if(getLVE_WHBankAccount_ID() <= 0) {
-			log.saveError("", "Debe seleccionar Cuenta Bancaria para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
-			return false;
-		}
-		if(getLVE_WHPaymentDocType_ID() <= 0) {
-			log.saveError("", "Debe seleccionar Tipo de Documento de Pago para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
-			return false;
-		}
-		if(getC_DocType_ID() <= 0) {
-			log.saveError("", "Debe seleccionar Tipo de Documento para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
-			return false;
-		}
+//		if(getLVE_WHBankAccount_ID() <= 0) {
+//			log.saveError("", "Debe seleccionar Cuenta Bancaria para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+//			return false;
+//		}
+//		if(getLVE_WHPaymentDocType_ID() <= 0) {
+//			log.saveError("", "Debe seleccionar Tipo de Documento de Pago para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+//			return false;
+//		}
+//		if(getC_DocType_ID() <= 0) {
+//			log.saveError("", "Debe seleccionar Tipo de Documento para generar el Documento de Retencion, lo puede configurar en el tipo de Retencion, o en el Comprobante a Generar");
+//			return false;
+//		}
 		
 		if(is_ValueChanged(MLVEVoucherWithholding.COLUMNNAME_C_Currency_ID)) {
 			if(getLines(null).length > 0) {

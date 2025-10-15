@@ -152,45 +152,58 @@ public class LCO_MInvoice extends MInvoice
 			List<Object> paramsr = new ArrayList<Object>();
 			paramsr.add(wt.getLCO_WithholdingType_ID());
 			paramsr.add(getDateInvoiced());
+			boolean findWHR = false;
 			if (wrc.isUseBPISIC()) {
 				wherer.append(" AND LCO_BP_ISIC_ID=? ");
 				paramsr.add(bp_isic_id);
+				findWHR = true;
 			}
 			if (wrc.isUseBPTaxPayerType()) {
 				wherer.append(" AND LCO_BP_TaxPayerType_ID=? ");
 				paramsr.add(bp_taxpayertype_id);
+				findWHR = true;
 			}
 			if (wrc.isUseOrgISIC()) {
 				wherer.append(" AND LCO_Org_ISIC_ID=? ");
 				paramsr.add(org_isic_id);
+				findWHR = true;
 			}
 			if (wrc.isUseOrgTaxPayerType()) {
 				wherer.append(" AND LCO_Org_TaxPayerType_ID=? ");
 				paramsr.add(org_taxpayertype_id);
+				findWHR = true;
 			}
 			if (wrc.isUseBPCity()) {
 				wherer.append(" AND LCO_BP_City_ID=? ");
 				paramsr.add(bp_city_id);
 				if (bp_city_id <= 0)
 					log.warning("Possible configuration error bp city is used but not set");
+				else
+					findWHR = true;
 			}
 			if (wrc.isUseOrgCity()) {
 				wherer.append(" AND LCO_Org_City_ID=? ");
 				paramsr.add(org_city_id);
 				if (org_city_id <= 0)
 					log.warning("Possible configuration error org city is used but not set");
+				else
+					findWHR = true;
 			}
 			if(wrc.isUseBPMunicipality()) {
 				wherer.append(" AND LVE_BP_Municipaly_ID=? ");
 				paramsr.add(bp_municipality_id);
 				if (bp_municipality_id <= 0)
 					log.warning("Possible Configuration error BP Municipality is used but not set");
+				else
+					findWHR = true;
 			}
 			if(wrc.isUseOrgMunicipality()) {
 				wherer.append(" AND LVE_Org_Municipaly_ID=? ");
 				paramsr.add(org_municipality_id);
 				if (org_municipality_id <= 0)
 					log.warning("Possible Configuration error Org Municipality is used but not set");
+				else
+					findWHR = true;
 			}
 
 			// Add withholding categories of lines
@@ -216,6 +229,7 @@ public class LCO_MInvoice extends MInvoice
 							wherer.append(",");
 						}
 						wherer.append(wcid);
+						findWHR = true;
 					}
 				}
 				if (addedlines)
@@ -243,11 +257,15 @@ public class LCO_MInvoice extends MInvoice
 							wherer.append(",");
 						}
 						wherer.append(wcid);
+						findWHR = true;
 					}
 				}
 				if (addedlines)
 					wherer.append(") ");
 			}
+			
+			if(!findWHR)
+				continue;
 
 			List<X_LCO_WithholdingRule> wrs = new Query(getCtx(), X_LCO_WithholdingRule.Table_Name, wherer.toString(), get_TrxName())
 				.setOnlyActiveRecords(true)
@@ -483,6 +501,9 @@ public class LCO_MInvoice extends MInvoice
 						taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), getC_ConversionType_ID(), getAD_Client_ID(), getAD_Org_ID());
 					}
 					if(voucher != null) {
+						iwh.set_ValueOfColumn("LVE_VoucherWithholding_ID", voucher.getLVE_VoucherWithholding_ID());
+						iwh.setDateTrx(voucher.getDateTrx());
+						iwh.setDateAcct(voucher.getDateAcct());
 						if(voucher.getC_Currency_ID() > 0 && voucher.getC_Currency_ID() != getC_Currency_ID()) {
 							int conversionType_ID = voucher.getC_ConversionType_ID();
 							if(conversionType_ID <= 0)
@@ -491,8 +512,8 @@ public class LCO_MInvoice extends MInvoice
 							if(!overrideCurrencyRate)
 								overrideCurrencyRate = isOverrideCurrencyRate();
 							if(!overrideCurrencyRate) {
-								base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
-								taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+								taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
 							} else {
 								BigDecimal currencyRate = voucher.getCurrencyRate();
 								if((currencyRate == null || currencyRate.signum() == 0) && get_Value("DivideRate") != null)
@@ -506,8 +527,8 @@ public class LCO_MInvoice extends MInvoice
 										taxamt = taxamt.multiply(currencyRate);
 									}
 								} else {
-									base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
-									taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+									base = MConversionRate.convert(getCtx(), base, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
+									taxamt = MConversionRate.convert(getCtx(), taxamt, getC_Currency_ID(), C_Currency_ID, iwh.getDateAcct(), conversionType_ID, getAD_Client_ID(), getAD_Org_ID());
 								}
 							}
 						}
@@ -527,9 +548,6 @@ public class LCO_MInvoice extends MInvoice
 					//SUBTRAHEND
 					iwh.saveEx();
 					totwith = totwith.add(taxamt);
-					if (voucher != null)
-						iwh.set_ValueOfColumn("LVE_VoucherWithholding_ID", voucher.getLVE_VoucherWithholding_ID());
-					iwh.saveEx();
 					noins++;
 					log.info("LCO_InvoiceWithholding saved:"+iwh.getTaxAmt());
 				}

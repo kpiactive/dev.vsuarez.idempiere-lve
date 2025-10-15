@@ -67,7 +67,7 @@ public class LCO_Utils
 	}	// calculateDigit
 
 	public static final String SPACE = " ";
-	public static String getFullName(String fn1, String fn2, String ln1, String ln2, int AD_Client_ID) {
+	public static String getFullName(String fn1, String fn2, String ln1, String ln2, int AD_Client_ID, String nameSeparator) {
 		StringBuilder fullFirstNames = new StringBuilder();
 		StringBuilder fullLastNames = new StringBuilder();
 		StringBuilder fullName = new StringBuilder();
@@ -81,7 +81,6 @@ public class LCO_Utils
 		if (ln2 != null && ln2.trim().length() > 0)
 			fullLastNames.append(SPACE).append(ln2.trim());
 
-		String nameSeparator = MSysConfig.getValue("QSSLCO_NameSeparator", " ", AD_Client_ID);
 		boolean namesFirst = MSysConfig.getBooleanValue("QSSLCO_NamesFirst", true, AD_Client_ID);
 
 		if (fullFirstNames.length() == 0 && fullLastNames.length() == 0)

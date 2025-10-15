@@ -41,9 +41,9 @@ import org.compiere.util.Util;
 import org.globalqss.model.MLCOInvoiceWithholding;
 import org.globalqss.model.MLCOWithholdingType;
 import org.globalqss.model.X_LCO_InvoiceWithholding;
+import org.globalqss.model.X_LCO_TaxIdType;
 import org.osgi.service.event.Event;
 
-import ve.net.dcs.model.I_LVE_VoucherWithholding;
 import ve.net.dcs.model.MLVEVoucherWithholding;
 
 public class VWTModelValidator extends AbstractEventHandler {
@@ -63,7 +63,7 @@ public class VWTModelValidator extends AbstractEventHandler {
 		registerTableEvent(IEventTopics.PO_BEFORE_CHANGE, I_C_BPartner.Table_Name);
 		registerTableEvent(IEventTopics.PO_AFTER_CHANGE, MLVEVoucherWithholding.Table_Name);
 		registerTableEvent(IEventTopics.PO_BEFORE_NEW, MLVEVoucherWithholding.Table_Name);
-		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, I_LVE_VoucherWithholding.Table_Name);
+		registerTableEvent(IEventTopics.DOC_AFTER_COMPLETE, MLVEVoucherWithholding.Table_Name);
 	}
 
 	@Override
@@ -96,36 +96,36 @@ public class VWTModelValidator extends AbstractEventHandler {
 		
 		}
 		
-		if (po.get_TableName().equals(I_C_BPartner.Table_Name) && (type.equals(IEventTopics.PO_BEFORE_CHANGE) || type.equals(IEventTopics.PO_BEFORE_NEW))) {
+		if(po.get_TableName().equals(I_C_BPartner.Table_Name)) {
 			X_C_BPartner partner = (X_C_BPartner) po;
-			if(partner.is_ValueChanged("TaxID")){
-				int value = 0;
-				String cadena = partner.getTaxID();
-				
-				value = DB.getSQLValue(partner.get_TrxName(), "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ?", partner.get_ValueAsInt("LCO_TaxIDType_ID"),cadena,partner.get_ID());
-				
-				if (value > 0)
-					throw new RuntimeException("Tercero Ya Existe");
-				partner.setTaxID(cadena);
-			}
-		}
-		
-
-		if (po.get_TableName().equals(I_C_BPartner.Table_Name) && type.equals(IEventTopics.PO_BEFORE_CHANGE)) {
-			if(((X_C_BPartner) po).getTaxID()!=null){
-				if(!((X_C_BPartner) po).getTaxID().equals("")){
-					if (((X_C_BPartner) po).getTaxID().replaceAll("[\\w\\-]+","").matches("[\\W\\s]+") ){
-						throw new RuntimeException("Caracteres no válidos en número de identificación");
+			String taxID = partner.getTaxID();
+			X_LCO_TaxIdType taxIdType = null;
+			if(partner.get_ValueAsInt("LCO_TaxIdType_ID") > 0)
+				taxIdType = new X_LCO_TaxIdType(partner.getCtx(), partner.get_ValueAsInt("LCO_TaxIdType_ID"), partner.get_TrxName());
+			if (type.equals(IEventTopics.PO_BEFORE_CHANGE) || type.equals(IEventTopics.PO_BEFORE_NEW)) {
+				if(partner.is_ValueChanged(X_C_BPartner.COLUMNNAME_TaxID) && !Util.isEmpty(taxID, true) && taxIdType != null) {
+					if(!taxIdType.isAllowRepeated()) {
+						int value = 0;
+						String sql = "SELECT 1 FROM C_BPartner WHERE LCO_taxIDType_ID = ? AND TaxID = ? AND C_BPartner_ID != ? AND AD_Client_ID =? AND AD_Org_ID =?";
+						value = DB.getSQLValue(partner.get_TrxName(), sql, taxIdType.getLCO_TaxIdType_ID(), taxID, partner.getC_BPartner_ID(), partner.getAD_Client_ID(), partner.getAD_Org_ID());
+						if (value > 0)
+							throw new RuntimeException("Tercero Ya Existe");
 					}
+					if(!taxIdType.isAllowSpecialCharacters())
+						if (taxID.replaceAll("[\\w\\-]+","").matches("[\\W\\s]+"))
+							throw new RuntimeException("Caracteres no válidos en número de identificación");
 				}
-			}
+			} 
 		} else if (po.get_TableName().equals(I_C_Invoice.Table_Name) && type.equals(IEventTopics.DOC_AFTER_COMPLETE)) {
 
 			MInvoice invoice = (MInvoice) po;
 			
 			if (!invoice.isReversal()){
-				String sqlwhere = " C_Invoice_ID = ? AND LVE_VoucherWithholding_ID IS NULL";
-				List<MLCOInvoiceWithholding> invoiceW = new Query(po.getCtx(), X_LCO_InvoiceWithholding.Table_Name, sqlwhere, po.get_TrxName()).setOnlyActiveRecords(true).setParameters(invoice.get_ID()).setOrderBy("LCO_WithholdingType_ID").list();
+				String sqlwhere = " LCO_InvoiceWithholding.C_Invoice_ID = ? AND LCO_InvoiceWithholding.LVE_VoucherWithholding_ID IS NULL "
+						+ "AND EXISTS(SELECT 1 FROM LCO_WithholdingType wt WHERE wt.IsGenerateVoucherWithHolding = 'Y' "
+						+ "AND wt.LCO_WithholdingType_ID = LCO_InvoiceWithholding.LCO_WithholdingType_ID) ";
+				List<MLCOInvoiceWithholding> invoiceW = new Query(po.getCtx(), X_LCO_InvoiceWithholding.Table_Name, sqlwhere, po.get_TrxName())
+						.setOnlyActiveRecords(true).setParameters(invoice.get_ID()).setOrderBy("LCO_WithholdingType_ID").list();
 
 				int LCO_WithholdingType_ID = 0;
 				MLVEVoucherWithholding voucher = null;
